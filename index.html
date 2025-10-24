@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Camarin High Batch '85</title>
-
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
@@ -38,16 +36,8 @@
     flex-wrap: wrap;
   }
 
-  nav .logo {
-    font-weight:bold;
-    font-size:1.2em;
-  }
-
-  nav .menu {
-    display:flex;
-    gap:10px;
-  }
-
+  nav .logo {font-weight:bold;font-size:1.2em;}
+  nav .menu {display:flex;gap:10px;}
   nav .menu a {
     font-size:1em;
     color:#000;
@@ -61,26 +51,16 @@
     transition: all 0.3s ease, box-shadow 0.3s ease;
   }
 
-  nav .menu a.active,
-  nav .menu a:hover {
+  nav .menu a.active, nav .menu a:hover {
     background-color:#000;
     color:#FFD700;
     transform: scale(1.1);
     box-shadow: 0 0 10px #FFD700, 0 0 20px #FFA500;
   }
 
-  .hamburger {
-    display: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #000;
-  }
+  .hamburger {display:none;font-size:1.5em;cursor:pointer;color:#000;}
 
-  .container {
-    padding:15px;
-    opacity:1;
-    transition: opacity 0.5s, transform 0.5s;
-  }
+  .container {padding:15px;opacity:1;transition: opacity 0.5s, transform 0.5s;}
 
   .card {
     background-color:#111;
@@ -88,13 +68,14 @@
     border-radius:8px;
     padding:10px;
     margin-bottom:10px;
+    display:flex;
+    align-items:center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-
-  .card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 10px #FFD700, 0 0 15px #FFA500;
-  }
+  .card:hover {transform: scale(1.03);box-shadow: 0 0 10px #FFD700, 0 0 15px #FFA500;}
+  .card img {width:80px;height:80px;object-fit:cover;margin-right:16px;border-radius:8px;}
+  .card-content h3 {margin:0;font-size:1.2em;}
+  .card-content p {margin:4px 0;font-size:0.8em;}
 
   .gallery {
     display:grid;
@@ -102,75 +83,31 @@
     gap:10px;
     margin-top:20px;
   }
-
-  .gallery img {
-    width:100%;
-    border-radius:8px;
-    border:2px solid #FFD700;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .gallery img:hover {
-    transform:scale(1.05);
-    box-shadow:0 0 10px #FFD700, 0 0 15px #FFA500;
-  }
+  .gallery img {width:100%;border-radius:8px;border:2px solid #FFD700;transition: transform 0.3s ease, box-shadow 0.3s ease;}
+  .gallery img:hover {transform:scale(1.05);box-shadow:0 0 10px #FFD700, 0 0 15px #FFA500;}
 
   h1,h2{text-align:center;}
   footer{text-align:center;padding:15px;background-color:#111;margin-top:20px;color:#FFD700;}
 
-  .social {
-    margin-top:10px;
-  }
-  .social a {
-    color:#FFD700;
-    font-size:1.5em;
-    margin:0 10px;
-    transition: transform 0.3s, color 0.3s;
-  }
-  .social a:hover {
-    color:#FFA500;
-    transform: scale(1.2);
-  }
+  .social {margin-top:10px;}
+  .social a {color:#FFD700;font-size:1.5em;margin:0 10px;transition: transform 0.3s, color 0.3s;}
+  .social a:hover {color:#FFA500;transform: scale(1.2);}
 
   @media (max-width: 600px) {
-    nav {
-      position: relative;
-    }
-
+    nav {position: relative;}
     nav .menu {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      background-color: #000;
-      border-top: 1px solid #FFD700;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      z-index: 999;
+      display:none;flex-direction:column;width:100%;
+      background-color:#000;border-top:1px solid #FFD700;
+      position:absolute;top:60px;left:0;z-index:999;
     }
-
-    nav .menu.active {
-      display: flex;
-    }
-
-    nav .menu a {
-      color: #FFD700;
-      padding: 12px;
-      border-bottom: 1px solid #333;
-    }
-
-    .hamburger {
-      display: block;
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      color: #000;
-    }
+    nav .menu.active {display:flex;}
+    nav .menu a {color:#FFD700;padding:12px;border-bottom:1px solid #333;}
+    .hamburger {display:block;position:absolute;right:15px;top:15px;color:#000;}
   }
 </style>
 </head>
-<body>
 
+<body>
 <nav>
   <div class="logo">Camarin High Batch '85</div>
   <div class="menu" id="navMenu">
@@ -180,16 +117,12 @@
     <a onclick="showPage('events', this)"><i class="fas fa-calendar-alt"></i> Events</a>
     <a onclick="showPage('gallery', this)"><i class="fas fa-images"></i> Gallery</a>
   </div>
-  <div class="hamburger" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
-  </div>
+  <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 </nav>
 
 <div class="container" id="content">
   <h1>Welcome to Camarin High Batch '85</h1>
-  <p style="text-align:center;">
-    This is a mobile-friendly site for our batch. You can see memorials of our departed classmates, contact info for living batchmates, and upcoming events.
-  </p>
+  <p style="text-align:center;">This is a mobile-friendly site for our batch. You can see memorials of our departed classmates, contact info for living batchmates, and upcoming events.</p>
   <div style="text-align:center;margin-top:20px;">
     <img src="https://via.placeholder.com/150/FFD700/000000?text=Logo" alt="Batch Logo" style="border-radius:50%;">
   </div>
@@ -204,261 +137,88 @@
 
 <script>
 function toggleMenu() {
-  const menu = document.getElementById('navMenu');
-  menu.classList.toggle('active');
+  document.getElementById('navMenu').classList.toggle('active');
 }
 
-function showPage(page, menuLink) {
+async function showPage(page, menuLink) {
   const content = document.getElementById('content');
-  
   document.querySelectorAll('nav .menu a').forEach(link => link.classList.remove('active'));
   menuLink.classList.add('active');
-  
   content.style.opacity = 0;
   content.style.transform = 'translateY(20px)';
-  
-  setTimeout(() => {
-    if(page === 'home') {
+
+  setTimeout(async () => {
+    if(page === 'home'){
       content.innerHTML = `
         <h1>Welcome to Camarin High Batch '85</h1>
-        <p style="text-align:center;">
-          This is a mobile-friendly site for our batch. You can see memorials of our departed classmates, contact info for living batchmates, and upcoming events.
-        </p>
+        <p style="text-align:center;">This is a mobile-friendly site for our batch. You can see memorials of our departed classmates, contact info for living batchmates, and upcoming events.</p>
         <div style="text-align:center;margin-top:20px;">
-          <img src="https://via.placeholder.com/150/FFD700/000000?text=Logo" alt="Batch Logo" style="border-radius:50%;">
-        </div>
+          <img src="https://via.placeholder.com/150/FFD700/000000?text=Logo" style="border-radius:50%;">
+        </div>`;
+    }
 
-      `;
+    else if(page === 'memorial'){
+      const data = await (await fetch('memorial.json')).json();
+      let html = `<h2>In Memory of Our Departed Batchmates</h2>`;
+      data.forEach(p => {
+        html += `
+          <div class="card">
+            <img src="${p.image}" alt="${p.name}">
+            <div class="card-content">
+              <h3>${p.name}</h3>
+              <p>Passed: ${p.year}</p>
+              <p>“${p.quote}”</p>
+            </div>
+          </div>`;
+      });
+      content.innerHTML = html;
+    }
 
-    } else if(page === 'memorial') {
-      content.innerHTML = `
-        <h2>In Memory of Our Departed Batchmates</h2>
-        <style>
-  .card {
-    display: flex;
-    align-items: center; /* para pantay ang image at text vertically */
-    
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 12px;
-    max-width: 400px;
-  }
+    else if(page === 'directory'){
+      const data = await (await fetch('directory.json')).json();
+      let html = `<h2>Living Batchmates</h2>`;
+      data.forEach(p => {
+        html += `
+          <div class="card">
+            <img src="${p.image}" alt="${p.name}">
+            <div class="card-content">
+              <h3>${p.name}</h3>
+              <p>Location: ${p.location}</p>
+              <p>Country: ${p.country}</p>
+              <p>Email: ${p.email}</p>
+            </div>
+          </div>`;
+      });
+      content.innerHTML = html;
+    }
 
-  .card img {
-    width: 80px;        /* laki ng image */
-    height: 80px;
-    object-fit: cover;  /* para hindi ma-distort */
-    margin-right: 16px; /* pagitan ng image at text */
-  }
+    else if(page === 'events'){
+      const data = await (await fetch('events.json')).json();
+      let html = `<h2>Batch Events</h2>`;
+      data.forEach(e => {
+        html += `
+          <div class="card">
+            <h3>${e.title}</h3>
+            <p>Date: ${e.date}</p>
+            <p>Location: ${e.location}</p>
+          </div>`;
+      });
+      content.innerHTML = html;
+    }
 
-  .card-content h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-
-  .card-content p {
-    margin: 4px 0;
-    font-size: 0.7em;
-  }
-</style>
-
-<div class="card">
-  <img src="joel_bal.jpg" alt="Joel Bal">
-  <div class="card-content">
-    <h3>Joel Bal</h3>
-    <p>Passed: 2020</p>
-    <p>“Forever in our hearts.”</p>
-  </div>
-</div>
-
-<style>
-  .card {
-    display: flex;
-    align-items: center; /* para pantay ang image at text vertically */
-    
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 12px;
-    max-width: 400px;
-  }
-
-  .card img {
-    width: 80px;        /* laki ng image */
-    height: 80px;
-    object-fit: cover;  /* para hindi ma-distort */
-    margin-right: 16px; /* pagitan ng image at text */
-  }
-
-  .card-content h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-
-  .card-content p {
-    margin: 4px 0;
-    font-size: 0.7em;
-  }
-</style>
-<div class="card">
-<img src="lulu_fuellas.jpg" alt="Lulu Fuellas">
-  <div class="card-content">
-      <h3>Lulu Fuellas</h3>
-      <p>Passed: 2018</p>
-      <p>“Your smile will never be forgotten.”</p>
-  </div>
-</div>
-
-
-      `;
-
-    } else if(page === 'directory') {
-      content.innerHTML = `
-        <h2>Living Batchmates (Demo)</h2>
-        <style>
-  .card {
-    display: flex;
-    align-items: center; /* para pantay ang image at text vertically */
-    
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 12px;
-    max-width: 400px;
-  }
-
-  .card img {
-    width: 80px;        /* laki ng image */
-    height: 80px;
-    object-fit: cover;  /* para hindi ma-distort */
-    margin-right: 16px; /* pagitan ng image at text */
-  }
-
-  .card-content h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-
-  .card-content p {
-    margin: 4px 0;
-   font-size: 0.7em;
-  }
-</style>
-<div class="card">
-<img src="marilyn_inday.jpg" alt="Marilyn Manio">
-  <div class="card-content">
-      <h3>Marilyn Manio Fuentes</h3>
-      <p>Location: Camarin Caloocan City</p>
-      <p>Country: Philippines</p>
-      <p>“Email:inday@example.com”</p>
-  </div>
-</div>
-
-<style>
-  .card {
-    display: flex;
-    align-items: center; /* para pantay ang image at text vertically */
-    
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 12px;
-    max-width: 400px;
-  }
-
-  .card img {
-    width: 80px;        /* laki ng image */
-    height: 80px;
-    object-fit: cover;  /* para hindi ma-distort */
-    margin-right: 16px; /* pagitan ng image at text */
-  }
-
-  .card-content h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-
-  .card-content p {
-    margin: 4px 0;
-    font-size: 0.7em;
-  }
-</style>
-<div class="card">
-<img src="daniel_abalos.jpg" alt="Daniel Abalos">
-  <div class="card-content">
-      <h3>Daniel DelaCruz Abalos</h3>
-      <p>Location: Ma.Aurora, Aurora Province</p>
-      <p>Country: Philippines</p>
-      <p>Email: d69barrion@gmail.com</p>
-  </div>
-</div>
-
-<style>
-  .card {
-    display: flex;
-    align-items: center; /* para pantay ang image at text vertically */
-    
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 12px;
-    max-width: 400px;
-  }
-
-  .card img {
-    width: 80px;        /* laki ng image */
-    height: 80px;
-    object-fit: cover;  /* para hindi ma-distort */
-    margin-right: 16px; /* pagitan ng image at text */
-  }
-
-  .card-content h3 {
-    margin: 0;
-    font-size: 1.2em;
-  }
-
-  .card-content p {
-    margin: 4px 0;
-    font-size: 0.7em;
-  }
-</style>
-<div class="card">
-<img src="new.jpg" alt="Next BatchMate">
-  <div class="card-content">
-      <h3>name</h3>
-      <p>Location:</p>
-      <p>Country:</p>
-      <p>“Email: example@gmail.com”</p>
-  </div>
-</div>
-
-      `;
-    } else if(page === 'events') {
-      content.innerHTML = `
-        <h2>Past Events</h2>
-        <div class="card">
-          <h3>40th Anniversary 2025</h3>
-          <p>Date: April 20, 2025</p>
-          <p>Location: Nakalimutan ko na</p>
-        </div>
-        <h2>Upcoming Event/s</h2>
-        <div class="card">
-          <h3>Christmas Party</h3>
-          <p>Date: December 15, 2025</p>
-          <p>Location: Our Batch Facebook Group</p>
-        </div>
-`;
-    } else if(page === 'gallery') {
+    else if(page === 'gallery'){
       content.innerHTML = `
         <h2>Batch Gallery</h2>
         <div class="gallery">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=Reunion+2023" alt="Reunion 2023">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=Outreach+2024" alt="Outreach 2024">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=Mini+Gathering" alt="Mini Gathering">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=School+Visit" alt="School Visit">
-        </div>
-      `;
+          <img src="https://via.placeholder.com/200/FFD700/000000?text=Reunion+2023">
+          <img src="https://via.placeholder.com/200/FFD700/000000?text=Outreach+2024">
+          <img src="https://via.placeholder.com/200/FFD700/000000?text=Mini+Gathering">
+          <img src="https://via.placeholder.com/200/FFD700/000000?text=School+Visit">
+        </div>`;
     }
-    
+
     content.style.opacity = 1;
     content.style.transform = 'translateY(0)';
-    
     const navMenu = document.getElementById('navMenu');
     if(navMenu.classList.contains('active')) navMenu.classList.remove('active');
   }, 300);
@@ -467,4 +227,3 @@ function showPage(page, menuLink) {
 
 </body>
 </html>
-
