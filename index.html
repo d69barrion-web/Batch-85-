@@ -240,14 +240,13 @@ async function showPage(page, menuLink) {
     }
 
     else if(page === 'gallery'){
-      content.innerHTML = `
-        <h2>Batch Gallery</h2>
-        <div class="gallery">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=Reunion+2023">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=Outreach+2024">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=Mini+Gathering">
-          <img src="https://via.placeholder.com/200/FFD700/000000?text=School+Visit">
-        </div>`;
+      const data = await (await fetch('gallery.json')).json();
+      let html = `<h2>Batch Gallery</h2><div class="gallery">`;
+      data.forEach(g => {
+        html += `<img src="${g.image}" alt="${g.title}" title="${g.title}">`;
+      });
+      html += `</div>`;
+      content.innerHTML = html;
     }
 
     content.style.opacity = 1;
