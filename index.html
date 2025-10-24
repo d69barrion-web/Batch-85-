@@ -62,6 +62,7 @@
 
   .container {padding:15px;opacity:1;transition: opacity 0.5s, transform 0.5s;}
 
+  /* --- UNIVERSAL CARD STYLE --- */
   .card {
     background-color:#111;
     border:1px solid #FFD700;
@@ -70,27 +71,56 @@
     margin-bottom:10px;
     display:flex;
     align-items:center;
+    gap:10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .card:hover {transform: scale(1.03);box-shadow: 0 0 10px #FFD700, 0 0 15px #FFA500;}
-  .card img {width:80px;height:80px;object-fit:cover;margin-right:16px;border-radius:8px;}
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px #FFD700, 0 0 15px #FFA500;
+  }
+  .card img {
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:8px;
+  }
   .card-content h3 {margin:0;font-size:1.2em;}
   .card-content p {margin:4px 0;font-size:0.8em;}
 
+  /* --- AUTO FIX: if no image, make vertical --- */
+  .card:not(:has(img)) {
+    display:block;
+    text-align:left;
+  }
+
+  /* --- Gallery --- */
   .gallery {
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap:10px;
     margin-top:20px;
   }
-  .gallery img {width:100%;border-radius:8px;border:2px solid #FFD700;transition: transform 0.3s ease, box-shadow 0.3s ease;}
-  .gallery img:hover {transform:scale(1.05);box-shadow:0 0 10px #FFD700, 0 0 15px #FFA500;}
+  .gallery img {
+    width:100%;
+    border-radius:8px;
+    border:2px solid #FFD700;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gallery img:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 10px #FFD700, 0 0 15px #FFA500;
+  }
 
   h1,h2{text-align:center;}
   footer{text-align:center;padding:15px;background-color:#111;margin-top:20px;color:#FFD700;}
 
   .social {margin-top:10px;}
-  .social a {color:#FFD700;font-size:1.5em;margin:0 10px;transition: transform 0.3s, color 0.3s;}
+  .social a {
+    color:#FFD700;
+    font-size:1.5em;
+    margin:0 10px;
+    transition: transform 0.3s, color 0.3s;
+  }
   .social a:hover {color:#FFA500;transform: scale(1.2);}
 
   @media (max-width: 600px) {
@@ -144,8 +174,10 @@ async function showPage(page, menuLink) {
   const content = document.getElementById('content');
   document.querySelectorAll('nav .menu a').forEach(link => link.classList.remove('active'));
   menuLink.classList.add('active');
+
   content.style.opacity = 0;
   content.style.transform = 'translateY(20px)';
+  content.className = 'container'; // reset any special layout
 
   setTimeout(async () => {
     if(page === 'home'){
@@ -201,6 +233,7 @@ async function showPage(page, menuLink) {
             <h3>${e.title}</h3>
             <p>Date: ${e.date}</p>
             <p>Location: ${e.location}</p>
+            <p>${e.details}</p>
           </div>`;
       });
       content.innerHTML = html;
@@ -219,6 +252,7 @@ async function showPage(page, menuLink) {
 
     content.style.opacity = 1;
     content.style.transform = 'translateY(0)';
+
     const navMenu = document.getElementById('navMenu');
     if(navMenu.classList.contains('active')) navMenu.classList.remove('active');
   }, 300);

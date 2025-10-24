@@ -1,12 +1,20 @@
 [
   {
-    "title": "40th Anniversary 2025",
+    "title": "Grand Alumni Reunion",
     "date": "April 20, 2025",
-    "location": "Camarin High Gymnasium"
+    "location": "Camarin High School Gym",
+    "details": "Join our biggest reunion yet! Food, games, and a night of nostalgia."
   },
   {
-    "title": "Christmas Party",
-    "date": "December 15, 2025",
-    "location": "Our Batch Facebook Group"
+    "title": "Charity Outreach Program",
+    "date": "December 10, 2025",
+    "location": "Barangay 174 Covered Court",
+    "details": "A day of giving back to the community — with feeding program and school supplies donation."
+  },
+  {
+    "title": "Mini Batch Gathering",
+    "date": "June 8, 2025",
+    "location": "Abalos Residence, Aurora Province",
+    "details": "Casual get-together for nearby batchmates. Bring your own dish!"
   }
 ]
