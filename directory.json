@@ -4,7 +4,7 @@
     "location": "Camarin Caloocan City",
     "country": "Philippines",
     "email": "inday@example.com",
-    "image": "marilyn_inday.jpg"
+    "image": "marilyn_inday.jpg",
     "bioFile": "grafane.json"
   },
   {
@@ -12,7 +12,7 @@
     "location": "Ma.Aurora, Aurora Province",
     "country": "Philippines",
     "email": "d69barrion@gmail.com",
-    "image": "daniel_abalos.jpg"
+    "image": "daniel_abalos.jpg",
     "bioFile": "abalos.json"
   }
 ]
