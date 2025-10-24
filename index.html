@@ -302,7 +302,8 @@ async function showPage(page, menuLink) {
 <script>
   // Open viewer
   document.addEventListener('click', e => {
-    if (e.target.tagName === 'IMG' && e.target.closest('.card')) {
+    if (e.target.tagName === 'IMG' && (e.target.closest('.card') || e.target.closest('.gallery')))
+ {
       const viewer = document.getElementById('imgViewer');
       const viewerImg = document.getElementById('viewerImg');
       viewerImg.src = e.target.src;
