@@ -267,6 +267,34 @@ function showPage(page, menuLink) {
     <p>“Forever in our hearts.”</p>
   </div>
 </div>
+
+<style>
+  .card {
+    display: flex;
+    align-items: center; /* para pantay ang image at text vertically */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 12px;
+    max-width: 400px;
+  }
+
+  .card img {
+    width: 80px;        /* laki ng image */
+    height: 80px;
+    object-fit: cover;  /* para hindi ma-distort */
+    margin-right: 16px; /* pagitan ng image at text */
+  }
+
+  .card-content h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  .card-content p {
+    margin: 4px 0;
+  }
+</style>
 <div class="card">
 <img src="marilyn_inday.jpg" alt="Lulu Fuellas">
   <div class="card-content">
