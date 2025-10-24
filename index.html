@@ -207,33 +207,24 @@ async function showPage(page, menuLink) {
     }
 
     else if(page === 'directory'){
-      const data = await (await fetch('directory.json')).json();
-      let html = `<h2>Living Batchmates</h2>`;
-      data.forEach(p => {
-        html += `
-          <div class="card">
-            <div class="card" data-bio="${p.bioFile}">
-            <img src="${p.image}" alt="${p.name}">
-            <div class="card-content">
-              <h3>${p.name}</h3>
-              <p>Location: ${p.location}</p>
-              <p>Country: ${p.country}</p>
-              <p>Email: ${p.email}</p>
-            </div>
-          </div>`;
-      });
-      content.innerHTML = html;
-
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', async () => {
-      const bioFile = card.dataset.bio;
-      if (!bioFile) return;
-      const bio = await (await fetch(bioFile)).json();
-      alert(bio.bio); // later puwedeng palitan ng modal viewer
-    });
+  const data = await (await fetch('directory.json')).json();
+  let html = `<h2>Batch Directory</h2>`;
+  data.forEach(p => {
+    html += `
+      <a href="profile.html?bio=${encodeURIComponent(p.bioFile)}" class="card-link">
+        <div class="card">
+          <img src="${p.image}" alt="${p.name}">
+          <div class="card-content">
+            <h3>${p.name}</h3>
+            <p>Location: ${p.location}</p>
+            <p>Country: ${p.country}</p>
+            <p>Email: ${p.email}</p>
+          </div>
+        </div>
+      </a>`;
   });
-
-    }
+  content.innerHTML = html;
+}
 
     else if(page === 'events'){
       const data = await (await fetch('events.json')).json();
