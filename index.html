@@ -242,8 +242,8 @@ async function showPage(page, menuLink) {
     else if(page === 'gallery'){
       const data = await (await fetch('gallery.json')).json();
       let html = `<h2>Batch Gallery</h2><div class="gallery">`;
-      data.forEach(img => {
-        html += `<img src="${img.src}" alt="${img.caption}" title="${img.caption}">`;
+      data.forEach(g => {
+        html += `<img src="${g.image}" alt="${g.title}" title="${g.title}">`;
       });
       html += `</div>`;
       content.innerHTML = html;
@@ -253,6 +253,14 @@ async function showPage(page, menuLink) {
     content.style.transform = 'translateY(0)';
 
     const navMenu = document.getElementById('navMenu');
+    if(navMenu.classList.contains('active')) navMenu.classList.remove('active');
+  }, 300);
+}
+</script>
+
+</body>
+</html>
+ocument.getElementById('navMenu');
     if(navMenu.classList.contains('active')) navMenu.classList.remove('active');
   }, 300);
 }
