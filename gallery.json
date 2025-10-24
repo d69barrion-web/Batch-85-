@@ -1,20 +1,18 @@
 [
   {
     "title": "Batch Reunion 2023",
-    "image": "reunion2023.jpeg"
+    "image": "reunion2023.jpg"
   },
   {
     "title": "High School Days",
-    "image": "images/highschool.jpg"
+    "image": "highschool.jpg"
   },
   {
     "title": "Mini Gathering 2024",
-    "image": "images/gathering2024.jpg"
+    "image": "gathering2024.jpg"
   },
   {
     "title": "Community Outreach",
-    "image": "images/outreach.jpg"
-  }
-]
+    "image": "outreach.jpg"
   }
 ]
