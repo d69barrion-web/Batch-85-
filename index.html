@@ -212,6 +212,7 @@ async function showPage(page, menuLink) {
       data.forEach(p => {
         html += `
           <div class="card">
+            <div class="card" data-bio="${p.bioFile}">
             <img src="${p.image}" alt="${p.name}">
             <div class="card-content">
               <h3>${p.name}</h3>
