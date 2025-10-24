@@ -1,18 +1,20 @@
 [
   {
-    "src": "https://via.placeholder.com/200/FFD700/000000?text=Reunion+2023",
-    "caption": "reunion2023"
+    "title": "Batch Reunion 2023",
+    "image": "reunion2023.jpeg"
   },
   {
-    "src": "https://via.placeholder.com/200/FFD700/000000?text=Outreach+2024",
-    "caption": "Outreach 2024"
+    "title": "High School Days",
+    "image": "images/highschool.jpg"
   },
   {
-    "src": "https://via.placeholder.com/200/FFD700/000000?text=Mini+Gathering",
-    "caption": "Mini Gathering"
+    "title": "Mini Gathering 2024",
+    "image": "images/gathering2024.jpg"
   },
   {
-    "src": "https://via.placeholder.com/200/FFD700/000000?text=School+Visit",
-    "caption": "School Visit"
+    "title": "Community Outreach",
+    "image": "images/outreach.jpg"
+  }
+]
   }
 ]
