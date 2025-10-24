@@ -227,7 +227,9 @@ function showPage(page, menuLink) {
         <div style="text-align:center;margin-top:20px;">
           <img src="https://via.placeholder.com/150/FFD700/000000?text=Logo" alt="Batch Logo" style="border-radius:50%;">
         </div>
+
       `;
+
     } else if(page === 'memorial') {
       content.innerHTML = `
         <h2>In Memory of Our Departed Batchmates</h2>
@@ -296,27 +298,131 @@ function showPage(page, menuLink) {
   }
 </style>
 <div class="card">
-<img src="marilyn_inday.jpg" alt="Lulu Fuellas">
+<img src="lulu_fuellas.jpg" alt="Lulu Fuellas">
   <div class="card-content">
       <h3>Lulu Fuellas</h3>
       <p>Passed: 2018</p>
       <p>“Your smile will never be forgotten.”</p>
   </div>
 </div>
+
+
       `;
+
     } else if(page === 'directory') {
       content.innerHTML = `
         <h2>Living Batchmates (Demo)</h2>
-        <div class="card">
-          <h3>Carlos Reyes</h3>
-          <p>Location: Manila</p>
-          <p>Email: carlos@example.com</p>
-        </div>
-        <div class="card">
-          <h3>Linda Cruz</h3>
-          <p>Location: Quezon City</p>
-          <p>Email: linda@example.com</p>
-        </div>
+        <style>
+  .card {
+    display: flex;
+    align-items: center; /* para pantay ang image at text vertically */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 12px;
+    max-width: 400px;
+  }
+
+  .card img {
+    width: 80px;        /* laki ng image */
+    height: 80px;
+    object-fit: cover;  /* para hindi ma-distort */
+    margin-right: 16px; /* pagitan ng image at text */
+  }
+
+  .card-content h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  .card-content p {
+    margin: 4px 0;
+  }
+</style>
+<div class="card">
+<img src="marilyn_inday.jpg" alt="Marilyn Manio">
+  <div class="card-content">
+      <h3>Marilyn Manio Fuentes</h3>
+      <p>Location: Camarin Caloocan City</p>
+      <p>Country: Philippines</p>
+      <p>“Email:inday@example.com”</p>
+  </div>
+</div>
+
+<style>
+  .card {
+    display: flex;
+    align-items: center; /* para pantay ang image at text vertically */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 12px;
+    max-width: 400px;
+  }
+
+  .card img {
+    width: 80px;        /* laki ng image */
+    height: 80px;
+    object-fit: cover;  /* para hindi ma-distort */
+    margin-right: 16px; /* pagitan ng image at text */
+  }
+
+  .card-content h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  .card-content p {
+    margin: 4px 0;
+  }
+</style>
+<div class="card">
+<img src="daniel_abalos.jpg" alt="Daniel Abalos">
+  <div class="card-content">
+      <h3>Daniel DelaCruz Abalos</h3>
+      <p>Location: Ma.Aurora, Aurora Province</p>
+      <p>Country: Philippines</p>
+      <p>“Email: d69barrion@gmail.com”</p>
+  </div>
+</div>
+
+<style>
+  .card {
+    display: flex;
+    align-items: center; /* para pantay ang image at text vertically */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 12px;
+    max-width: 400px;
+  }
+
+  .card img {
+    width: 80px;        /* laki ng image */
+    height: 80px;
+    object-fit: cover;  /* para hindi ma-distort */
+    margin-right: 16px; /* pagitan ng image at text */
+  }
+
+  .card-content h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  .card-content p {
+    margin: 4px 0;
+  }
+</style>
+<div class="card">
+<img src="new.jpg" alt="Next BatchMate">
+  <div class="card-content">
+      <h3>name</h3>
+      <p>Location:</p>
+      <p>Country:</p>
+      <p>“Email: example@gmail.com”</p>
+  </div>
+</div>
+
       `;
     } else if(page === 'events') {
       content.innerHTML = `
@@ -331,7 +437,7 @@ function showPage(page, menuLink) {
           <p>Date: November 15, 2025</p>
           <p>Location: Our Batch Facebook Group</p>
         </div>
-      `;
+`;
     } else if(page === 'gallery') {
       content.innerHTML = `
         <h2>Batch Gallery</h2>
@@ -355,3 +461,4 @@ function showPage(page, menuLink) {
 
 </body>
 </html>
+
