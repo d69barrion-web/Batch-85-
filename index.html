@@ -222,6 +222,16 @@ async function showPage(page, menuLink) {
           </div>`;
       });
       content.innerHTML = html;
+
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', async () => {
+      const bioFile = card.dataset.bio;
+      if (!bioFile) return;
+      const bio = await (await fetch(bioFile)).json();
+      alert(bio.bio); // later puwedeng palitan ng modal viewer
+    });
+  });
+
     }
 
     else if(page === 'events'){
