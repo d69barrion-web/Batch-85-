@@ -204,6 +204,7 @@
     <a onclick="showPage('directory', this)"><i class="fas fa-address-book"></i> Directory</a>
     <a onclick="showPage('events', this)"><i class="fas fa-calendar-alt"></i> Events</a>
     <a onclick="showPage('gallery', this)"><i class="fas fa-images"></i> Gallery</a>
+    <a onclick="showPage('newsletter', this)"><i class="fas fa-images"></i> Newsletter</a>
   </div>
   <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 </nav>
@@ -328,6 +329,28 @@ async function showPage(page, menuLink) {
     if(navMenu.classList.contains('active')) navMenu.classList.remove('active');
   }, 300);
 }
+
+else if(page === 'newsletter'){
+  content.innerHTML = `
+    <h2>Newsletter</h2>
+    <p>Sign up to receive our batch updates directly via email!</p>
+    <form id="newsletterForm">
+      <input type="email" placeholder="Enter your email" required style="padding:8px; width:250px;">
+      <button type="submit" style="padding:8px 12px;">Subscribe</button>
+    </form>
+    <p id="newsletterMsg" style="margin-top:10px;"></p>
+  `;
+
+  const form = document.getElementById('newsletterForm');
+  const msg = document.getElementById('newsletterMsg');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    msg.textContent = `Thank you! You have subscribed with ${form.email.value}.`;
+    form.reset();
+  });
+}
+
 </script>
 
 <!-- Fullscreen image viewer -->
