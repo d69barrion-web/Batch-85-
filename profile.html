@@ -18,15 +18,18 @@
     max-width:600px;
     margin:0 auto;
     text-align:left;
+    padding:15px;
   }
 
   .profile-image {
     width:150px;
-    height:150px;
+    max-width:100%;
+    height:auto;
     object-fit:cover;
     border-radius:12px;
     border:2px solid #FFD700;
     margin-bottom:10px;
+    cursor: zoom-in; /* optional for fullscreen effect later */
   }
 
   h2 {
@@ -34,9 +37,7 @@
     font-size:1.5em;
   }
 
-  p {
-    text-align:left;
-    font-size:1em;
+  #profileBio p {
     margin:10px 0;
   }
 
@@ -55,6 +56,10 @@
     background-color:#FFD700;
     color:#000;
     transform: scale(1.05);
+  }
+
+  @media (max-width:600px){
+    .profile-container { padding:10px; }
   }
 </style>
 </head>
@@ -87,7 +92,11 @@ async function loadProfile() {
     // Fetch bio text/html
     try {
       const bioText = await (await fetch(person.bioFile)).text();
-      document.getElementById('profileBio').innerHTML = bioText.replace(/\n/g, '<br>');
+      // Split by double newlines to make paragraphs
+      document.getElementById('profileBio').innerHTML = bioText
+        .split(/\n\s*\n/) 
+        .map(para => `<p>${para.trim()}</p>`)
+        .join('');
     } catch(e){
       document.getElementById('profileBio').textContent = "Bio not available.";
       console.error("Error loading bio:", e);
