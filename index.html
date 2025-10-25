@@ -209,6 +209,7 @@
     <a onclick="showPage('events', this)"><i class="fas fa-calendar-alt"></i> Events</a>
     <a onclick="showPage('gallery', this)"><i class="fas fa-images"></i> Gallery</a>
     <a onclick="showPage('newsletter', this)"><i class="fas fa-envelope"></i> Newsletter</a>
+    <a href="articles.html"><i class="fas fa-newspaper"></i> Articles</a>
   </div>
   <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 </nav>
@@ -329,8 +330,6 @@ async function showPage(page, menuLink) {
 
       document.querySelectorAll('.card').forEach(card => {
         const img = card.querySelector('.card-thumb');
-
-        // Image tap → fullscreen viewer
         img.addEventListener('click', e => {
           e.stopPropagation();
           const viewer = document.getElementById('imgViewer');
@@ -340,7 +339,6 @@ async function showPage(page, menuLink) {
           setTimeout(() => viewer.classList.add('show'), 10);
         });
 
-        // Card tap → profile
         card.addEventListener('click', e => {
           if (!e.target.classList.contains('card-thumb')) {
             window.location.href = card.dataset.link;
@@ -376,7 +374,7 @@ async function showPage(page, menuLink) {
         <h2>Newsletter</h2>
         <p>Sign up to receive our batch updates directly via email!</p>
         <form id="newsletterForm">
-          <input type="email" placeholder="Enter your email" required style="padding:8px; width:250px;">
+          <input type="email" name="email" placeholder="Enter your email" required style="padding:8px; width:250px;">
           <button type="submit" style="padding:8px 12px;">Subscribe</button>
         </form>
         <p id="newsletterMsg" style="margin-top:10px;"></p>
