@@ -1,60 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Batch85 Member Profile</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batchmate Profile</title>
+<style>
+  body {
+    margin:0;
+    font-family:'Arial',sans-serif;
+    background-color:#000;
+    color:#FFD700;
+    padding:15px;
+    line-height:1.6;
+  }
+
+  .profile-container {
+    max-width:600px;
+    margin:0 auto;
+    text-align:center;
+  }
+
+  .profile-image {
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:12px;
+    border:2px solid #FFD700;
+    margin-bottom:10px;
+  }
+
+  h2 {
+    margin:10px 0;
+    font-size:1.5em;
+  }
+
+  p {
+    text-align:left;
+    font-size:1em;
+    margin:10px 0;
+  }
+
+  a.back {
+    display:inline-block;
+    margin-top:20px;
+    color:#FFD700;
+    text-decoration:none;
+    border:1px solid #FFD700;
+    padding:5px 12px;
+    border-radius:5px;
+    transition:all 0.3s ease;
+  }
+
+  a.back:hover {
+    background-color:#FFD700;
+    color:#000;
+    transform: scale(1.05);
+  }
+</style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <div class="max-w-2xl mx-auto mt-10 bg-white p-6 rounded-2xl shadow-lg">
-    <div id="profileContent" class="text-center">
-      <h1 id="profileName" class="text-2xl font-bold mb-2"></h1>
-      <img id="profileImage" src="" alt="" class="w-40 h-40 mx-auto rounded-full mb-4">
-      <p id="profileLocation" class="text-gray-600"></p>
-      <p id="profileEmail" class="text-gray-600 mb-4"></p>
-      <article id="profileBio" class="text-left whitespace-pre-line leading-relaxed"></article>
-    </div>
 
-    <div class="mt-6 text-center">
-      <a href="index.html" class="text-blue-600 hover:underline">← Back to Homepage</a>
-    </div>
-  </div>
-
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const bioFile = params.get('bio');
-
-    if (bioFile) {
-      fetch(bioFile)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById('profileName').textContent = data.name;
-          document.getElementById('profileImage').src = data.image;
-          document.getElementById('profileLocation').textContent = data.location;
-          document.getElementById('profileEmail').textContent = data.email;
-          document.getElementById('profileBio').textContent = data.bio;
-        })
-        .catch(err => {
-          document.getElementById('profileContent').innerHTML =
-            '<p class="text-red-600">Profile not found.</p>';
-        });
-    } else {
-      document.getElementById('profileContent').innerHTML =
-        '<p class="text-red-600">No profile specified.</p>';
-    }
-  </script>
+<body>
+<div class="profile-container">
+  <img id="profileImage" class="profile-image" src="" alt="Profile Image">
+  <h2 id="profileName"></h2>
+  <div id="profileBio"></div>
+  <a href="index.html" class="back">&larr; Back</a>
+</div>
 
 <script>
-  const timestamp = new Date().getTime();
-  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-    link.href = link.href + '?v=' + timestamp;
-  });
-  document.querySelectorAll('script[src]').forEach(script => {
-    if (!script.src.includes('main.js')) return; // Palitan kung may ibang JS file ka
-    script.src = script.src + '?v=' + timestamp;
-  });
-</script>
+async function loadProfile() {
+  const params = new URLSearchParams(window.location.search);
+  const bioFile = params.get('bio'); // bioFile parameter from URL
 
+  if(!bioFile) return;
+
+  // Fetch directory.json to find the matching entry
+  const data = await (await fetch('directory.json')).json();
+  const person = data.find(p => p.bioFile === bioFile);
+
+  if(person){
+    // Set profile image & name
+    document.getElementById('profileImage').src = person.image;
+    document.getElementById('profileImage').alt = person.name;
+    document.getElementById('profileName').textContent = person.name;
+
+    // Fetch bio text/html
+    try {
+      const bioText = await (await fetch(person.bioFile)).text();
+      document.getElementById('profileBio').innerHTML = bioText;
+    } catch(e){
+      document.getElementById('profileBio').textContent = "Bio not available.";
+      console.error("Error loading bio:", e);
+    }
+  }
+}
+
+loadProfile();
+</script>
 </body>
 </html>
