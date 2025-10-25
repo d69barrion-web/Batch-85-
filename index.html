@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Camarin High Batch '85</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
   body {
@@ -341,6 +343,17 @@ async function showPage(page, menuLink) {
     if (e.target.id === 'imgViewer') {
       e.target.classList.add('hidden');
     }
+  });
+</script>
+
+<script>
+  const timestamp = new Date().getTime();
+  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+    link.href = link.href + '?v=' + timestamp;
+  });
+  document.querySelectorAll('script[src]').forEach(script => {
+    if (!script.src.includes('main.js')) return; // Palitan kung may ibang JS file ka
+    script.src = script.src + '?v=' + timestamp;
   });
 </script>
 
