@@ -9,7 +9,7 @@
  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
-  body {
+ <body> {
     margin:0;
     font-family:'Arial',sans-serif;
     background-color:#000;
@@ -38,8 +38,12 @@
     flex-wrap: wrap;
   }
 
-  nav .logo {font-weight:bold;font-size:1.2em;}
-  nav .menu {display:flex;gap:10px;}
+  nav .logo {
+      font-weight:bold;font-size:1.2em;
+}
+  nav .menu {
+       display:flex;gap:10px;
+}
   nav .menu a {
     font-size:1em;
     color:#000;
@@ -96,8 +100,14 @@
     pointer-events: auto; /* allow clicks on image itself */
   cursor: zoom-in; /* shows zoom 
   }
-  .card-content h3 {margin:0;font-size:1.2em;}
-  .card-content p {margin:4px 0;font-size:0.8em;}
+  .card-content h3 {
+       margin:0;
+       font-size:1.2em;
+}
+  .card-content p {
+        margin:4px 0;
+        font-size:0.8em;
+}
 
   /* --- AUTO FIX: if no image, make vertical --- */
   .card:not(:has(img)) {
@@ -123,8 +133,16 @@
     box-shadow:0 0 10px #FFD700, 0 0 15px #FFA500;
   }
 
-  h1,h2{text-align:center;}
-  footer{text-align:center;padding:15px;background-color:#111;margin-top:20px;color:#FFD700;}
+  h1,h2{
+       text-align:center;
+}
+  footer{
+         text-align:center;
+         padding:15px;
+         background-color:#111;
+         margin-top:20px;
+         color:#FFD700;
+}
 
   .social {margin-top:10px;}
   .social a {
