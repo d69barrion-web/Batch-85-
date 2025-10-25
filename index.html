@@ -211,20 +211,38 @@ async function showPage(page, menuLink) {
   let html = `<h2>Batch Directory</h2>`;
   data.forEach(p => {
     html += `
-      <a href="profile.html?bio=${encodeURIComponent(p.bioFile)}" class="card-link">
-        <div class="card">
-          <img src="${p.image}" alt="${p.name}">
-          <div class="card-content">
-            <h3>${p.name}</h3>
-            <p>Location: ${p.location}</p>
-            <p>Country: ${p.country}</p>
-            <p>Email: ${p.email}</p>
-          </div>
+      <div class="card" data-link="profile.html?bio=${encodeURIComponent(p.bioFile)}">
+        <img src="${p.image}" alt="${p.name}" class="card-thumb">
+        <div class="card-content">
+          <h3>${p.name}</h3>
+          <p>Location: ${p.location}</p>
+          <p>Country: ${p.country}</p>
+          <p>Email: ${p.email}</p>
         </div>
-      </a>`;
+      </div>`;
   });
   content.innerHTML = html;
+
+  // After rendering, add event listeners
+  document.querySelectorAll('.card').forEach(card => {
+    const link = card.dataset.link;
+    const img = card.querySelector('.card-thumb');
+
+    // tap anywhere on card except image
+    card.addEventListener('click', e => {
+      if (e.target !== img) {
+        window.location.href = link;
+      }
+    });
+
+    // tap image → fullscreen zoom
+    img.addEventListener('click', e => {
+      e.stopPropagation(); // stop redirect
+      openFullscreen(img.src); // call your existing fullscreen viewer
+    });
+  });
 }
+
 
     else if(page === 'events'){
       const data = await (await fetch('events.json')).json();
