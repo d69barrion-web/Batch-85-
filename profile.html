@@ -87,7 +87,7 @@ async function loadProfile() {
     // Fetch bio text/html
     try {
       const bioText = await (await fetch(person.bioFile)).text();
-      document.getElementById('profileBio').innerHTML = bioText;
+      document.getElementById('profileBio').innerHTML = bioText.replace(/\n/g, '<br>');
     } catch(e){
       document.getElementById('profileBio').textContent = "Bio not available.";
       console.error("Error loading bio:", e);
