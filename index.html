@@ -83,6 +83,8 @@
     height:80px;
     object-fit:cover;
     border-radius:8px;
+    pointer-events: auto; /* allow clicks on image itself */
+  cursor: zoom-in; /* shows zoom 
   }
   .card-content h3 {margin:0;font-size:1.2em;}
   .card-content p {margin:4px 0;font-size:0.8em;}
@@ -223,26 +225,24 @@ async function showPage(page, menuLink) {
   });
   content.innerHTML = html;
 
-  // After rendering, add event listeners
   document.querySelectorAll('.card').forEach(card => {
-    const link = card.dataset.link;
     const img = card.querySelector('.card-thumb');
 
-    // tap anywhere on card except image
+    // Image tap → fullscreen, stop card redirect
+    img.addEventListener('click', e => {
+      e.stopPropagation(); // stop the card’s click
+      openFullscreen(img.src); // open zoom viewer
+    });
+
+    // Card tap (except image) → go to profile.html
     card.addEventListener('click', e => {
-      if (e.target !== img) {
+      if (!e.target.classList.contains('card-thumb')) {
+        const link = card.dataset.link;
         window.location.href = link;
       }
     });
-
-    // tap image → fullscreen zoom
-    img.addEventListener('click', e => {
-      e.stopPropagation(); // stop redirect
-      openFullscreen(img.src); // call your existing fullscreen viewer
-    });
   });
 }
-
 
     else if(page === 'events'){
       const data = await (await fetch('events.json')).json();
