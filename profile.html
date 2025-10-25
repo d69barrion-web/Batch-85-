@@ -44,5 +44,17 @@
         '<p class="text-red-600">No profile specified.</p>';
     }
   </script>
+
+<script>
+  const timestamp = new Date().getTime();
+  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+    link.href = link.href + '?v=' + timestamp;
+  });
+  document.querySelectorAll('script[src]').forEach(script => {
+    if (!script.src.includes('main.js')) return; // Palitan kung may ibang JS file ka
+    script.src = script.src + '?v=' + timestamp;
+  });
+</script>
+
 </body>
 </html>
