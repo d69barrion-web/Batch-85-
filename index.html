@@ -284,10 +284,13 @@ async function showPage(page, menuLink) {
   document.querySelectorAll('.card').forEach(card => {
     const img = card.querySelector('.card-thumb');
 
-    // Image tap → fullscreen, stop card redirect
+    // Image tap → fullscreen viewer
     img.addEventListener('click', e => {
-      e.stopPropagation(); // stop the card’s click
-      openFullscreen(img.src); // open zoom viewer
+      e.stopPropagation();
+      const viewer = document.getElementById('imgViewer');
+      const viewerImg = document.getElementById('viewerImg');
+      viewerImg.src = img.src;
+      viewer.classList.remove('hidden');
     });
 
     // Card tap (except image) → go to profile.html
