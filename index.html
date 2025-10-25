@@ -98,7 +98,7 @@
     object-fit:cover;
     border-radius:8px;
     pointer-events: auto; /* allow clicks on image itself */
-  cursor: zoom-in; /* shows zoom 
+  cursor: zoom-in; /* shows zoom */
   }
   .card-content h3 {
        margin:0;
@@ -111,10 +111,10 @@
 
   /* --- AUTO FIX: if no image, make vertical --- */
 
-  /*.card:not(:has(img)) {
+  .card:not(:has(img)) {
     display:block;
     text-align:left;
-  }*/
+  }
 
   /* --- Gallery --- */
   .gallery {
@@ -137,13 +137,17 @@
   h1,h2{
        text-align:center;
 }
-  footer{
-         text-align:center;
-         padding:15px;
-         background-color:#111;
-         margin-top:20px;
-         color:#FFD700;
+  footer {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  background-color:#111;
+  margin-top:20px;
+  color:#FFD700;
 }
+
 
   .social {margin-top:10px;}
   .social a {
