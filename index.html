@@ -376,16 +376,16 @@ async function showPage(page, menuLink) {
 </style>
 
 <script>
+
   // Open viewer
-  document.addEventListener('click', e => {
-    if (e.target.tagName === 'IMG' && (e.target.closest('.card') || e.target.closest('.gallery')))
- {
-      const viewer = document.getElementById('imgViewer');
-      const viewerImg = document.getElementById('viewerImg');
-      viewerImg.src = e.target.src;
-      viewer.classList.remove('hidden');
-    }
-  });
+document.addEventListener('click', e => {
+  if (e.target.tagName === 'IMG') {
+    const viewer = document.getElementById('imgViewer');
+    const viewerImg = document.getElementById('viewerImg');
+    viewerImg.src = e.target.src;
+    viewer.classList.remove('hidden');
+  }
+});
 
   // Close viewer
   document.getElementById('closeViewer').addEventListener('click', () => {
