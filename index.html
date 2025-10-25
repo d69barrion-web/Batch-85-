@@ -15,15 +15,15 @@
     background-color:#000;
     color:#FFD700;
     transition: background 0.5s;
-  }
+ }
 
-  @keyframes gradientBG {
+ @keyframes gradientBG {
     0% {background-position:0% 50%;}
     50% {background-position:100% 50%;}
     100% {background-position:0% 50%;}
-  }
+ }
 
-  nav {
+ nav {
     position:sticky;
     top:0;
     padding:10px 15px;
@@ -36,15 +36,17 @@
     animation: gradientBG 15s ease infinite;
     border-bottom:2px solid #FFD700;
     flex-wrap: wrap;
-  }
+ }
 
-  nav .logo {
-      font-weight:bold;font-size:1.2em;
-}
-  nav .menu {
-       display:flex;gap:10px;
-}
-  nav .menu a {
+ nav .logo {
+    font-weight:bold;font-size:1.2em;
+ }
+
+ nav .menu {
+    display:flex;gap:10px;
+ }
+
+ nav .menu a {
     font-size:1em;
     color:#000;
     text-decoration:none;
@@ -55,29 +57,29 @@
     padding:5px 12px;
     border-radius:5px;
     transition: all 0.3s ease, box-shadow 0.3s ease;
-  }
+ }
 
-  nav .menu a.active, nav .menu a:hover {
+ nav .menu a.active, nav .menu a:hover {
     background-color:#000;
     color:#FFD700;
     transform: scale(1.1);
     box-shadow: 0 0 10px #FFD700, 0 0 20px #FFA500;
-  }
+ }
 
-  .hamburger {
-       display:none;
-       font-size:1.5em;
-       cursor:pointer;
-       color:#000;
-}
+ .hamburger {
+    display:none;
+    font-size:1.5em;
+    cursor:pointer;
+    color:#000;
+ }
 
-  .container {
-       padding:15px;opacity:1;
-       transition: opacity 0.5s, transform 0.5s;
-}
+ .container {
+    padding:15px;
+    opacity:1;
+    transition: opacity 0.5s, transform 0.5s;
+ }
 
-  /* --- UNIVERSAL CARD STYLE --- */
-  .card {
+ .card {
     background-color:#111;
     border:1px solid #FFD700;
     border-radius:8px;
@@ -86,112 +88,114 @@
     display:flex;
     align-items:center;
     gap:10px;
-    transition: transform 0.3s ease, box-shadow   0.3s ease;
-  }
-  .card:hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .card:hover {
     transform: scale(1.03);
     box-shadow: 0 0 10px #FFD700, 0 0 15px #FFA500;
-  }
-  .card img {
+ }
+
+ .card img {
     width:80px;
     height:80px;
     object-fit:cover;
     border-radius:8px;
-    pointer-events: auto; /* allow clicks on image itself */
-  cursor: zoom-in; /* shows zoom */
-  }
-  .card-content h3 {
-       margin:0;
-       font-size:1.2em;
-}
-  .card-content p {
-        margin:4px 0;
-        font-size:0.8em;
-}
+    cursor: zoom-in;
+    pointer-events: auto;
+ }
 
-  /* --- AUTO FIX: if no image, make vertical --- */
+ .card-content h3 {
+    margin:0;
+    font-size:1.2em;
+ }
 
-  .card:not(:has(img)) {
+ .card-content p {
+    margin:4px 0;
+    font-size:0.8em;
+ }
+
+ .card:not(:has(img)) {
     display:block;
     text-align:left;
-  }
+ }
 
-  /* --- Gallery --- */
-  .gallery {
+ .gallery {
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap:10px;
     margin-top:20px;
-  }
-  .gallery img {
+ }
+
+ .gallery img {
     width:100%;
     border-radius:8px;
     border:2px solid #FFD700;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .gallery img:hover {
+ }
+
+ .gallery img:hover {
     transform:scale(1.05);
     box-shadow:0 0 10px #FFD700, 0 0 15px #FFA500;
-  }
+ }
 
-  h1,h2{
-       text-align:center;
-}
-  footer {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  background-color:#111;
-  margin-top:20px;
-  color:#FFD700;
-}
+ h1,h2{
+    text-align:center;
+ }
 
+ footer {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    background-color:#111;
+    margin-top:20px;
+    color:#FFD700;
+ }
 
-  .social {margin-top:10px;}
-  .social a {
+ .social {margin-top:10px;}
+ .social a {
     color:#1877F2;
     font-size:1.5em;
     margin:0 10px;
     transition: transform 0.3s, color 0.3s;
-  }
-  .social a:hover {
-        color:#1877F2;
-        transform: scale(1.2);
-}
+ }
+ .social a:hover {
+    transform: scale(1.2);
+ }
 
-  @media (max-width: 600px) {
+ @media (max-width: 600px) {
     nav {
-         position: relative;
-}
+       position: relative;
+    }
     nav .menu {
-      display:none;
-      flex-direction:column;
-      width:100%;
-      background-color:#000;
-      border-top:1px solid #FFD700;
-      position:absolute;
-      top:60px;
-      left:0;
-      z-index:999;
+       display:none;
+       flex-direction:column;
+       width:100%;
+       background-color:#000;
+       border-top:1px solid #FFD700;
+       position:absolute;
+       top:60px;
+       left:0;
+       z-index:999;
     }
     nav .menu.active {
-          display:flex;
-}
+       display:flex;
+    }
     nav .menu a {
-          color:#FFD700;
-          padding:12px;
-          border-bottom:1px solid #333;
-}
+       color:#FFD700;
+       padding:12px;
+       border-bottom:1px solid #333;
+    }
     .hamburger {
-           display:block;
-           position:absolute;
-           right:15px;
-           top:15px;
-           color:#000;}
-  }
-
+       display:block;
+       position:absolute;
+       right:15px;
+       top:15px;
+       color:#000;
+    }
+ }
 </style>
 </head>
 
@@ -205,7 +209,6 @@
     <a onclick="showPage('events', this)"><i class="fas fa-calendar-alt"></i> Events</a>
     <a onclick="showPage('gallery', this)"><i class="fas fa-images"></i> Gallery</a>
     <a onclick="showPage('newsletter', this)"><i class="fas fa-envelope"></i> Newsletter</a>
-
   </div>
   <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 </nav>
@@ -225,6 +228,49 @@
   </div>
 </footer>
 
+<!-- Fullscreen image viewer -->
+<div id="imgViewer" class="hidden">
+  <span id="closeViewer">&times;</span>
+  <img id="viewerImg" src="">
+</div>
+
+<style>
+#imgViewer {
+  display:flex;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background-color: rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+  opacity:0;
+  pointer-events:none;
+  transition: opacity 0.4s ease;
+}
+#imgViewer.show {
+  opacity:1;
+  pointer-events:auto;
+}
+#imgViewer.hidden { display:none; }
+#imgViewer img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  transition: transform 0.3s ease;
+  touch-action: pinch-zoom;
+}
+#closeViewer {
+  position:absolute;
+  top:20px;
+  right:30px;
+  color:white;
+  font-size:40px;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+
 <script>
 function toggleMenu() {
   document.getElementById('navMenu').classList.toggle('active');
@@ -237,7 +283,7 @@ async function showPage(page, menuLink) {
 
   content.style.opacity = 0;
   content.style.transform = 'translateY(20px)';
-  content.className = 'container'; // reset any special layout
+  content.className = 'container';
 
   setTimeout(async () => {
     if(page === 'home'){
@@ -245,10 +291,9 @@ async function showPage(page, menuLink) {
         <h1>Welcome to Camarin High Batch '85</h1>
         <p style="text-align:center;">This is a mobile-friendly site for our batch. You can see memorials of our departed classmates, contact info for living batchmates, and upcoming events.</p>
         <div style="text-align:center;margin-top:20px;">
-          <img src="temp_logo.jpg" style="border-radius:50%; width: 250px; height: 250px;">
+          <img src="temp_logo.jpg" style="border-radius:50%; width:250px; height:250px;">
         </div>`;
     }
-
     else if(page === 'memorial'){
       const data = await (await fetch('memorial.json')).json();
       let html = `<h2>In Memory of Our Departed Batchmates</h2>`;
@@ -265,39 +310,44 @@ async function showPage(page, menuLink) {
       });
       content.innerHTML = html;
     }
-
     else if(page === 'directory'){
-  const data = await (await fetch('directory.json')).json();
-  let html = `<h2>Batch Directory</h2>`;
-  data.forEach(p => {
-    html += `
-      <div class="card" data-link="profile.html?bio=${encodeURIComponent(p.bioFile)}">
-        <img src="${p.image}" alt="${p.name}" class="card-thumb">
-        <div class="card-content">
-          <h3>${p.name}</h3>
-          <p>Location: ${p.location}</p>
-          <p>Country: ${p.country}</p>
-          <p>Email: ${p.email}</p>
-        </div>
-      </div>`;
-  });
-  content.innerHTML = html;
+      const data = await (await fetch('directory.json')).json();
+      let html = `<h2>Batch Directory</h2>`;
+      data.forEach(p => {
+        html += `
+          <div class="card" data-link="profile.html?bio=${encodeURIComponent(p.bioFile)}">
+            <img src="${p.image}" alt="${p.name}" class="card-thumb">
+            <div class="card-content">
+              <h3>${p.name}</h3>
+              <p>Location: ${p.location}</p>
+              <p>Country: ${p.country}</p>
+              <p>Email: ${p.email}</p>
+            </div>
+          </div>`;
+      });
+      content.innerHTML = html;
 
-  document.querySelectorAll('.card').forEach(card => {
-    const img = card.querySelector('.card-thumb');
+      document.querySelectorAll('.card').forEach(card => {
+        const img = card.querySelector('.card-thumb');
 
-   
+        // Image tap → fullscreen viewer
+        img.addEventListener('click', e => {
+          e.stopPropagation();
+          const viewer = document.getElementById('imgViewer');
+          const viewerImg = document.getElementById('viewerImg');
+          viewerImg.src = img.src;
+          viewer.classList.remove('hidden');
+          setTimeout(() => viewer.classList.add('show'), 10);
+        });
 
-    // Card tap (except image) → go to profile.html
-    card.addEventListener('click', e => {
-      if (!e.target.classList.contains('card-thumb')) {
-        const link = card.dataset.link;
-        window.location.href = link;
-      }
-    });
-  });
-}
-
+        // Card tap → profile
+        card.addEventListener('click', e => {
+          if (!e.target.classList.contains('card-thumb')) {
+            window.location.href = card.dataset.link;
+          }
+        });
+      });
+    }
     else if(page === 'events'){
       const data = await (await fetch('events.json')).json();
       let html = `<h2>Batch Events</h2>`;
@@ -312,7 +362,6 @@ async function showPage(page, menuLink) {
       });
       content.innerHTML = html;
     }
-
     else if(page === 'gallery'){
       const data = await (await fetch('gallery.json')).json();
       let html = `<h2>Batch Gallery</h2><div class="gallery">`;
@@ -321,6 +370,26 @@ async function showPage(page, menuLink) {
       });
       html += `</div>`;
       content.innerHTML = html;
+    }
+    else if(page === 'newsletter'){
+      content.innerHTML = `
+        <h2>Newsletter</h2>
+        <p>Sign up to receive our batch updates directly via email!</p>
+        <form id="newsletterForm">
+          <input type="email" placeholder="Enter your email" required style="padding:8px; width:250px;">
+          <button type="submit" style="padding:8px 12px;">Subscribe</button>
+        </form>
+        <p id="newsletterMsg" style="margin-top:10px;"></p>
+      `;
+
+      const form = document.getElementById('newsletterForm');
+      const msg = document.getElementById('newsletterMsg');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        msg.textContent = `Thank you! You have subscribed with ${form.email.value}.`;
+        form.reset();
+      });
     }
 
     content.style.opacity = 1;
@@ -331,83 +400,10 @@ async function showPage(page, menuLink) {
   }, 300);
 }
 
-else if(page === 'newsletter'){
-  content.innerHTML = `
-    <h2>Newsletter</h2>
-    <p>Sign up to receive our batch updates directly via email!</p>
-    <form id="newsletterForm">
-      <input type="email" placeholder="Enter your email" required style="padding:8px; width:250px;">
-      <button type="submit" style="padding:8px 12px;">Subscribe</button>
-    </form>
-    <p id="newsletterMsg" style="margin-top:10px;"></p>
-  `;
-
-  const form = document.getElementById('newsletterForm');
-  const msg = document.getElementById('newsletterMsg');
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    msg.textContent = `Thank you! You have subscribed with ${form.email.value}.`;
-    form.reset();
-  });
-}
-
-</script>
-
-<!-- Fullscreen image viewer -->
-<div id="imgViewer" class="hidden">
-  <span id="closeViewer">&times;</span>
-  <img id="viewerImg" src="">
-</div>
-
-<style>
-  #imgViewer {
-  display: flex;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-#imgViewer.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#imgViewer.hidden {
-  display: none;
-}
-
-  #imgViewer img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-    touch-action: pinch-zoom;
-  }
-
-  #closeViewer {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-</style>
-
-<script>
-
- // Open viewer
+// Fullscreen viewer JS
 document.addEventListener('click', e => {
-  if (e.target.tagName === 'IMG') {
+  if (e.target.tagName === 'IMG' && !e.target.classList.contains('card-thumb') && !e.target.closest('.gallery')) return;
+  if(e.target.tagName === 'IMG'){
     const viewer = document.getElementById('imgViewer');
     const viewerImg = document.getElementById('viewerImg');
     viewerImg.src = e.target.src;
@@ -415,36 +411,23 @@ document.addEventListener('click', e => {
     setTimeout(() => viewer.classList.add('show'), 10);
   }
 });
-
-// Close viewer
 document.getElementById('closeViewer').addEventListener('click', () => {
   const viewer = document.getElementById('imgViewer');
   viewer.classList.remove('show');
   setTimeout(() => viewer.classList.add('hidden'), 300);
 });
-
-// Close on background tap
 document.getElementById('imgViewer').addEventListener('click', e => {
-  if (e.target.id === 'imgViewer') {
+  if(e.target.id === 'imgViewer'){
     const viewer = document.getElementById('imgViewer');
     viewer.classList.remove('show');
     setTimeout(() => viewer.classList.add('hidden'), 300);
   }
 });
 
+// Cache buster for CSS/JS
+const timestamp = new Date().getTime();
+document.querySelectorAll('link[rel="stylesheet"]').forEach(link => { link.href = link.href+'?v='+timestamp; });
+document.querySelectorAll('script[src]').forEach(script => { if(script.src.includes('main.js')) script.src+= '?v='+timestamp; });
 </script>
-
-<script>
-  const timestamp = new Date().getTime();
-  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-    link.href = link.href + '?v=' + timestamp;
-  });
-  document.querySelectorAll('script[src]').forEach(script => {
-    if (!script.src.includes('main.js')) return; // Palitan kung may ibang JS file ka
-    script.src = script.src + '?v=' + timestamp;
-  });
-</script>
-
-
 </body>
 </html>
