@@ -1,6 +1,6 @@
 ---
 title: Pagod, Pera, at Pananaw
-author: Boy Isip
+pen name: Boy Isip
 image: daniel_abalos.jpg
 ---
 
