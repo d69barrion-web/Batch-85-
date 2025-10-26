@@ -52,16 +52,25 @@
     .featured-image {
       position: relative;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: 50%;
       margin-bottom: 1rem;
       width: 80px;
       height: 80px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
 
     .featured-image img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
       border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    .featured-image:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .article-title-overlay {
@@ -129,6 +138,46 @@
       border-radius: 6px;
       margin-top: 0.5rem;
     }
+
+    /* Fullscreen overlay for author image */
+    .image-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: grab;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .image-overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      transform: translate(0px, 0px) scale(1);
+      transition: transform 0.3s ease;
+      cursor: grab;
+    }
+
+    /* Responsive author image */
+    @media (max-width: 600px) {
+      .featured-image { width: 60px; height: 60px; }
+    }
+    @media (max-width: 400px) {
+      .featured-image { width: 50px; height: 50px; }
+    }
   </style>
 </head>
 <body>
@@ -139,8 +188,8 @@
 
   <main>
     <div class="featured-image">
-      <img id="articleImage" src="daniel_abalos.jpg" alt="Article Image" />
-     <div class="article-title-overlay" id="articleTitleOverlay">Loading title...</div>
+      <img id="articleImage" src="Images/Authors/default.jpg" alt="Article Image" />
+      <div class="article-title-overlay" id="articleTitleOverlay">Loading title...</div>
     </div>
     <div class="article-meta" id="articleAuthor">by elijah</div>
     <article class="article-body" id="articleBody">Loading article...</article>
@@ -167,17 +216,41 @@
     const commentInput = document.getElementById('commentInput');
 
     if (fileName) {
-      // ✅ Fixed path for GitHub Pages
       const fileUrl = 'https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/' + fileName;
 
       fetch(fileUrl)
-        .then(response => {
-          if (!response.ok) throw new Error('Article not found');
-          return response.text();
+        .then(res => {
+          if (!res.ok) throw new Error('Article not found');
+          return res.text();
         })
         .then(markdown => {
-          articleTitle.textContent = fileName.replace('.md', '').replace(/[-_]/g, ' ');
-          articleBody.innerHTML = marked.parse(markdown);
+          // Extract front matter
+          const frontMatterMatch = markdown.match(/---\n([\s\S]*?)\n---/);
+          let metadata = {};
+          let content = markdown;
+
+          if (frontMatterMatch) {
+            const fm = frontMatterMatch[1];
+            fm.split('\n').forEach(line => {
+              const [key, ...rest] = line.split(':');
+              metadata[key.trim()] = rest.join(':').trim();
+            });
+            content = markdown.replace(frontMatterMatch[0], '');
+          }
+
+          // Title
+          articleTitle.textContent = metadata.title || fileName.replace('.md','');
+          articleBody.innerHTML = marked.parse(content);
+
+          // Author
+          const authorName = metadata.author || 'Unknown';
+          document.getElementById('articleAuthor').textContent = 'by ' + authorName;
+
+          // Author image
+          const authorImageFile = authorName.toLowerCase().replace(/\s+/g,'_') + '.jpg';
+          const articleImageEl = document.getElementById('articleImage');
+          articleImageEl.src = 'Images/Authors/' + authorImageFile;
+          articleImageEl.onerror = () => { articleImageEl.src = 'Images/Authors/default.jpg'; };
         })
         .catch(() => {
           articleTitle.textContent = 'Error loading article';
@@ -188,7 +261,7 @@
       articleBody.textContent = 'Please select an article from the Articles page.';
     }
 
-    // 💬 Comments (saved locally per article)
+    // 💬 Comments
     const loadComments = () => {
       const saved = localStorage.getItem('comments_' + fileName);
       commentsContainer.innerHTML = '';
@@ -214,6 +287,94 @@
     });
 
     loadComments();
+
+    // 🌟 Fullscreen overlay + drag + zoom + double-tap
+    const articleImage = document.getElementById('articleImage');
+    const overlay = document.createElement('div');
+    overlay.className = 'image-overlay';
+    const overlayImg = document.createElement('img');
+    overlay.appendChild(overlayImg);
+    document.body.appendChild(overlay);
+
+    let scale = 1, originX = 0, originY = 0, startX = 0, startY = 0, dragging = false;
+    let lastTap = 0;
+
+    articleImage.addEventListener('click', () => {
+      overlayImg.src = articleImage.src;
+      overlay.classList.add('show');
+      scale = 1;
+      originX = 0;
+      originY = 0;
+      overlayImg.style.transform = `translate(0px, 0px) scale(1)`;
+    });
+
+    overlay.addEventListener('click', (e) => { if (e.target !== overlayImg) overlay.classList.remove('show'); });
+
+    overlay.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      scale += e.deltaY * -0.001;
+      scale = Math.min(Math.max(1, scale), 3);
+      overlayImg.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+    });
+
+    overlayImg.addEventListener('mousedown', (e) => {
+      dragging = true;
+      startX = e.clientX - originX;
+      startY = e.clientY - originY;
+      overlayImg.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (dragging) {
+        originX = e.clientX - startX;
+        originY = e.clientY - startY;
+        overlayImg.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      dragging = false;
+      overlayImg.style.cursor = 'grab';
+    });
+
+    // Mobile pinch zoom
+    let initialDistance = 0;
+    overlayImg.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 2) {
+        initialDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      }
+    });
+
+    overlayImg.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const currentDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        let newScale = (currentDistance / initialDistance) * scale;
+        newScale = Math.min(Math.max(1, newScale), 3);
+        overlayImg.style.transform = `translate(${originX}px, ${originY}px) scale(${newScale})`;
+      }
+    }, { passive: false });
+
+    // Double-tap zoom toggle
+    overlayImg.addEventListener('touchend', (e) => {
+      const currentTime = new Date().getTime();
+      const tapLength = currentTime - lastTap;
+
+      if (tapLength < 300 && tapLength > 0) {
+        e.preventDefault();
+        if (scale === 1) scale = 2;
+        else { scale = 1; originX = 0; originY = 0; }
+        overlayImg.style.transform = `translate(${originX}px, ${originY}px) scale(${scale})`;
+      }
+
+      lastTap = currentTime;
+    });
   </script>
 </body>
 </html>
