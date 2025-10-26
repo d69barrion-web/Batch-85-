@@ -158,47 +158,57 @@
   </main>
 
   <script>
-    const repoOwner = "d69barrion-web";
-    const repoName  = "Batch-85-";
-    const folderPath = "articles"; // ✅ must be lowercase
+  const repoOwner = "d69barrion-web";
+  const repoName = "Batch-85-"; // exact name ng repo mo
+  const folderPath = "Articles"; // exact folder name (case-sensitive)
 
-    const list = document.getElementById("articleList");
+  const list = document.getElementById("articleList");
 
-    async function loadArticles() {
-      try {
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+  async function loadArticles() {
+    try {
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+      console.log("Fetching from:", apiUrl);
 
-        const files = await response.json();
-        const mdFiles = files.filter(f => f.name && f.name.toLowerCase().endsWith(".md"));
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 
-        if (mdFiles.length === 0) {
-          list.innerHTML = "<li>No .md files found.</li>";
-          return;
-        }
+      const files = await response.json();
+      console.log("Files fetched:", files);
 
-        list.innerHTML = "";
-        mdFiles.forEach(file => {
-          const li = document.createElement("li");
-          const title = file.name
-            .replace(".md", "")
-            .replace(/[-_]/g, " ")
-            .replace(/\b\w/g, c => c.toUpperCase());
-          li.textContent = title;
-          li.addEventListener("click", () => {
-            window.location.href = `article.html?file=${file.name}`;
-          });
-          list.appendChild(li);
+      const mdFiles = files.filter(f => f.name.toLowerCase().endsWith(".md"));
+
+      if (mdFiles.length === 0) {
+        list.innerHTML = "<li>No markdown articles found.</li>";
+        return;
+      }
+
+      list.innerHTML = "";
+      mdFiles.forEach(file => {
+        const li = document.createElement("li");
+        li.classList.add("article-item");
+
+        const title = file.name
+          .replace(".md", "")
+          .replace(/[-_]/g, " ")
+          .replace(/\b\w/g, c => c.toUpperCase());
+
+        li.textContent = title;
+
+        li.addEventListener("click", () => {
+          window.location.href = `article.html?file=${encodeURIComponent(file.name)}`;
         });
 
-      } catch (error) {
-        console.error("Fetch error:", error);
-        list.innerHTML = `<li>Error loading articles: ${error.message}</li>`;
-      }
-    }
+        list.appendChild(li);
+      });
 
-    loadArticles();
-  </script>
+    } catch (error) {
+      console.error("Fetch error:", error);
+      list.innerHTML = `<li style="color:red;">Error loading articles: ${error.message}</li>`;
+    }
+  }
+
+  loadArticles();
+</script>
+
 </body>
 </html>
