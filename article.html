@@ -190,6 +190,11 @@
           }
 
           articleTitle.textContent = fileName.replace('.md','').replace(/[-_]/g,' ');
+// Alisin ang front matter bago i-render ang article body
+if (frontMatterMatch) {
+  markdown = markdown.replace(frontMatterMatch[0], '').trim();
+}
+
           articleBody.innerHTML = marked.parse(markdown);
 
           const baseName = authorName.toLowerCase().replace(/\s+/g,'_');
