@@ -1,6 +1,6 @@
 ---
 title: Pagod, Pera, at Pananaw
-author: Daniel DelaCruz Abalos
+author: Daniel Abalos
 image: daniel_abalos.jpg
 ---
 
