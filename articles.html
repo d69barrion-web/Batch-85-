@@ -159,48 +159,54 @@
   </main>
 
   <script>
-    // --- AUTO-FETCH .md FILES FROM GITHUB REPO ---
-    const repoOwner = "d69barrion-web";  // <-- Palitan kung iba ang username mo
-    const repoName  = "Batch-85-";       // <-- Palitan kung iba ang repo name mo
-    const folderPath = "articles";
+    <script>
+  // --- AUTO-FETCH .md FILES FROM GITHUB REPO ---
+  const repoOwner = "d69barrion-web";   // GitHub username mo
+  const repoName  = "Batch-85-";        // Pangalan ng repository mo
+  const folderPath = "Articles";        // Eksaktong folder name (case-sensitive)
 
-    const list = document.getElementById("articleList");
+  const list = document.getElementById("articleList");
 
-    async function loadArticles() {
-      try {
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error("Cannot fetch articles");
-        const files = await response.json();
+  async function loadArticles() {
+    try {
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+      const response = await fetch(apiUrl);
 
-        const mdFiles = files.filter(f => f.name.endsWith(".md"));
+      if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      const files = await response.json();
 
-        if (mdFiles.length === 0) {
-          list.innerHTML = "<li>No articles found.</li>";
-          return;
-        }
+      // Filter .md files only
+      const mdFiles = files.filter(f => f.name.toLowerCase().endsWith(".md"));
 
-        list.innerHTML = ""; // clear loading text
-
-        mdFiles.forEach(file => {
-          const li = document.createElement("li");
-          const title = file.name
-            .replace(".md", "")
-            .replace(/[-_]/g, " ")
-            .replace(/\b\w/g, c => c.toUpperCase());
-          li.textContent = title;
-          li.addEventListener("click", () => {
-            window.location.href = `article.html?file=${file.name}`;
-          });
-          list.appendChild(li);
-        });
-      } catch (error) {
-        console.error(error);
-        list.innerHTML = "<li>Error loading articles.</li>";
+      if (mdFiles.length === 0) {
+        list.innerHTML = "<li>No articles found in the folder.</li>";
+        return;
       }
-    }
 
-    loadArticles();
-  </script>
+      list.innerHTML = ""; // clear loading text
+
+      mdFiles.forEach(file => {
+        const li = document.createElement("li");
+        const title = file.name
+          .replace(".md", "")
+          .replace(/[-_]/g, " ")
+          .replace(/\b\w/g, c => c.toUpperCase());
+        li.textContent = title;
+
+        li.addEventListener("click", () => {
+          window.location.href = `article.html?file=${file.name}`;
+        });
+
+        list.appendChild(li);
+      });
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      list.innerHTML = `<li>Error loading articles: ${error.message}</li>`;
+    }
+  }
+
+  loadArticles();
+</script>
+
 </body>
 </html>
