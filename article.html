@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article - Batch 85</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f7fa;
+      color: #333;
+    }
+
+    header {
+      background: #004c80;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header a.back-btn {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      color: #004c80;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    header a.back-btn:hover {
+      background: #e0e0e0;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+    }
+
+    .featured-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .featured-image img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .article-title-overlay {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 1.3rem;
+    }
+
+    .article-meta {
+      font-size: 0.9rem;
+      color: #777;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .article-body {
+      line-height: 1.7;
+      font-size: 1rem;
+      white-space: pre-wrap; /* preserve line breaks from .txt file */
+    }
+
+    .comments-section {
+      margin-top: 2rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+
+    .comments-section h3 {
+      color: #004c80;
+    }
+
+    .comments-section textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: none;
+      margin-bottom: 0.5rem;
+    }
+
+    .comments-section button {
+      background: #004c80;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+    }
+
+    .comments-section button:hover {
+      background: #0066aa;
+    }
+
+    .comment {
+      background: #f0f5fa;
+      padding: 0.7rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="articles.html" class="back-btn">← Back to Articles</a>
+    <h1>Batch 85 Article</h1>
+  </header>
+
+  <main>
+    <div class="featured-image">
+      <img id="articleImage" src="images/featured.jpg" alt="Article Image" />
+      <div class="article-title-overlay" id="articleTitleOverlay">Loading title...</div>
+    </div>
+    <div class="article-meta" id="articleAuthor">by Admin</div>
+    <article class="article-body" id="articleBody">Loading article...</article>
+
+    <div class="comments-section">
+      <h3>Comments</h3>
+      <div id="comments"></div>
+      <textarea id="commentInput" placeholder="Write a comment..."></textarea>
+      <button id="postComment">Post</button>
+    </div>
+  </main>
+
+  <script>
+    // Get query parameter (?file=article1.txt)
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileName = urlParams.get('file');
+
+    const articleTitle = document.getElementById('articleTitleOverlay');
+    const articleBody = document.getElementById('articleBody');
+    const commentsContainer = document.getElementById('comments');
+    const postButton = document.getElementById('postComment');
+    const commentInput = document.getElementById('commentInput');
+
+    // Load the .txt file content
+    if (fileName) {
+      fetch('articles/' + fileName)
+        .then(response => {
+          if (!response.ok) throw new Error('Article not found.');
+          return response.text();
+        })
+        .then(text => {
+          articleTitle.textContent = fileName.replace('.txt', '').replace(/[-_]/g, ' ');
+          articleBody.textContent = text;
+        })
+        .catch(() => {
+          articleTitle.textContent = 'Error loading article';
+          articleBody.textContent = 'Sorry, the requested article could not be loaded.';
+        });
+    } else {
+      articleTitle.textContent = 'No article selected';
+      articleBody.textContent = 'Please select an article from the Articles page.';
+    }
+
+    // Load comments from localStorage (temporary client-side only)
+    const loadComments = () => {
+      const saved = localStorage.getItem('comments_' + fileName);
+      commentsContainer.innerHTML = '';
+      if (saved) {
+        const comments = JSON.parse(saved);
+        comments.forEach(c => {
+          const div = document.createElement('div');
+          div.className = 'comment';
+          div.textContent = c;
+          commentsContainer.appendChild(div);
+        });
+      }
+    };
+
+    // Save comment
+    postButton.addEventListener('click', () => {
+      const text = commentInput.value.trim();
+      if (!text) return;
+      const saved = JSON.parse(localStorage.getItem('comments_' + fileName) || '[]');
+      saved.push(text);
+      localStorage.setItem('comments_' + fileName, JSON.stringify(saved));
+      commentInput.value = '';
+      loadComments();
+    });
+
+    // Initialize comments
+    loadComments();
+  </script>
+</body>
+</html>
