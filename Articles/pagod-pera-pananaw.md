@@ -30,4 +30,4 @@ sa negosyo, sa investments, o sa merkado ng stocks.
 
 Marami sa atin ang nalinlang ng konseptong *“siguradong kita”* mula sa suweldo,  
 pero ang hindi natin napapansin ay ang kapalit nito — ang ating **oras at kalayaan**.  
-Ang suweldo ay hindi masama, ngunit ito ay madalas na **pansamantalang gantimpala**, hindi pangmatagalang solusyon.
+Ang suweldo ay hindi masama, ngunit ito ay madalas na **pansamantalang gantimpala** lamang, hindi pangmatagalang solusyon.
