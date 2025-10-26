@@ -1,7 +1,7 @@
 ---
 title: Pagod, Pera, at Pananaw
 author: Daniel Abalos
-image: daniel_abalos.jpg
+image: danielabalos.jpg
 ---
 
 # Ang Maling Paniniwala sa "Trabaho Para Yumaman"
