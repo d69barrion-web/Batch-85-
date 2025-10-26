@@ -162,11 +162,13 @@
     const postButton = document.getElementById('postComment');
     const commentInput = document.getElementById('commentInput');
 
-    // Load the .md file content
     if (fileName) {
-      fetch('articles/' + fileName)
+      // ✅ Fixed path for GitHub Pages
+      const fileUrl = 'https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/' + fileName;
+
+      fetch(fileUrl)
         .then(response => {
-          if (!response.ok) throw new Error('Article not found.');
+          if (!response.ok) throw new Error('Article not found');
           return response.text();
         })
         .then(markdown => {
@@ -182,7 +184,7 @@
       articleBody.textContent = 'Please select an article from the Articles page.';
     }
 
-    // Comments feature (client-side only)
+    // 💬 Comments (saved locally per article)
     const loadComments = () => {
       const saved = localStorage.getItem('comments_' + fileName);
       commentsContainer.innerHTML = '';
