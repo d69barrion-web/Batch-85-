@@ -1,5 +1,5 @@
 ---
-Pagod, Pera at Pananaw
+title: Pagod, Pera at Pananaw
 author: Daniel DelaCruz Abalos
 image: daniel_abalos.jpg
 ---
