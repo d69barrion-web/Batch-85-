@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles - Batch 85</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f7fa;
+      color: #333;
+    }
+
+    header {
+      background: #004c80;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header a.back-btn {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      color: #004c80;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    header a.back-btn:hover {
+      background: #e0e0e0;
+    }
+
+    main {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .articles-menu {
+      width: 30%;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: fit-content;
+    }
+
+    .articles-menu h2 {
+      text-align: center;
+      color: #004c80;
+      margin-bottom: 1rem;
+    }
+
+    .articles-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .articles-menu li {
+      padding: 0.7rem;
+      cursor: pointer;
+      border-bottom: 1px solid #ddd;
+      transition: background 0.2s;
+    }
+
+    .articles-menu li:hover {
+      background: #f0f0f0;
+    }
+
+    .article-preview {
+      flex: 1;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .featured-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .featured-image img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .article-title-overlay {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 1.2rem;
+    }
+
+    .article-meta {
+      font-size: 0.9rem;
+      color: #777;
+      margin: 0.5rem 0;
+    }
+
+    .article-body {
+      line-height: 1.6;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+
+      .articles-menu {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="back-btn">← Back to Homepage</a>
+    <h1>Batch 85 Articles</h1>
+  </header>
+
+  <main>
+    <aside class="articles-menu">
+      <h2>Articles</h2>
+      <ul id="articleList">
+        <!-- Dynamic list populated by JS -->
+      </ul>
+    </aside>
+
+    <section class="article-preview">
+      <div class="featured-image">
+        <img id="articleImage" src="images/featured.jpg" alt="Featured Article" />
+        <div class="article-title-overlay" id="articleTitleOverlay">Featured Article Title</div>
+      </div>
+      <div class="article-meta" id="articleAuthor">by Admin</div>
+      <article class="article-body" id="articleBody">
+        Welcome to the Batch 85 Articles section. Select an article from the left to read more. 
+        Our featured stories highlight moments, memories, and reflections from our batchmates.
+      </article>
+    </section>
+  </main>
+
+  <script>
+    // Sample list of articles
+    const articles = [
+      { title: "Simpleng Buhay, Malalim na Isip", file: "article1.txt" },
+      { title: "Pagbabago sa Pananaw ng Kabataan", file: "article2.txt" },
+      { title: "Ang Tamis ng Pagkakaibigan", file: "article3.txt" }
+    ];
+
+    const list = document.getElementById("articleList");
+
+    articles.forEach(a => {
+      const li = document.createElement("li");
+      li.textContent = a.title;
+      li.addEventListener("click", () => {
+        window.location.href = `article.html?file=${a.file}`;
+      });
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
