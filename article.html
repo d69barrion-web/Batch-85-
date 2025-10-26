@@ -81,7 +81,10 @@
     .article-body {
       line-height: 1.7;
       font-size: 1rem;
-      white-space: pre-wrap; /* preserve line breaks from .txt file */
+    }
+
+    .article-body h1, .article-body h2, .article-body h3 {
+      color: #004c80;
     }
 
     .comments-section {
@@ -146,8 +149,10 @@
     </div>
   </main>
 
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <script>
-    // Get query parameter (?file=article1.txt)
     const urlParams = new URLSearchParams(window.location.search);
     const fileName = urlParams.get('file');
 
@@ -157,16 +162,16 @@
     const postButton = document.getElementById('postComment');
     const commentInput = document.getElementById('commentInput');
 
-    // Load the .txt file content
+    // Load the .md file content
     if (fileName) {
       fetch('articles/' + fileName)
         .then(response => {
           if (!response.ok) throw new Error('Article not found.');
           return response.text();
         })
-        .then(text => {
-          articleTitle.textContent = fileName.replace('.txt', '').replace(/[-_]/g, ' ');
-          articleBody.textContent = text;
+        .then(markdown => {
+          articleTitle.textContent = fileName.replace('.md', '').replace(/[-_]/g, ' ');
+          articleBody.innerHTML = marked.parse(markdown);
         })
         .catch(() => {
           articleTitle.textContent = 'Error loading article';
@@ -177,7 +182,7 @@
       articleBody.textContent = 'Please select an article from the Articles page.';
     }
 
-    // Load comments from localStorage (temporary client-side only)
+    // Comments feature (client-side only)
     const loadComments = () => {
       const saved = localStorage.getItem('comments_' + fileName);
       commentsContainer.innerHTML = '';
@@ -192,7 +197,6 @@
       }
     };
 
-    // Save comment
     postButton.addEventListener('click', () => {
       const text = commentInput.value.trim();
       if (!text) return;
@@ -203,7 +207,6 @@
       loadComments();
     });
 
-    // Initialize comments
     loadComments();
   </script>
 </body>
