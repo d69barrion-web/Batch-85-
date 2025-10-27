@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Article - Batch 85</title>
+  <title>Articles - Batch 85</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -24,7 +24,7 @@
     header a.back-btn {
       position: absolute;
       left: 15px;
-      top: 15%;
+      top: 50%;
       transform: translateY(-50%);
       background: #fff;
       color: #004c80;
@@ -41,183 +41,268 @@
     }
 
     main {
-      max-width: 800px;
-      margin: 2rem auto;
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+      gap: 1rem;
+    }
+
+    .articles-menu {
+      width: 30%;
       background: #fff;
-      padding: 2rem;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: fit-content;
+    }
+
+    .articles-menu h2 {
+      text-align: center;
+      color: #004c80;
+      margin-bottom: 1rem;
+    }
+
+    .articles-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .articles-menu li {
+      padding: 0.7rem;
+      cursor: pointer;
+      border-bottom: 1px solid #ddd;
+      transition: background 0.2s;
+    }
+
+    .articles-menu li:hover {
+      background: #f0f0f0;
+    }
+
+    .article-preview {
+      flex: 1;
+      background: #fff;
+      padding: 1rem;
       border-radius: 12px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
+    .featured-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .featured-image img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .article-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #004c80;
+      margin-top: 1rem;
+    }
+
     .article-meta {
-      color: #777;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    .navigation {
       display: flex;
-      justify-content: space-between;
-      margin-top: 2rem;
+      align-items: center;
+      margin: 0.8rem 0;
+      color: #666;
+      font-size: 0.95rem;
+      gap: 10px;
     }
 
-    .nav-btn {
+    .article-meta img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .article-body {
+      line-height: 1.6;
+      margin-top: 1rem;
+    }
+
+    #navButtons {
+      display: none;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+
+    #navButtons button {
       background: #004c80;
-      color: white;
+      color: #fff;
       border: none;
-      padding: 0.6rem 1rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
       transition: background 0.2s;
     }
 
-    .nav-btn:hover {
-      background: #0060a0;
+    #navButtons button:hover {
+      background: #0066b2;
     }
 
-    .nav-btn:disabled {
-      background: #ccc;
-      cursor: not-allowed;
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+
+      .articles-menu {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="articles.html" class="back-btn">← Back to Articles</a>
-    <h1 id="articleTitle">Loading...</h1>
+    <a href="index.html" class="back-btn">← Back to Homepage</a>
+    <h1>Batch'85 Blogs</h1>
   </header>
 
   <main>
-    <div class="article-meta" id="articleAuthor">by Elijah</div>
-    <article id="articleContent">Loading article...</article>
+    <aside class="articles-menu">
+      <h2>Blogs</h2>
+      <ul id="articleList">
+        <li>Loading articles...</li>
+      </ul>
+    </aside>
 
-    <div class="navigation">
-      <button id="prevBtn" class="nav-btn">← Previous</button>
-      <button id="nextBtn" class="nav-btn">Next →</button>
-    </div>
+    <section class="article-preview">
+      <div class="featured-image">
+        <img id="articleImage" src="images/featured.jpg" alt="Featured Article" />
+      </div>
+      <div class="article-title" id="articleTitle">Featured Article</div>
+
+      <div class="article-meta">
+        <img id="authorImage" src="images/default-avatar.png" alt="Author" />
+        <span id="articleAuthor">by Elijah</span>
+      </div>
+
+      <article class="article-body" id="articleBody">
+        Welcome to the Batch 85 Articles section. Select an article from the left to read more.
+      </article>
+
+      <div id="navButtons">
+        <button id="prevArticle">← Previous</button>
+        <button id="nextArticle">Next →</button>
+      </div>
+    </section>
   </main>
 
   <script>
   const repoOwner = "d69barrion-web";
   const repoName = "Batch-85-";
-  const basePath = "Articles";
+  const folderPath = "Articles";
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const folderName = urlParams.get("folder"); // e.g. "pagod-pera-pananaw"
-  let fileIndex = parseInt(urlParams.get("index")) || 0;
+  const list = document.getElementById("articleList");
+  const articleTitle = document.getElementById("articleTitle");
+  const articleBody = document.getElementById("articleBody");
+  const articleImage = document.getElementById("articleImage");
+  const authorImage = document.getElementById("authorImage");
+  const articleAuthor = document.getElementById("articleAuthor");
+  const navButtons = document.getElementById("navButtons");
 
-  const titleEl = document.getElementById("articleTitle");
-  const contentEl = document.getElementById("articleContent");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
+  let mdFiles = [];
+  let currentIndex = 0;
 
-  async function fetchJSON(url) {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    return await response.json();
-  }
-
-  async function loadArticle() {
-    if (!folderName) {
-      titleEl.textContent = "Error";
-      contentEl.innerHTML = "No folder specified.";
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
-      return;
-    }
-
+  async function loadArticles() {
     try {
-      const folderUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}/${folderName}`;
-      const files = await fetchJSON(folderUrl);
-
-      const mdFiles = files.filter(f => f.name.endsWith(".md"));
-      mdFiles.sort((a, b) => a.name.localeCompare(b.name)); // sort alphabetically
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      const files = await response.json();
+      mdFiles = files.filter(f => f.name.toLowerCase().endsWith(".md"));
 
       if (mdFiles.length === 0) {
-        contentEl.innerHTML = "No markdown files in this folder.";
-        prevBtn.style.display = "none";
-        nextBtn.style.display = "none";
+        list.innerHTML = "<li>No markdown articles found.</li>";
         return;
       }
 
-      // Clamp fileIndex
-      if (fileIndex < 0) fileIndex = 0;
-      if (fileIndex >= mdFiles.length) fileIndex = mdFiles.length - 1;
+      list.innerHTML = "";
+      mdFiles.forEach((file, index) => {
+        const li = document.createElement("li");
+        const title = file.name.replace(".md", "").replace(/[-_]/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+        li.textContent = title;
+        li.addEventListener("click", () => {
+          currentIndex = index;
+          displayArticle(file.name);
+        });
+        list.appendChild(li);
+      });
 
-      const currentFile = mdFiles[fileIndex];
-      const fileResponse = await fetch(currentFile.download_url);
-      const text = await fileResponse.text();
-
-      // Convert Markdown to HTML (simple)
-      const html = text
-        .replace(/^# (.*$)/gim, "<h1>$1</h1>")
-        .replace(/^## (.*$)/gim, "<h2>$1</h2>")
-        .replace(/^### (.*$)/gim, "<h3>$1</h3>")
-        .replace(/\*\*(.*)\*\*/gim, "<b>$1</b>")
-        .replace(/\*(.*)\*/gim, "<i>$1</i>")
-        .replace(/\n$/gim, "<br />");
-
-      titleEl.textContent = currentFile.name.replace(".md", "").replace(/[-_]/g, " ");
-      contentEl.innerHTML = html;
-
-      // Load sibling folders to know next/prev article
-      const articlesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}`;
-      const folders = await fetchJSON(articlesUrl);
-      const subfolders = folders.filter(f => f.type === "dir").map(f => f.name);
-      const currentFolderIndex = subfolders.indexOf(folderName);
-
-      // Determine button visibility
-      const multiplePages = mdFiles.length > 1;
-      const multipleFolders = subfolders.length > 1;
-
-      if (multiplePages) {
-        prevBtn.disabled = fileIndex === 0;
-        nextBtn.disabled = fileIndex === mdFiles.length - 1;
-
-        prevBtn.onclick = () => {
-          if (fileIndex > 0) {
-            window.location.href = `article.html?folder=${folderName}&index=${fileIndex - 1}`;
-          }
-        };
-
-        nextBtn.onclick = () => {
-          if (fileIndex < mdFiles.length - 1) {
-            window.location.href = `article.html?folder=${folderName}&index=${fileIndex + 1}`;
-          }
-        };
-      } else if (multipleFolders) {
-        const prevFolder = subfolders[currentFolderIndex - 1];
-        const nextFolder = subfolders[currentFolderIndex + 1];
-
-        if (!prevFolder) prevBtn.style.display = "none";
-        if (!nextFolder) nextBtn.style.display = "none";
-
-        prevBtn.textContent = "← Previous Article";
-        nextBtn.textContent = "Next Article →";
-
-        prevBtn.onclick = () => {
-          if (prevFolder) window.location.href = `article.html?folder=${prevFolder}`;
-        };
-
-        nextBtn.onclick = () => {
-          if (nextFolder) window.location.href = `article.html?folder=${nextFolder}`;
-        };
-      } else {
-        // Only one folder and one file — hide navigation
-        prevBtn.style.display = "none";
-        nextBtn.style.display = "none";
+      const urlParams = new URLSearchParams(window.location.search);
+      const fileName = urlParams.get("file");
+      if (fileName) {
+        const fileIndex = mdFiles.findIndex(f => f.name === fileName);
+        if (fileIndex !== -1) {
+          currentIndex = fileIndex;
+          displayArticle(fileName);
+        }
       }
 
-    } catch (err) {
-      titleEl.textContent = "Error loading article";
-      contentEl.innerHTML = `<p style="color:red;">${err.message}</p>`;
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
+      // show/hide nav buttons
+      navButtons.style.display = mdFiles.length > 1 ? "flex" : "none";
+
+    } catch (error) {
+      console.error("Fetch error:", error);
+      list.innerHTML = `<li style="color:red;">Error loading articles: ${error.message}</li>`;
     }
   }
 
-  loadArticle();
+  async function displayArticle(fileName) {
+    try {
+      const rawUrl = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${folderPath}/${fileName}`;
+      const response = await fetch(rawUrl);
+      const text = await response.text();
+
+      // Parse front matter
+      const frontMatterMatch = /^---\n([\s\S]*?)\n---/.exec(text);
+      let bodyContent = text;
+      let metadata = {};
+
+      if (frontMatterMatch) {
+        const yamlText = frontMatterMatch[1];
+        bodyContent = text.replace(frontMatterMatch[0], "").trim();
+        yamlText.split("\n").forEach(line => {
+          const [key, ...rest] = line.split(":");
+          metadata[key.trim()] = rest.join(":").trim();
+        });
+      }
+
+      articleTitle.textContent = metadata.title || fileName.replace(".md", "");
+      articleAuthor.textContent = "by " + (metadata.penname || "Elijah");
+      articleImage.src = metadata.image || "images/featured.jpg";
+      authorImage.src = metadata.author_image || "images/default-avatar.png";
+
+      articleBody.innerHTML = marked.parse(bodyContent);
+
+      // handle nav
+      document.getElementById("prevArticle").onclick = () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          displayArticle(mdFiles[currentIndex].name);
+        }
+      };
+      document.getElementById("nextArticle").onclick = () => {
+        if (currentIndex < mdFiles.length - 1) {
+          currentIndex++;
+          displayArticle(mdFiles[currentIndex].name);
+        }
+      };
+
+    } catch (err) {
+      console.error("Error displaying article:", err);
+      articleBody.innerHTML = `<p style="color:red;">Error loading article: ${err.message}</p>`;
+    }
+  }
+
+  loadArticles();
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
