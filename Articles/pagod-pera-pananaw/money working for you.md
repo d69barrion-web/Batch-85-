@@ -20,8 +20,8 @@ for you” naman ay nakatuon sa pagpaparami ng pera sa
 pamamagitan ng matalinong paggalaw nito — sa negosyo, sa 
 assets, o sa financial markets.
 Kung isospin, pareho silang nangangailangan ng sipag at tiyaga. 
-Ngunit ang pagkakaiba, ang isa ay gumagamit ng katawan, 
-habang ang isa naman ay gumagamit ng kaalaman at diskarte.
+Ngunit ang pagkakaiba, ang isa ay gumagamit ng **katawan**, 
+habang ang isa naman ay gumagamit ng **kaalaman at diskarte.**
 Ang unang hakbang tungo sa pagyaman ay ang pagbabago ng 
 paniniwala. Hindi mo kailangang laging “magpagal” para kumita. 
 Sa halip, kailangan mong matutong magpalago ng kita mula sa 
