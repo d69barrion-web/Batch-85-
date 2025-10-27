@@ -26,7 +26,7 @@ Ngunit ang pagkakaiba, ang isa ay gumagamit ng **katawan**,
 habang ang isa naman ay gumagamit ng **kaalaman at diskarte.**
 
 Ang unang hakbang tungo sa pagyaman ay ang **pagbabago ng 
-paniniwala**. Hindi mo kailangang laging “magpagal” at "magpagod para kumita. 
-Sa halip, kailangan mong matutong magpalago ng **kita ng
+paniniwala**. Hindi mo kailangang laging *“magpagal”* at *"magpagod"* para lamang kumita. 
+Sa halip, kailangan mong *matutong magpalago* ng **kita ng
 perang kinita mo na (sa pagtatrabaho)** at kasalukuyang hawak mo ngayon.
 
