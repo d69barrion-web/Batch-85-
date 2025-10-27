@@ -130,6 +130,27 @@
       border-radius: 6px;
       margin-top: 0.5rem;
     }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .nav-buttons button {
+      background: #004c80;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .nav-buttons button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
@@ -146,6 +167,11 @@
     <div class="article-meta" id="articleAuthor">by elijah</div>
     <article class="article-body" id="articleBody">Loading article...</article>
 
+    <div class="nav-buttons">
+      <button id="prevBtn">← Previous</button>
+      <button id="nextBtn">Next →</button>
+    </div>
+
     <div class="comments-section">
       <h3>Comments</h3>
       <div id="comments"></div>
@@ -154,12 +180,12 @@
     </div>
   </main>
 
-  <!-- Markdown parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const fileName = urlParams.get('file');
+    const articleFolder = urlParams.get('article');
+    const page = parseInt(urlParams.get('page')) || 1;
 
     const articleTitle = document.getElementById('articleTitleOverlay');
     const articleBody = document.getElementById('articleBody');
@@ -167,76 +193,139 @@
     const postButton = document.getElementById('postComment');
     const commentInput = document.getElementById('commentInput');
     const articleImageEl = document.getElementById('articleImage');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-    if (fileName) {
-      const fileUrl = 'https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/' + fileName;
+    // Load article content
+    if (articleFolder) {
+      const fileUrl = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${articleFolder}/page${page}.md`;
 
       fetch(fileUrl)
-        .then(res => res.text())
+        .then(res => {
+          if (!res.ok) throw new Error('Not found');
+          return res.text();
+        })
         .then(markdown => {
-          // Kunin front matter
           const frontMatterMatch = markdown.match(/---\s*([\s\S]*?)\s*---/);
           let articleImageFile = null;
           let authorName = 'Unknown Author';
 
           if (frontMatterMatch) {
             const frontMatter = frontMatterMatch[1];
-
             const penMatch = frontMatter.match(/pen name:\s*(.+)/i);
             if (penMatch) authorName = penMatch[1].trim();
-
             const imgMatch = frontMatter.match(/image:\s*(.+)/i);
             if (imgMatch) articleImageFile = imgMatch[1].trim();
+            markdown = markdown.replace(frontMatterMatch[0], '').trim();
           }
 
-          articleTitle.textContent = fileName.replace('.md','').replace(/[-_]/g,' ');
-// Alisin ang front matter bago i-render ang article body
-if (frontMatterMatch) {
-  markdown = markdown.replace(frontMatterMatch[0], '').trim();
-}
-
+          articleTitle.textContent = articleFolder.replace(/[-_]/g, ' ');
           articleBody.innerHTML = marked.parse(markdown);
 
-          const baseName = authorName.toLowerCase().replace(/\s+/g,'_');
+          const baseName = authorName.toLowerCase().replace(/\s+/g, '_');
           const extensions = ['.jpg', '.jpeg', '.png'];
 
           if (articleImageFile) {
-            // Article-specific image sa Images/Articles/
             articleImageEl.src = 'Images/Articles/' + articleImageFile;
             articleImageEl.onerror = () => { articleImageEl.src = 'Images/Authors/' + baseName + '.jpg'; };
           } else {
-            // Subukan author image
             let found = false;
             for (let ext of extensions) {
               const url = 'Images/Authors/' + baseName + ext;
-              fetch(url, { method: 'HEAD' })
-                .then(res => {
-                  if (!found && res.ok) {
-                    articleImageEl.src = url;
-                    found = true;
-                  }
-                });
+              fetch(url, { method: 'HEAD' }).then(res => {
+                if (!found && res.ok) {
+                  articleImageEl.src = url;
+                  found = true;
+                }
+              });
             }
-
-            // fallback sa default
             articleImageEl.onerror = () => { articleImageEl.src = 'Images/default.jpg'; };
           }
 
-          // Update author name
           document.getElementById('articleAuthor').textContent = 'by ' + authorName;
+          updateNavButtons();
         })
         .catch(() => {
           articleTitle.textContent = 'Error loading article';
           articleBody.textContent = 'Sorry, the requested article could not be loaded.';
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
         });
-    } else {
-      articleTitle.textContent = 'No article selected';
-      articleBody.textContent = 'Please select an article from the Articles page.';
     }
 
-    // 💬 Comments (saved locally per article)
+    // Navigation logic
+    async function updateNavButtons() {
+      const nextPageUrl = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${articleFolder}/page${page + 1}.md`;
+      const prevPageUrl = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${articleFolder}/page${page - 1}.md`;
+
+      const checkExists = async (url) => {
+        const res = await fetch(url, { method: 'HEAD' });
+        return res.ok;
+      };
+
+      const hasNextPage = await checkExists(nextPageUrl);
+      const hasPrevPage = page > 1 && await checkExists(prevPageUrl);
+
+      nextBtn.disabled = false;
+      prevBtn.disabled = false;
+
+      if (hasNextPage) {
+        nextBtn.onclick = () => {
+          window.location.href = `article.html?article=${articleFolder}&page=${page + 1}`;
+        };
+      } else {
+        const nextArticle = await findNextArticle();
+        if (nextArticle) {
+          nextBtn.onclick = () => {
+            window.location.href = `article.html?article=${nextArticle}&page=1`;
+          };
+        } else {
+          nextBtn.disabled = true;
+        }
+      }
+
+      if (hasPrevPage) {
+        prevBtn.onclick = () => {
+          window.location.href = `article.html?article=${articleFolder}&page=${page - 1}`;
+        };
+      } else {
+        const prevArticle = await findPrevArticle();
+        if (prevArticle) {
+          const lastPage = await findLastPage(prevArticle);
+          prevBtn.onclick = () => {
+            window.location.href = `article.html?article=${prevArticle}&page=${lastPage}`;
+          };
+        } else {
+          prevBtn.disabled = true;
+        }
+      }
+    }
+
+    async function findNextArticle() {
+      const list = ['Ang-Maling-Paniniwala', 'Pagod-Pera-at-Pananaw']; // expand as needed
+      const i = list.indexOf(articleFolder);
+      return i >= 0 && i < list.length - 1 ? list[i + 1] : null;
+    }
+
+    async function findPrevArticle() {
+      const list = ['Ang-Maling-Paniniwala', 'Pagod-Pera-at-Pananaw']; // expand as needed
+      const i = list.indexOf(articleFolder);
+      return i > 0 ? list[i - 1] : null;
+    }
+
+    async function findLastPage(folder) {
+      for (let i = 10; i > 0; i--) {
+        const url = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${folder}/page${i}.md`;
+        const res = await fetch(url, { method: 'HEAD' });
+        if (res.ok) return i;
+      }
+      return 1;
+    }
+
+    // Comments logic
+    const fileKey = articleFolder + '_page' + page;
     const loadComments = () => {
-      const saved = localStorage.getItem('comments_' + fileName);
+      const saved = localStorage.getItem('comments_' + fileKey);
       commentsContainer.innerHTML = '';
       if (saved) {
         const comments = JSON.parse(saved);
@@ -252,10 +341,9 @@ if (frontMatterMatch) {
     postButton.addEventListener('click', () => {
       const text = commentInput.value.trim();
       if (!text) return;
-      const saved = JSON.parse(localStorage.getItem('comments_' + fileName) || '[]');
-
+      const saved = JSON.parse(localStorage.getItem('comments_' + fileKey) || '[]');
       saved.push(text);
-      localStorage.setItem('comments_' + fileName, JSON.stringify(saved));
+      localStorage.setItem('comments_' + fileKey, JSON.stringify(saved));
       commentInput.value = '';
       loadComments();
     });
