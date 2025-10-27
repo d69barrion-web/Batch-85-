@@ -41,113 +41,42 @@
     }
 
     main {
-      max-width: 900px;
+      max-width: 800px;
       margin: 2rem auto;
       background: #fff;
+      padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-    }
-
-    .featured-image {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      width: 80px;
-      height: 80px;
-    }
-
-    .featured-image img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      cursor: zoom-in;
-    }
-
-    .article-title-overlay {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 1.3rem;
-      display: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .article-meta {
-      font-size: 0.9rem;
       color: #777;
-      margin: 0.5rem 0 1rem;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
     }
 
-    .article-body {
-      line-height: 1.7;
-      font-size: 1rem;
-    }
-
-    .article-body h1, .article-body h2, .article-body h3 {
-      color: #004c80;
-    }
-
-    .comments-section {
-      margin-top: 2rem;
-      border-top: 1px solid #ddd;
-      padding-top: 1rem;
-    }
-
-    .comments-section h3 {
-      color: #004c80;
-    }
-
-    .comments-section textarea {
-      width: 100%;
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      resize: none;
-      margin-bottom: 0.5rem;
-    }
-
-    .comments-section button {
-      background: #004c80;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 0.6rem 1rem;
-      cursor: pointer;
-    }
-
-    .comments-section button:hover {
-      background: #0066aa;
-    }
-
-    .comment {
-      background: #f0f5fa;
-      padding: 0.7rem;
-      border-radius: 6px;
-      margin-top: 0.5rem;
-    }
-
-    .nav-buttons {
+    .navigation {
       display: flex;
       justify-content: space-between;
       margin-top: 2rem;
     }
 
-    .nav-buttons button {
+    .nav-btn {
       background: #004c80;
-      color: #fff;
+      color: white;
       border: none;
-      border-radius: 6px;
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      transition: background 0.2s;
     }
 
-    .nav-buttons button:disabled {
+    .nav-btn:hover {
+      background: #0060a0;
+    }
+
+    .nav-btn:disabled {
       background: #ccc;
       cursor: not-allowed;
     }
@@ -156,199 +85,139 @@
 <body>
   <header>
     <a href="articles.html" class="back-btn">← Back to Articles</a>
-    <h1>Batch'85 Blog</h1>
+    <h1 id="articleTitle">Loading...</h1>
   </header>
 
   <main>
-    <div class="featured-image">
-      <img id="articleImage" src="Images/default.jpg" alt="Article Image" />
-      <div class="article-title-overlay" id="articleTitleOverlay">Loading title...</div>
-    </div>
-    <div class="article-meta" id="articleAuthor">by elijah</div>
-    <article class="article-body" id="articleBody">Loading article...</article>
+    <div class="article-meta" id="articleAuthor">by Elijah</div>
+    <article id="articleContent">Loading article...</article>
 
-    <div class="nav-buttons">
-      <button id="prevBtn">← Previous</button>
-      <button id="nextBtn">Next →</button>
-    </div>
-
-    <div class="comments-section">
-      <h3>Comments</h3>
-      <div id="comments"></div>
-      <textarea id="commentInput" placeholder="Write a comment..."></textarea>
-      <button id="postComment">Post</button>
+    <div class="navigation">
+      <button id="prevBtn" class="nav-btn">← Previous</button>
+      <button id="nextBtn" class="nav-btn">Next →</button>
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const articleFolder = urlParams.get('article');
-    const page = parseInt(urlParams.get('page')) || 1;
+  const repoOwner = "d69barrion-web";
+  const repoName = "Batch-85-";
+  const basePath = "Articles";
 
-    const articleTitle = document.getElementById('articleTitleOverlay');
-    const articleBody = document.getElementById('articleBody');
-    const commentsContainer = document.getElementById('comments');
-    const postButton = document.getElementById('postComment');
-    const commentInput = document.getElementById('commentInput');
-    const articleImageEl = document.getElementById('articleImage');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+  const urlParams = new URLSearchParams(window.location.search);
+  const folderName = urlParams.get("folder"); // e.g. "pagod-pera-pananaw"
+  let fileIndex = parseInt(urlParams.get("index")) || 0;
 
-    // Load article content
-    if (articleFolder) {
-      const fileUrl = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${articleFolder}/page${page}.md`;
+  const titleEl = document.getElementById("articleTitle");
+  const contentEl = document.getElementById("articleContent");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-      fetch(fileUrl)
-        .then(res => {
-          if (!res.ok) throw new Error('Not found');
-          return res.text();
-        })
-        .then(markdown => {
-          const frontMatterMatch = markdown.match(/---\s*([\s\S]*?)\s*---/);
-          let articleImageFile = null;
-          let authorName = 'Unknown Author';
+  async function fetchJSON(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return await response.json();
+  }
 
-          if (frontMatterMatch) {
-            const frontMatter = frontMatterMatch[1];
-            const penMatch = frontMatter.match(/pen name:\s*(.+)/i);
-            if (penMatch) authorName = penMatch[1].trim();
-            const imgMatch = frontMatter.match(/image:\s*(.+)/i);
-            if (imgMatch) articleImageFile = imgMatch[1].trim();
-            markdown = markdown.replace(frontMatterMatch[0], '').trim();
-          }
-
-          articleTitle.textContent = articleFolder.replace(/[-_]/g, ' ');
-          articleBody.innerHTML = marked.parse(markdown);
-
-          const baseName = authorName.toLowerCase().replace(/\s+/g, '_');
-          const extensions = ['.jpg', '.jpeg', '.png'];
-
-          if (articleImageFile) {
-            articleImageEl.src = 'Images/Articles/' + articleImageFile;
-            articleImageEl.onerror = () => { articleImageEl.src = 'Images/Authors/' + baseName + '.jpg'; };
-          } else {
-            let found = false;
-            for (let ext of extensions) {
-              const url = 'Images/Authors/' + baseName + ext;
-              fetch(url, { method: 'HEAD' }).then(res => {
-                if (!found && res.ok) {
-                  articleImageEl.src = url;
-                  found = true;
-                }
-              });
-            }
-            articleImageEl.onerror = () => { articleImageEl.src = 'Images/default.jpg'; };
-          }
-
-          document.getElementById('articleAuthor').textContent = 'by ' + authorName;
-          updateNavButtons();
-        })
-        .catch(() => {
-          articleTitle.textContent = 'Error loading article';
-          articleBody.textContent = 'Sorry, the requested article could not be loaded.';
-          prevBtn.disabled = true;
-          nextBtn.disabled = true;
-        });
+  async function loadArticle() {
+    if (!folderName) {
+      titleEl.textContent = "Error";
+      contentEl.innerHTML = "No folder specified.";
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+      return;
     }
 
-    // Navigation logic
-    async function updateNavButtons() {
-      const nextPageUrl = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${articleFolder}/page${page + 1}.md`;
-      const prevPageUrl = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${articleFolder}/page${page - 1}.md`;
+    try {
+      const folderUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}/${folderName}`;
+      const files = await fetchJSON(folderUrl);
 
-      const checkExists = async (url) => {
-        const res = await fetch(url, { method: 'HEAD' });
-        return res.ok;
-      };
+      const mdFiles = files.filter(f => f.name.endsWith(".md"));
+      mdFiles.sort((a, b) => a.name.localeCompare(b.name)); // sort alphabetically
 
-      const hasNextPage = await checkExists(nextPageUrl);
-      const hasPrevPage = page > 1 && await checkExists(prevPageUrl);
-
-      nextBtn.disabled = false;
-      prevBtn.disabled = false;
-
-      if (hasNextPage) {
-        nextBtn.onclick = () => {
-          window.location.href = `article.html?article=${articleFolder}&page=${page + 1}`;
-        };
-      } else {
-        const nextArticle = await findNextArticle();
-        if (nextArticle) {
-          nextBtn.onclick = () => {
-            window.location.href = `article.html?article=${nextArticle}&page=1`;
-          };
-        } else {
-          nextBtn.disabled = true;
-        }
+      if (mdFiles.length === 0) {
+        contentEl.innerHTML = "No markdown files in this folder.";
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+        return;
       }
 
-      if (hasPrevPage) {
+      // Clamp fileIndex
+      if (fileIndex < 0) fileIndex = 0;
+      if (fileIndex >= mdFiles.length) fileIndex = mdFiles.length - 1;
+
+      const currentFile = mdFiles[fileIndex];
+      const fileResponse = await fetch(currentFile.download_url);
+      const text = await fileResponse.text();
+
+      // Convert Markdown to HTML (simple)
+      const html = text
+        .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+        .replace(/^## (.*$)/gim, "<h2>$1</h2>")
+        .replace(/^### (.*$)/gim, "<h3>$1</h3>")
+        .replace(/\*\*(.*)\*\*/gim, "<b>$1</b>")
+        .replace(/\*(.*)\*/gim, "<i>$1</i>")
+        .replace(/\n$/gim, "<br />");
+
+      titleEl.textContent = currentFile.name.replace(".md", "").replace(/[-_]/g, " ");
+      contentEl.innerHTML = html;
+
+      // Load sibling folders to know next/prev article
+      const articlesUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}`;
+      const folders = await fetchJSON(articlesUrl);
+      const subfolders = folders.filter(f => f.type === "dir").map(f => f.name);
+      const currentFolderIndex = subfolders.indexOf(folderName);
+
+      // Determine button visibility
+      const multiplePages = mdFiles.length > 1;
+      const multipleFolders = subfolders.length > 1;
+
+      if (multiplePages) {
+        prevBtn.disabled = fileIndex === 0;
+        nextBtn.disabled = fileIndex === mdFiles.length - 1;
+
         prevBtn.onclick = () => {
-          window.location.href = `article.html?article=${articleFolder}&page=${page - 1}`;
+          if (fileIndex > 0) {
+            window.location.href = `article.html?folder=${folderName}&index=${fileIndex - 1}`;
+          }
+        };
+
+        nextBtn.onclick = () => {
+          if (fileIndex < mdFiles.length - 1) {
+            window.location.href = `article.html?folder=${folderName}&index=${fileIndex + 1}`;
+          }
+        };
+      } else if (multipleFolders) {
+        const prevFolder = subfolders[currentFolderIndex - 1];
+        const nextFolder = subfolders[currentFolderIndex + 1];
+
+        if (!prevFolder) prevBtn.style.display = "none";
+        if (!nextFolder) nextBtn.style.display = "none";
+
+        prevBtn.textContent = "← Previous Article";
+        nextBtn.textContent = "Next Article →";
+
+        prevBtn.onclick = () => {
+          if (prevFolder) window.location.href = `article.html?folder=${prevFolder}`;
+        };
+
+        nextBtn.onclick = () => {
+          if (nextFolder) window.location.href = `article.html?folder=${nextFolder}`;
         };
       } else {
-        const prevArticle = await findPrevArticle();
-        if (prevArticle) {
-          const lastPage = await findLastPage(prevArticle);
-          prevBtn.onclick = () => {
-            window.location.href = `article.html?article=${prevArticle}&page=${lastPage}`;
-          };
-        } else {
-          prevBtn.disabled = true;
-        }
+        // Only one folder and one file — hide navigation
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
       }
+
+    } catch (err) {
+      titleEl.textContent = "Error loading article";
+      contentEl.innerHTML = `<p style="color:red;">${err.message}</p>`;
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
     }
+  }
 
-    async function findNextArticle() {
-      const list = ['Ang-Maling-Paniniwala', 'Pagod-Pera-at-Pananaw']; // expand as needed
-      const i = list.indexOf(articleFolder);
-      return i >= 0 && i < list.length - 1 ? list[i + 1] : null;
-    }
-
-    async function findPrevArticle() {
-      const list = ['Ang-Maling-Paniniwala', 'Pagod-Pera-at-Pananaw']; // expand as needed
-      const i = list.indexOf(articleFolder);
-      return i > 0 ? list[i - 1] : null;
-    }
-
-    async function findLastPage(folder) {
-      for (let i = 10; i > 0; i--) {
-        const url = `https://raw.githubusercontent.com/d69barrion-web/Batch-85-/main/Articles/${folder}/page${i}.md`;
-        const res = await fetch(url, { method: 'HEAD' });
-        if (res.ok) return i;
-      }
-      return 1;
-    }
-
-    // Comments logic
-    const fileKey = articleFolder + '_page' + page;
-    const loadComments = () => {
-      const saved = localStorage.getItem('comments_' + fileKey);
-      commentsContainer.innerHTML = '';
-      if (saved) {
-        const comments = JSON.parse(saved);
-        comments.forEach(c => {
-          const div = document.createElement('div');
-          div.className = 'comment';
-          div.textContent = c;
-          commentsContainer.appendChild(div);
-        });
-      }
-    };
-
-    postButton.addEventListener('click', () => {
-      const text = commentInput.value.trim();
-      if (!text) return;
-      const saved = JSON.parse(localStorage.getItem('comments_' + fileKey) || '[]');
-      saved.push(text);
-      localStorage.setItem('comments_' + fileKey, JSON.stringify(saved));
-      commentInput.value = '';
-      loadComments();
-    });
-
-    loadComments();
+  loadArticle();
   </script>
 </body>
 </html>
