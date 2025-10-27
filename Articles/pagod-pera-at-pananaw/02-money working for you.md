@@ -4,8 +4,7 @@ pen name: Boy Isip
 image: daniel_abalos.jpg
 ---
 
-# Ang Pagkakaiba ng “Working for Money” at 
-# “Making Money Work for You”
+# Ang Pagkakaiba ng “Working for Money” at “Making Money Work for You”
 
 ---
 
