@@ -1,5 +1,5 @@
 ---
-title: Pagod, Pera, at Pananaw
+title: Pagod Pera at Pananaw (Mindset)
 pen name: Boy Isip
 image: daniel_abalos.jpg
 ---
