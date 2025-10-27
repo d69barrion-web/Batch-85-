@@ -21,45 +21,18 @@
     #articleContent img { max-width:100%; border-radius:8px; margin:10px 0; }
     @media(max-width:600px){ main{padding:1rem} header a.back-btn{left:8px} }
 
-    .comments-section {
-  margin-top: 2rem;
-  border-top: 1px solid #ddd;
-  padding-top: 1rem;
-}
-
-.comments-section h3 {
-  color: #004c80;
-}
-
-.comments-section textarea {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  resize: none;
-  margin-bottom: 0.5rem;
-}
-
-.comments-section button {
-  background: #004c80;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-}
-
-.comments-section button:hover {
-  background: #0066aa;
-}
-
-.comment {
-  background: #f0f5fa;
-  padding: 0.7rem;
-  border-radius: 6px;
-  margin-top: 0.5rem;
-}
-
+    /* 💬 Comment section styles */
+    .comments-section { margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    .comments-section h3 { color: #004c80; }
+    textarea { width:100%; padding:0.6rem; border:1px solid #ccc; border-radius:6px; resize:none; margin-bottom:0.5rem; }
+    button.comment-btn { background:#004c80; color:#fff; border:none; border-radius:6px; padding:0.6rem 1rem; cursor:pointer; }
+    button.comment-btn:hover { background:#0066aa; }
+    .comment { background:#f0f5fa; padding:0.7rem; border-radius:6px; margin-top:0.7rem; }
+    .comment-actions { margin-top:0.4rem; }
+    .reply-box { margin-top:0.5rem; margin-left:1rem; }
+    .reply { background:#e9f1f9; padding:0.5rem; border-radius:6px; margin:0.4rem 0 0.4rem 1rem; }
+    .vote-btn { background:none; border:none; font-size:1.1rem; cursor:pointer; color:#004c80; }
+    .vote-btn:hover { color:#0066aa; }
   </style>
 </head>
 <body>
@@ -80,47 +53,14 @@
       <button id="prevBtn" class="nav-btn">← Previous</button>
       <button id="nextBtn" class="nav-btn">Next →</button>
     </div>
-    <!-- 💬 Comment Section -->
-<div class="comments-section">
-  <h3>Comments</h3>
-  <div id="comments"></div>
-  <textarea id="commentInput" placeholder="Write a comment..."></textarea>
-  <button id="postComment">Post</button>
-</div>
 
-<script>
-  // 💬 Local comment system
-  const commentsContainer = document.getElementById('comments');
-  const postButton = document.getElementById('postComment');
-  const commentInput = document.getElementById('commentInput');
-  const articleId = window.location.pathname; // unique per article
-
-  function loadComments() {
-    const saved = localStorage.getItem('comments_' + articleId);
-    commentsContainer.innerHTML = '';
-    if (saved) {
-      const comments = JSON.parse(saved);
-      comments.forEach(text => {
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.textContent = text;
-        commentsContainer.appendChild(div);
-      });
-    }
-  }
-
-  postButton.addEventListener('click', () => {
-    const text = commentInput.value.trim();
-    if (!text) return;
-    const saved = JSON.parse(localStorage.getItem('comments_' + articleId) || '[]');
-    saved.push(text);
-    localStorage.setItem('comments_' + articleId, JSON.stringify(saved));
-    commentInput.value = '';
-    loadComments();
-  });
-
-  loadComments();
-</script>
+    <!-- 💬 Enhanced Local Comment Section -->
+    <div class="comments-section">
+      <h3>Comments</h3>
+      <div id="comments"></div>
+      <textarea id="commentInput" placeholder="Write a comment..."></textarea>
+      <button id="postComment" class="comment-btn">Post</button>
+    </div>
 
   </main>
 
@@ -158,17 +98,12 @@
   }
 
   function authorFileBase(name) {
-    return name
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9]+/g, "_")
-      .replace(/^_+|_+$/g, "");
+    return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
   }
 
   async function findAuthorImage(penName) {
     const exts = [".jpg", ".jpeg", ".png"];
     const base = authorFileBase(penName);
-
     for (const ext of exts) {
       const candidate = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/Images/Authors/${base}${ext}`;
       if (await existsHead(candidate)) return candidate;
@@ -213,33 +148,22 @@
       titleEl.textContent = displayTitle;
 
       let chosenImg = null;
-
-      // RULE 1: If front matter has image
       if (metadata["image"]) {
         const candidate = `Images/Articles/${metadata["image"]}`;
         const rawCandidate = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${candidate}`;
-        if (await existsHead(rawCandidate)) {
-          chosenImg = rawCandidate;
-        }
+        if (await existsHead(rawCandidate)) chosenImg = rawCandidate;
       }
-
-      // RULE 2: If no valid front-matter image, try Authors folder
-      if (!chosenImg) {
-        chosenImg = await findAuthorImage(penName);
-      }
-
-      // RULE 3: Fallback to default
+      if (!chosenImg) chosenImg = await findAuthorImage(penName);
       authorImgEl.src = chosenImg.startsWith("http") ? chosenImg : `/${chosenImg}`;
       authorImgEl.onerror = () => { authorImgEl.src = '/Images/default.jpg'; };
 
       contentEl.innerHTML = marked.parse(body);
 
-      // Navigation logic
+      // Navigation
       const articlesApi = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}`;
       const folders = await fetchJSON(articlesApi);
       const subfolders = folders.filter(f => f.type === "dir").map(f => f.name);
       const currentFolderIndex = subfolders.indexOf(folderName);
-
       const multiplePages = mdFiles.length > 1;
       const multipleFolders = subfolders.length > 1;
 
@@ -250,7 +174,6 @@
         nextBtn.disabled = fileIndex === mdFiles.length - 1;
         prevBtn.textContent = "← Previous Page";
         nextBtn.textContent = "Next Page →";
-
         prevBtn.onclick = () => {
           if (fileIndex > 0)
             window.location.href = `article.html?folder=${encodeURIComponent(folderName)}&index=${fileIndex-1}`;
@@ -262,12 +185,10 @@
       } else if (multipleFolders) {
         const prevFolder = subfolders[currentFolderIndex - 1] || null;
         const nextFolder = subfolders[currentFolderIndex + 1] || null;
-
         prevBtn.style.display = prevFolder ? "inline-block" : "none";
         nextBtn.style.display = nextFolder ? "inline-block" : "none";
         prevBtn.textContent = "← Previous Article";
         nextBtn.textContent = "Next Article →";
-
         prevBtn.onclick = () => {
           if (prevFolder) window.location.href = `article.html?folder=${encodeURIComponent(prevFolder)}&index=0`;
         };
@@ -277,6 +198,111 @@
       } else {
         prevBtn.style.display = "none";
         nextBtn.style.display = "none";
+      }
+
+      // ✅ Load local comments for this article
+      initComments();
+    } catch (err) {
+      titleEl.textContent = "Error";
+      contentEl.innerHTML = `<p style="color:red;">${err.message}</p>`;
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+      console.error(err);
+    }
+  }
+
+  /* 💬 COMMENT SYSTEM */
+  function initComments() {
+    const commentsContainer = document.getElementById('comments');
+    const postButton = document.getElementById('postComment');
+    const commentInput = document.getElementById('commentInput');
+    const articleId = window.location.pathname + window.location.search;
+    let comments = JSON.parse(localStorage.getItem('comments_' + articleId) || '[]');
+
+    function saveComments() {
+      localStorage.setItem('comments_' + articleId, JSON.stringify(comments));
+    }
+
+    function renderComments() {
+      commentsContainer.innerHTML = '';
+      comments.forEach((comment, index) => {
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = `
+          <p>${comment.text}</p>
+          <div class="comment-actions">
+            <button class="vote-btn upvote">⬆️</button>
+            <span>${comment.votes || 0}</span>
+            <button class="vote-btn downvote">⬇️</button>
+            <button class="reply-btn">Reply</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+        `;
+        // replies
+        if (comment.replies && comment.replies.length > 0) {
+          comment.replies.forEach(r => {
+            const replyDiv = document.createElement('div');
+            replyDiv.className = 'reply';
+            replyDiv.textContent = r;
+            div.appendChild(replyDiv);
+          });
+        }
+        // reply action
+        div.querySelector('.reply-btn').onclick = () => {
+          const replyBox = document.createElement('div');
+          replyBox.className = 'reply-box';
+          replyBox.innerHTML = `
+            <textarea rows="2" placeholder="Write a reply..."></textarea>
+            <button class="comment-btn">Post Reply</button>
+          `;
+          div.appendChild(replyBox);
+          replyBox.querySelector('button').onclick = () => {
+            const txt = replyBox.querySelector('textarea').value.trim();
+            if (!txt) return;
+            comment.replies = comment.replies || [];
+            comment.replies.push(txt);
+            saveComments();
+            renderComments();
+          };
+        };
+        // delete
+        div.querySelector('.delete-btn').onclick = () => {
+          comments.splice(index, 1);
+          saveComments();
+          renderComments();
+        };
+        // votes
+        div.querySelector('.upvote').onclick = () => {
+          comment.votes = (comment.votes || 0) + 1;
+          saveComments();
+          renderComments();
+        };
+        div.querySelector('.downvote').onclick = () => {
+          comment.votes = (comment.votes || 0) - 1;
+          saveComments();
+          renderComments();
+        };
+        commentsContainer.appendChild(div);
+      });
+    }
+
+    postButton.onclick = () => {
+      const text = commentInput.value.trim();
+      if (!text) return;
+      comments.push({ text, replies: [], votes: 0 });
+      saveComments();
+      commentInput.value = '';
+      renderComments();
+    };
+
+    renderComments();
+  }
+
+  loadArticle();
+  </script>
+</body>
+</html>
+tn.style.display = "none";
       }
 
     } catch (err) {
