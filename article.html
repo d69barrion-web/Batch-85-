@@ -24,6 +24,7 @@
     /* 💬 Comment section styles */
     .comments-section { margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; }
     .comments-section h3 { color: #004c80; }
+    .comment-warning { color:red; font-size:0.95rem; margin-bottom:0.5rem; }
     textarea { width:100%; padding:0.6rem; border:1px solid #ccc; border-radius:6px; resize:none; margin-bottom:0.5rem; }
     button.comment-btn { background:#004c80; color:#fff; border:none; border-radius:6px; padding:0.6rem 1rem; cursor:pointer; }
     button.comment-btn:hover { background:#0066aa; }
@@ -57,6 +58,7 @@
     <!-- 💬 Firebase Comment Section -->
     <div class="comments-section">
       <h3>Comments</h3>
+      <div id="commentWarning" class="comment-warning" style="display:none;"></div>
       <div id="comments"></div>
       <textarea id="commentInput" placeholder="Write a comment..."></textarea>
       <button id="postComment" class="comment-btn">Post</button>
@@ -93,10 +95,12 @@
     const authorImgEl = document.getElementById("authorImg");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const commentWarningEl = document.getElementById("commentWarning");
 
     const params = new URLSearchParams(window.location.search);
     const folderName = params.get("folder");
     let fileIndex = parseInt(params.get("index")) || 0;
+    const folderNameSafe = folderName || "general";
 
     async function fetchJSON(url) {
       const r = await fetch(url);
@@ -129,6 +133,9 @@
 
     async function loadArticle() {
       try {
+        if (!folderName) commentWarningEl.style.display = "block";
+        else commentWarningEl.style.display = "none";
+
         if (!folderName) throw new Error("No folder specified in the URL.");
 
         const folderApi = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}/${encodeURIComponent(folderName)}`;
@@ -190,14 +197,8 @@
           nextBtn.disabled = fileIndex === mdFiles.length - 1;
           prevBtn.textContent = "← Previous Page";
           nextBtn.textContent = "Next Page →";
-          prevBtn.onclick = () => {
-            if (fileIndex > 0)
-              window.location.href = `article.html?folder=${encodeURIComponent(folderName)}&index=${fileIndex-1}`;
-          };
-          nextBtn.onclick = () => {
-            if (fileIndex < mdFiles.length-1)
-              window.location.href = `article.html?folder=${encodeURIComponent(folderName)}&index=${fileIndex+1}`;
-          };
+          prevBtn.onclick = () => { if(fileIndex>0) window.location.href = `article.html?folder=${encodeURIComponent(folderName)}&index=${fileIndex-1}` };
+          nextBtn.onclick = () => { if(fileIndex<mdFiles.length-1) window.location.href = `article.html?folder=${encodeURIComponent(folderName)}&index=${fileIndex+1}` };
         } else if (multipleFolders) {
           const prevFolder = subfolders[currentFolderIndex - 1] || null;
           const nextFolder = subfolders[currentFolderIndex + 1] || null;
@@ -205,18 +206,14 @@
           nextBtn.style.display = nextFolder ? "inline-block" : "none";
           prevBtn.textContent = "← Previous Article";
           nextBtn.textContent = "Next Article →";
-          prevBtn.onclick = () => {
-            if (prevFolder) window.location.href = `article.html?folder=${encodeURIComponent(prevFolder)}&index=0`;
-          };
-          nextBtn.onclick = () => {
-            if (nextFolder) window.location.href = `article.html?folder=${encodeURIComponent(nextFolder)}&index=0`;
-          };
+          prevBtn.onclick = () => { if(prevFolder) window.location.href = `article.html?folder=${encodeURIComponent(prevFolder)}&index=0` };
+          nextBtn.onclick = () => { if(nextFolder) window.location.href = `article.html?folder=${encodeURIComponent(nextFolder)}&index=0` };
         } else {
           prevBtn.style.display = "none";
           nextBtn.style.display = "none";
         }
 
-        // ✅ Initialize Firebase comments
+        // Initialize comments
         initComments();
 
       } catch (err) {
@@ -229,16 +226,15 @@
     }
 
     // --------------------------
-    // 💬 Firebase Comment System (modular v10)
+    // 💬 Firebase Comment System (modular v10) with fallback
     // --------------------------
     function initComments() {
       const commentsContainer = document.getElementById('comments');
       const postButton = document.getElementById('postComment');
       const commentInput = document.getElementById('commentInput');
-      const articleId = folderName + "_" + fileIndex;
+      const articleId = folderNameSafe + "_" + fileIndex;
       const commentsRef = ref(db, 'comments/' + articleId);
 
-      // Listen for comment updates
       onValue(commentsRef, (snapshot) => {
         const data = snapshot.val() || {};
         const comments = Object.entries(data).map(([id, comment]) => ({ id, ...comment }));
@@ -254,6 +250,10 @@
 
       function renderComments(comments) {
         commentsContainer.innerHTML = '';
+        if (!comments.length) {
+          commentsContainer.innerHTML = `<p>No comments yet. Be the first to comment!</p>`;
+        }
+
         comments.forEach(comment => {
           const div = document.createElement('div');
           div.className = 'comment';
@@ -268,20 +268,15 @@
             </div>
           `;
 
-          // Votes
           div.querySelector('.upvote').onclick = () => {
             update(ref(db, 'comments/' + articleId + '/' + comment.id), { votes: (comment.votes || 0) + 1 });
           };
           div.querySelector('.downvote').onclick = () => {
             update(ref(db, 'comments/' + articleId + '/' + comment.id), { votes: (comment.votes || 0) - 1 });
           };
-
-          // Delete
           div.querySelector('.delete-btn').onclick = () => {
             remove(ref(db, 'comments/' + articleId + '/' + comment.id));
           };
-
-          // Reply
           div.querySelector('.reply-btn').onclick = () => {
             const replyBox = document.createElement('div');
             replyBox.className = 'reply-box';
@@ -299,7 +294,6 @@
             div.appendChild(replyBox);
           };
 
-          // Show replies
           if (comment.replies && comment.replies.length > 0) {
             const repliesDiv = document.createElement('div');
             repliesDiv.className = 'replies-container';
@@ -317,7 +311,6 @@
       }
     }
 
-    // Load the article
     loadArticle();
   </script>
 </body>
