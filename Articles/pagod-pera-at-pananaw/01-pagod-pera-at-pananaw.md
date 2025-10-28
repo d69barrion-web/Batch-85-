@@ -25,9 +25,9 @@ Marami ang tumatanda sa pagtatrabaho ngunit hindi pa rin umaasenso.
 Ang totoo, **hindi ang pagtatrabaho ang problema**, kundi ang paniniwala na ang trabaho lamang ang susi sa pagyaman.  
 Habang ang karamihan ay nag-aakalang sapat na ang *sipag at tiyaga*,  
 ang mayayaman naman ay naiintindihan na may hangganan ang halaga ng oras. Limitado lang ito sa 24 oras araw araw. Hindi pa lahat puwedeng gamitin sa pagtatrabaho dahil kailangan din ng katawan ang magpahinga —  
-at na para yumaman, kailangang **kumita kahit hindi nagtatrabaho nang pisikal araw-araw**.  
+at na para yumaman, kailangang **kumita kahit hindi nagtatrabaho nang pisikal araw-araw** (kahit habang natutulog o nagpapahinga.) 
 
-Samantalang ang pera ng mga mayayaman ay patuloy na *“nagtatrabaho”* para sa kanila —  
+Habang ang pera ng mga mayayaman ay patuloy na *“nagtatrabaho”* para sa kanila —  
 sa negosyo, sa investments, o sa stock market..
 
 Marami naman sa atin ang nalinlang ng konseptong *“siguradong kita”* mula sa suweldo,  
