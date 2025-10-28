@@ -72,3 +72,6 @@ Susunod: **“Puhunan, Pagod, at Pananaw: Tatlong Haligi ng
 Pagyaman”** — kung saan natin tatalakayin kung paano mo 
 magagamit ang suweldo bilang binhi ng yaman, at kung bakit 
 ang tamang mindset ay kasing halaga ng pera mismo.
+
+---
+
