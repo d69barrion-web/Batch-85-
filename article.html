@@ -64,7 +64,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- 🔥 Modular Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getDatabase, ref, onValue, push, update, remove } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
@@ -97,13 +96,13 @@
     const folderName = params.get("folder");
     let fileIndex = parseInt(params.get("index")) || 0;
 
+    let mdFiles = [];
+
     async function existsHead(url) {
       try {
         const r = await fetch(url, { method: "HEAD" });
         return r.ok;
-      } catch {
-        return false;
-      }
+      } catch { return false; }
     }
 
     function authorFileBase(name) {
@@ -126,53 +125,13 @@
 
         const folderApi = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}/${encodeURIComponent(folderName)}`;
         const files = await (await fetch(folderApi)).json();
-        const mdFiles = files.filter(f => f.name.toLowerCase().endsWith(".md")).sort((a,b)=>a.name.localeCompare(b.name));
+        mdFiles = files.filter(f => f.name.toLowerCase().endsWith(".md")).sort((a,b)=>a.name.localeCompare(b.name));
         if (!mdFiles.length) throw new Error("No markdown files found in this folder.");
 
         if (fileIndex < 0) fileIndex = 0;
         if (fileIndex >= mdFiles.length) fileIndex = mdFiles.length - 1;
 
-        const currentFile = mdFiles[fileIndex];
-        const fileText = await (await fetch(currentFile.download_url)).text();
-
-        const fmMatch = fileText.match(/^---\s*([\s\S]*?)\s*---/);
-        let metadata = {};
-        let body = fileText;
-        if (fmMatch) {
-          const fm = fmMatch[1].trim();
-          body = fileText.replace(fmMatch[0], "").trim();
-          fm.split(/\r?\n/).forEach(line => {
-            const [k, ...rest] = line.split(":");
-            if (!k) return;
-            const key = k.trim().toLowerCase();
-            const val = rest.join(":").trim();
-            metadata[key] = val;
-          });
-        }
-
-        const displayTitle = metadata["title"] || currentFile.name.replace(/\.md$/i,"").replace(/[-_]/g," ");
-        const penName = metadata["pen name"] || metadata["author"] || metadata["penname"] || "Elijah";
-        authorEl.textContent = `by ${penName}`;
-        titleEl.textContent = displayTitle;
-
-        let chosenImg = null;
-        if (metadata["image"]) {
-          const candidate = `Images/Articles/${metadata["image"]}`;
-          const rawCandidate = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${candidate}`;
-          if (await existsHead(rawCandidate)) chosenImg = rawCandidate;
-        }
-        if (!chosenImg) chosenImg = await findAuthorImage(penName);
-        authorImgEl.src = chosenImg.startsWith("http") ? chosenImg : `/${chosenImg}`;
-        authorImgEl.onerror = () => { authorImgEl.src = '/Images/default.jpg'; };
-
-        contentEl.innerHTML = marked.parse(body);
-
-        // Navigation setup (simplified)
-        prevBtn.style.display = "none";
-        nextBtn.style.display = "none";
-
-        // Initialize Firebase comments
-        initComments();
+        await renderArticle(fileIndex);
 
       } catch (err) {
         titleEl.textContent = "Error";
@@ -181,6 +140,53 @@
         nextBtn.style.display = "none";
         console.error(err);
       }
+    }
+
+    async function renderArticle(idx) {
+      const currentFile = mdFiles[idx];
+      const fileText = await (await fetch(currentFile.download_url)).text();
+
+      const fmMatch = fileText.match(/^---\s*([\s\S]*?)\s*---/);
+      let metadata = {};
+      let body = fileText;
+      if (fmMatch) {
+        const fm = fmMatch[1].trim();
+        body = fileText.replace(fmMatch[0], "").trim();
+        fm.split(/\r?\n/).forEach(line => {
+          const [k, ...rest] = line.split(":");
+          if (!k) return;
+          const key = k.trim().toLowerCase();
+          const val = rest.join(":").trim();
+          metadata[key] = val;
+        });
+      }
+
+      const displayTitle = metadata["title"] || currentFile.name.replace(/\.md$/i,"").replace(/[-_]/g," ");
+      const penName = metadata["pen name"] || metadata["author"] || metadata["penname"] || "Elijah";
+      authorEl.textContent = `by ${penName}`;
+      titleEl.textContent = displayTitle;
+
+      let chosenImg = null;
+      if (metadata["image"]) {
+        const candidate = `Images/Articles/${metadata["image"]}`;
+        const rawCandidate = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${candidate}`;
+        if (await existsHead(rawCandidate)) chosenImg = rawCandidate;
+      }
+      if (!chosenImg) chosenImg = await findAuthorImage(penName);
+      authorImgEl.src = chosenImg.startsWith("http") ? chosenImg : `/${chosenImg}`;
+      authorImgEl.onerror = () => { authorImgEl.src = '/Images/default.jpg'; };
+
+      contentEl.innerHTML = marked.parse(body);
+
+      // Previous / Next buttons
+      prevBtn.style.display = idx > 0 ? "inline-block" : "none";
+      nextBtn.style.display = idx < mdFiles.length - 1 ? "inline-block" : "none";
+
+      prevBtn.onclick = () => window.location.href = `article.html?folder=${encodeURIComponent(folderName)}&index=${idx-1}`;
+      nextBtn.onclick = () => window.location.href = `article.html?folder=${encodeURIComponent(folderName)}&index=${idx+1}`;
+
+      // Initialize Firebase comments
+      initComments();
     }
 
     function initComments() {
