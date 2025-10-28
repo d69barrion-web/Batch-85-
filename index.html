@@ -1,162 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Article - Batch 85</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f7fa;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camarin High Batch '85</title>
 
-    header {
-      background: #004aad;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-    }
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    .article-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+<style>
+ body {
+    margin:0;
+    font-family:'Arial',sans-serif;
+    background-color:#000;
+    color:#FFD700;
+    transition: background 0.5s;
+ }
 
-    .comment-section {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ddd;
-    }
+ @keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+ }
 
-    .comment {
-      background: #f9f9f9;
-      padding: 0.7rem 1rem;
-      border-radius: 6px;
-      margin-bottom: 0.7rem;
-    }
-
-    .comment strong {
-      color: #004aad;
-    }
-
-    form {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    input, textarea, button {
-      margin: 0.3rem 0;
-      padding: 0.7rem;
-      font-size: 1rem;
-    }
-
-    button {
-      background: #004aad;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: #00327d;
-    }
-
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Batch 85 Articles</h1>
-  </header>
-
-  <div class="article-container">
-    <h2>Sample Article Title</h2>
-    <p>
-      Ito ang sample article content. Pwede mong palitan ito ng aktwal na
-      artikulo mula sa iyong GitHub repository o markdown file.
-    </p>
-
-    <div class="comment-section">
-      <h3>Comments</h3>
-      <div id="comments-list"></div>
-
-      <form id="comment-form">
-        <input type="text" id="name" placeholder="Your name" required />
-        <textarea id="message" placeholder="Write a comment..." required></textarea>
-        <button type="submit">Post Comment</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ✅ Firebase compat SDKs (working with v11) -->
-  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-storage-compat.js"></script>
-
-  <script>
-    // Your Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyB19oSX-48aBDM_V1oLDbXlPgHcrhmJpEA",
-      authDomain: "batch-85.firebaseapp.com",
-      projectId: "batch-85",
-      storageBucket: "batch-85.appspot.com",
-      messagingSenderId: "102686567075",
-      appId: "1:102686567075:web:3207a518d8728cb0b70cb3",
-      measurementId: "G-5YF7KLCEBD"
-    };
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    console.log("✅ Firebase initialized successfully");
-
-    // Comment form handler
-    const form = document.getElementById("comment-form");
-    const commentsList = document.getElementById("comments-list");
-
-    // Load existing comments
-    db.collection("comments").orderBy("timestamp", "asc").onSnapshot(snapshot => {
-      commentsList.innerHTML = "";
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const div = document.createElement("div");
-        div.className = "comment";
-        div.innerHTML = `<strong>${data.name}</strong><br>${data.message}`;
-        commentsList.appendChild(div);
-      });
-    });
-
-    // Save new comment
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const message = document.getElementById("message").value.trim();
-      if (!name || !message) return;
-
-      try {
-        await db.collection("comments").add({
-          name,
-          message,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        form.reset();
-      } catch (err) {
-        console.error("❌ Error adding comment:", err);
-        alert("Failed to post comment. Check console for details.");
-      }
-    });
-  </script>
-</body>
-</html>
+ nav {
+    position:sticky;
+    top:0;
+    padding:10px 15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:100;
+    background: linear-gradient(-45deg, #FFD700, #FFA500, #FFD700, #FFEC8B);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     border-bottom:2px solid #FFD700;
     flex-wrap: wrap;
  }
@@ -332,7 +209,6 @@
     <a onclick="showPage('events', this)"><i class="fas fa-calendar-alt"></i> Events</a>
     <a onclick="showPage('gallery', this)"><i class="fas fa-images"></i> Gallery</a>
     <a onclick="showPage('newsletter', this)"><i class="fas fa-envelope"></i> Newsletter</a>
-    <a href="articles.html"><i class="fas fa-newspaper"></i> Blogs</a>
   </div>
   <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
 </nav>
@@ -341,7 +217,7 @@
   <h1>Welcome to Camarin High Batch '85</h1>
   <p style="text-align:center;">This is a mobile-friendly site for our batch. Where you can see memorials of our departed classmates, contact info for living batchmates, and upcoming events.</p>
   <div style="text-align:center;margin-top:20px;">
-    <img src="Images/Welcome Image.jpg" alt="Batch Logo" style="border-radius:10%; width: 250px; height: 250px;">
+    <img src="temp_logo.jpg" alt="Batch Logo" style="border-radius:50%; width: 250px; height: 250px;">
   </div>
 </div>
 
@@ -415,7 +291,7 @@ async function showPage(page, menuLink) {
         <h1>Welcome to Camarin High Batch '85</h1>
         <p style="text-align:center;">This is a mobile-friendly site for our batch. Where you can see memorials of our departed classmates, contact info for living batchmates, and upcoming events.</p>
         <div style="text-align:center;margin-top:20px;">
-          <img src="Images/Welcome Image.jpg" style="border-radius:10%; width:250px; height:250px;">
+          <img src="temp_logo.jpg" style="border-radius:50%; width:250px; height:250px;">
         </div>`;
     }
     else if(page === 'memorial'){
@@ -453,6 +329,8 @@ async function showPage(page, menuLink) {
 
       document.querySelectorAll('.card').forEach(card => {
         const img = card.querySelector('.card-thumb');
+
+        // Image tap → fullscreen viewer
         img.addEventListener('click', e => {
           e.stopPropagation();
           const viewer = document.getElementById('imgViewer');
@@ -462,6 +340,7 @@ async function showPage(page, menuLink) {
           setTimeout(() => viewer.classList.add('show'), 10);
         });
 
+        // Card tap → profile
         card.addEventListener('click', e => {
           if (!e.target.classList.contains('card-thumb')) {
             window.location.href = card.dataset.link;
@@ -497,7 +376,7 @@ async function showPage(page, menuLink) {
         <h2>Newsletter</h2>
         <p>Sign up to receive our batch updates directly via email!</p>
         <form id="newsletterForm">
-          <input type="email" name="email" placeholder="Enter your email" required style="padding:8px; width:250px;">
+          <input type="email" placeholder="Enter your email" required style="padding:8px; width:250px;">
           <button type="submit" style="padding:8px 12px;">Subscribe</button>
         </form>
         <p id="newsletterMsg" style="margin-top:10px;"></p>
@@ -550,31 +429,5 @@ const timestamp = new Date().getTime();
 document.querySelectorAll('link[rel="stylesheet"]').forEach(link => { link.href = link.href+'?v='+timestamp; });
 document.querySelectorAll('script[src]').forEach(script => { if(script.src.includes('main.js')) script.src+= '?v='+timestamp; });
 </script>
-
- <!-- Firebase SDKs (classic global syntax) -->
-<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js"></script>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyB19oSX-48aBDM_V1o...",
-    authDomain: "batch-85.firebaseapp.com",
-    projectId: "batch-85",
-    storageBucket: "batch-85.appspot.com",
-    messagingSenderId: "102686567075",
-    appId: "1:102686567075:web:3207a...",
-    measurementId: "G-5YF7KLCEBD"
-  };
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-  const storage = firebase.storage();
-
-  console.log("✅ Firebase connected successfully!");
-</script>
-
- 
 </body>
 </html>
