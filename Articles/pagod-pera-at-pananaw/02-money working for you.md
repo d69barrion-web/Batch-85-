@@ -29,3 +29,6 @@ paniniwala**. Hindi mo kailangang laging *“magpagal”* at *"magpagod"* para l
 Sa halip, kailangan mong *matutong magpalago* ng **kita ng
 perang kinita mo na (sa pagtatrabaho)** at kasalukuyang hawak mo ngayon.
 
+---
+
+
