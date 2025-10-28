@@ -65,29 +65,24 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- 🔥 Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+  <!-- 🔥 Modular Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getDatabase, ref, onValue, push, update, remove } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
-  <script>
-    // ✅ Your Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBiOFSX-48aBDM_Vi1OkEm_rHlUQCcuVAQ",
-  authDomain: "batch-85.firebaseapp.com",
-  projectId: "batch-85",
-  storageBucket: "batch-85.firebasestorage.app",
-  messagingSenderId: "1028686567075",
-  appId: "1:1028686567075:web:32076ce1ab73d6d829d116",
-  measurementId: "G-SVF7KLCEDB"
+      authDomain: "batch-85.firebaseapp.com",
+      projectId: "batch-85",
+      storageBucket: "batch-85.firebasestorage.app",
+      messagingSenderId: "1028686567075",
+      appId: "1:1028686567075:web:32076ce1ab73d6d829d116",
+      measurementId: "G-SVF7KLCEDB"
     };
 
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-    // --------------------------
-    //  ARTICLE LOADING SECTION
-    // --------------------------
     const repoOwner = "d69barrion-web";
     const repoName = "Batch-85-";
     const basePath = "Articles";
@@ -221,8 +216,9 @@
           nextBtn.style.display = "none";
         }
 
-        // ✅ Load Firebase comments
+        // ✅ Initialize Firebase comments
         initComments();
+
       } catch (err) {
         titleEl.textContent = "Error";
         contentEl.innerHTML = `<p style="color:red;">${err.message}</p>`;
@@ -232,15 +228,18 @@
       }
     }
 
-    /* 💬 Firebase COMMENT SYSTEM */
+    // --------------------------
+    // 💬 Firebase Comment System (modular v10)
+    // --------------------------
     function initComments() {
       const commentsContainer = document.getElementById('comments');
       const postButton = document.getElementById('postComment');
       const commentInput = document.getElementById('commentInput');
       const articleId = folderName + "_" + fileIndex;
-      const commentsRef = db.ref('comments/' + articleId);
+      const commentsRef = ref(db, 'comments/' + articleId);
 
-      commentsRef.on('value', snapshot => {
+      // Listen for comment updates
+      onValue(commentsRef, (snapshot) => {
         const data = snapshot.val() || {};
         const comments = Object.entries(data).map(([id, comment]) => ({ id, ...comment }));
         renderComments(comments);
@@ -249,7 +248,7 @@
       postButton.onclick = () => {
         const text = commentInput.value.trim();
         if (!text) return;
-        commentsRef.push({ text, votes: 0, replies: [] });
+        push(commentsRef, { text, votes: 0, replies: [] });
         commentInput.value = '';
       };
 
@@ -271,15 +270,15 @@
 
           // Votes
           div.querySelector('.upvote').onclick = () => {
-            db.ref('comments/' + articleId + '/' + comment.id).update({ votes: (comment.votes || 0) + 1 });
+            update(ref(db, 'comments/' + articleId + '/' + comment.id), { votes: (comment.votes || 0) + 1 });
           };
           div.querySelector('.downvote').onclick = () => {
-            db.ref('comments/' + articleId + '/' + comment.id).update({ votes: (comment.votes || 0) - 1 });
+            update(ref(db, 'comments/' + articleId + '/' + comment.id), { votes: (comment.votes || 0) - 1 });
           };
 
           // Delete
           div.querySelector('.delete-btn').onclick = () => {
-            db.ref('comments/' + articleId + '/' + comment.id).remove();
+            remove(ref(db, 'comments/' + articleId + '/' + comment.id));
           };
 
           // Reply
@@ -295,7 +294,7 @@
               if (!txt) return;
               const replies = comment.replies || [];
               replies.push({ text: txt, votes: 0 });
-              db.ref('comments/' + articleId + '/' + comment.id).update({ replies });
+              update(ref(db, 'comments/' + articleId + '/' + comment.id), { replies });
             };
             div.appendChild(replyBox);
           };
@@ -318,7 +317,7 @@
       }
     }
 
-    // Load article
+    // Load the article
     loadArticle();
   </script>
 </body>
