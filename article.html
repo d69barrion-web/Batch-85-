@@ -375,27 +375,7 @@ function initComments() {
   };
 
   renderComments();
-}
-
-    // --- AUTO HIDE REPLIES ON LOAD ---
-document.addEventListener("DOMContentLoaded", () => {
-  const replyContainers = document.querySelectorAll(".replies-container");
-  replyContainers.forEach(container => {
-    container.style.display = "none";
-    const toggleBtn = container.previousElementSibling?.querySelector(".toggle-btn");
-    if (toggleBtn) toggleBtn.textContent = "Show replies ⬇️";
-  });
-});
-
-// --- TOGGLE BUTTON FUNCTION ---
-function toggleReplies(button) {
-  const repliesDiv = button.closest(".comment").querySelector(".replies-container");
-  if (!repliesDiv) return;
-  const isHidden = repliesDiv.style.display === "none";
-  repliesDiv.style.display = isHidden ? "block" : "none";
-  button.textContent = isHidden ? "Hide replies ⬆️" : "Show replies ⬇️";
-    }
-    
+} 
 
   loadArticle();
   </script>
