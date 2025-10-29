@@ -147,6 +147,8 @@ onValue(dirRef, (snapshot) => {
     div.innerHTML = `
       <img src="${member.photoURL || 'Images/default.jpg'}" alt="photo" />
       <h4>${member.name || "Anonymous"}</h4>
+      <h2>${member.skillWork ||"Secret"}</h2>
+      <p>${member.location ||"undisclosed"}</p>
       <p>${member.email || ""}</p>
     `;
 
