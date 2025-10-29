@@ -109,11 +109,15 @@ onAuthStateChanged(auth, (user) => {
     userPhoto.style.display = "inline-block";
     loginBtn.style.display = "none";
     logoutBtn.style.display = "inline-block";
+    joinBtn.style.display = "none"; // 🔹 Hide "Join Directory" when logged in
+                                         
   } else {
     userName.textContent = "";
     userPhoto.style.display = "none";
     loginBtn.style.display = "inline-block";
     logoutBtn.style.display = "none";
+    joinBtn.style.display = "inline-block"; // 🔹 Show "Join Directory" when logged out
+    
   }
 });
 
