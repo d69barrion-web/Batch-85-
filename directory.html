@@ -42,7 +42,7 @@
     <div id="userPanel">
       <img id="userPhoto" src="Images/default.jpg" alt="User" style="display:none;">
       <span id="userName"></span>
-      <button id="loginBtn">Sign in with Google</button>
+      <button id="loginBtn">Sign in with Facebook</button>
       <button id="logoutBtn" style="display:none;">Logout</button>
     </div>
 
@@ -70,7 +70,7 @@
   <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 import { getDatabase, ref, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getAuth, signInWithPopup, FacebookAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
 
 const firebaseConfig = {
@@ -78,7 +78,7 @@ const firebaseConfig = {
   authDomain: "batch-85.firebaseapp.com",
   databaseURL: "https://batch-85-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "batch-85",
-  storageBucket: "batch-85.appspot.com", // ✅ corrected
+  storageBucket: "batch-85.appspot.com",
   messagingSenderId: "1028686567075",
   appId: "1:1028686567075:web:32076ce1ab73d6d829d116"
 };
@@ -86,7 +86,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+const provider = new FacebookAuthProvider(); // ✅ replaced Google with Facebook
 const storage = getStorage(app);
 
 const loginBtn = document.getElementById("loginBtn");
@@ -147,25 +147,21 @@ onValue(dirRef, (snapshot) => {
     div.innerHTML = `
       <img src="${member.photoURL || 'Images/default.jpg'}" alt="photo" />
       <h4>${member.name || "Anonymous"}</h4>
-      <h2>${member.skillWork ||"Secret"}</h2>
-      <p>${member.location ||"undisclosed"}</p>
+      <h2>${member.skillWork || "Secret"}</h2>
+      <p>${member.location || "undisclosed"}</p>
       <p>${member.email || ""}</p>
     `;
 
-    // 🔹 Kapag tinap ang card
     div.onclick = () => {
-      // Toggle selection
       if (selectedUid === uid) {
         div.style.outline = "none";
         selectedUid = null;
         if (deleteBtn) deleteBtn.remove();
       } else {
-        // Alisin highlight sa iba
         document.querySelectorAll(".member-card").forEach(card => card.style.outline = "none");
         div.style.outline = "3px solid #004c80";
         selectedUid = uid;
 
-        // Gumawa ng delete button kung wala pa
         if (!deleteBtn) {
           deleteBtn = document.createElement("button");
           deleteBtn.textContent = "Delete";
@@ -204,7 +200,7 @@ onValue(dirRef, (snapshot) => {
 
 // 🪟 Join modal control
 joinBtn.onclick = () => {
-  if (!auth.currentUser) return alert("Please sign in with Google first.");
+  if (!auth.currentUser) return alert("Please sign in with Facebook first.");
   modal.style.display = "flex";
 };
 modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
@@ -214,8 +210,8 @@ saveProfileBtn.onclick = async () => {
   const user = auth.currentUser;
   if (!user) return alert("Please sign in first.");
   const name = fullNameInput.value.trim() || user.displayName;
-  const skillWork = skillWorkInput.value.trim() || user.displayWork;
-  const location = locationInput.value.trim() || user.displayLocation;
+  const skillWork = skillWorkInput.value.trim();
+  const location = locationInput.value.trim();
   let photoURL = user.photoURL;
 
   // Upload custom photo if selected
