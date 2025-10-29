@@ -65,12 +65,14 @@
     </div>
   </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-    import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
+  <!-- ✅ Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js"></script>
 
+  <script>
+    // ✅ Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyBiOFSX-48aBDM_Vi1OkEm_rHlUQCcuVAQ",
       authDomain: "batch-85.firebaseapp.com",
@@ -81,12 +83,14 @@
       appId: "1:1028686567075:web:32076ce1ab73d6d829d116"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-    const storage = getStorage(app);
+    // 🔧 Initialize
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+    const storage = firebase.storage();
+    const provider = new firebase.auth.GoogleAuthProvider();
 
+    // 🧩 UI elements
     const loginBtn = document.getElementById("loginBtn");
     const logoutBtn = document.getElementById("logoutBtn");
     const userName = document.getElementById("userName");
@@ -99,10 +103,10 @@
     const directoryList = document.getElementById("directoryList");
 
     // 🔐 Auth system
-    loginBtn.onclick = () => signInWithPopup(auth, provider).catch(err => alert(err.message));
-    logoutBtn.onclick = () => signOut(auth);
+    loginBtn.onclick = () => auth.signInWithPopup(provider).catch(e => alert(e.message));
+    logoutBtn.onclick = () => auth.signOut();
 
-    onAuthStateChanged(auth, (user) => {
+    auth.onAuthStateChanged(user => {
       if (user) {
         userName.textContent = user.displayName;
         userPhoto.src = user.photoURL;
@@ -118,8 +122,7 @@
     });
 
     // 📋 Load directory realtime
-    const dirRef = ref(db, "directory");
-    onValue(dirRef, (snapshot) => {
+    db.ref("directory").on("value", snapshot => {
       const data = snapshot.val() || {};
       directoryList.innerHTML = "";
       Object.values(data).forEach(member => {
@@ -134,37 +137,44 @@
       });
     });
 
-    // 🪟 Join modal control
+    // 🪟 Join modal
     joinBtn.onclick = () => {
       if (!auth.currentUser) return alert("Please sign in with Google first.");
       modal.style.display = "flex";
     };
-    modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+    modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
     // 💾 Save profile
     saveProfileBtn.onclick = async () => {
       const user = auth.currentUser;
       if (!user) return alert("Please sign in first.");
+
       const name = fullNameInput.value.trim() || user.displayName;
       let photoURL = user.photoURL;
 
-      // Upload custom photo if selected
-      const file = photoInput.files[0];
-      if (file) {
-        const storageRef = sRef(storage, `directory/${user.uid}/${file.name}`);
-        await uploadBytes(storageRef, file);
-        photoURL = await getDownloadURL(storageRef);
+      try {
+        // Upload custom photo if selected
+        const file = photoInput.files[0];
+        if (file) {
+          const storageRef = storage.ref(`directory/${user.uid}/${file.name}`);
+          await storageRef.put(file);
+          photoURL = await storageRef.getDownloadURL();
+        }
+
+        await db.ref("directory/" + user.uid).set({
+          name,
+          email: user.email,
+          photoURL
+        });
+
+        alert("Profile saved successfully!");
+        modal.style.display = "none";
+        fullNameInput.value = "";
+        photoInput.value = "";
+      } catch (err) {
+        console.error(err);
+        alert("Error saving profile: " + err.message);
       }
-
-      await set(ref(db, "directory/" + user.uid), {
-        name,
-        email: user.email,
-        photoURL
-      });
-
-      modal.style.display = "none";
-      fullNameInput.value = "";
-      photoInput.value = "";
     };
   </script>
 </body>
