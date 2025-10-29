@@ -204,17 +204,20 @@
     });
 
     // 🧩 Join button → Sign in via Google
-    joinBtn.onclick = async () => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      try {
-        const result = await auth.signInWithPopup(provider);
-        const user = result.user;
+    joinBtn.onclick = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider)
+    .then(result => {
+      if (result.user) {
         joinModal.style.display = 'flex';
-      } catch (err) {
-        alert('Sign-in failed.');
-        console.error(err);
       }
-    };
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Google Sign-in failed. Please try again.");
+    });
+};
+    
     joinModal.onclick = e => { if (e.target === joinModal) joinModal.style.display = 'none'; };
 
     // 📤 Submit Join
