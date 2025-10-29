@@ -60,7 +60,7 @@
     <div class="modal-content">
       <h3>Join the Directory</h3>
       <input type="text" id="fullName" placeholder="Full Name" required />
-      <input type="text" id="occupation/trade" placeholder="Skill/Work" required />
+      <input type="text" id="skillWork" placeholder="Skill/Work" required />
       <input type="text" id="location" placeholder="Location" required />
       <input type="file" id="photoInput" accept="image/*" />
       <button id="saveProfile">Save</button>
@@ -97,7 +97,7 @@ const joinBtn = document.getElementById("joinBtn");
 const modal = document.getElementById("joinModal");
 const saveProfileBtn = document.getElementById("saveProfile");
 const fullNameInput = document.getElementById("fullName");
-const skillworkInput = document.getElementById("skillwork");
+const skillWorkInput = document.getElementById("skillWork");
 const locationInput = document.getElementById("location");
 const photoInput = document.getElementById("photoInput");
 const directoryList = document.getElementById("directoryList");
@@ -212,8 +212,8 @@ saveProfileBtn.onclick = async () => {
   const user = auth.currentUser;
   if (!user) return alert("Please sign in first.");
   const name = fullNameInput.value.trim() || user.displayName;
-  const occupation = skillWorkInput.value.trim() || user.displayWork;
-  const location: = locationInput.value.trim() || user.displayLocation;
+  const skillWork = skillWorkInput.value.trim() || user.displayWork;
+  const location = locationInput.value.trim() || user.displayLocation;
   let photoURL = user.photoURL;
 
   // Upload custom photo if selected
@@ -226,7 +226,7 @@ saveProfileBtn.onclick = async () => {
   }
 
   await set(ref(db, "directory/" + user.uid), {
-    name,
+    name, skillWork, location,
     email: user.email,
     photoURL
   });
