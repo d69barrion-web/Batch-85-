@@ -66,106 +66,161 @@
   </div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-    import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-    import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { getDatabase, ref, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBiOFSX-48aBDM_Vi1OkEm_rHlUQCcuVAQ",
-      authDomain: "batch-85.firebaseapp.com",
-      databaseURL: "https://batch-85-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "batch-85",
-      storageBucket: "batch-85.firebasestorage.app",
-      messagingSenderId: "1028686567075",
-      appId: "1:1028686567075:web:32076ce1ab73d6d829d116"
-    };
+const firebaseConfig = {
+  apiKey: "AIzaSyBiOFSX-48aBDM_Vi1OkEm_rHlUQCcuVAQ",
+  authDomain: "batch-85.firebaseapp.com",
+  databaseURL: "https://batch-85-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "batch-85",
+  storageBucket: "batch-85.appspot.com", // ✅ corrected
+  messagingSenderId: "1028686567075",
+  appId: "1:1028686567075:web:32076ce1ab73d6d829d116"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-    const storage = getStorage(app);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+const storage = getStorage(app);
 
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const userName = document.getElementById("userName");
-    const userPhoto = document.getElementById("userPhoto");
-    const joinBtn = document.getElementById("joinBtn");
-    const modal = document.getElementById("joinModal");
-    const saveProfileBtn = document.getElementById("saveProfile");
-    const fullNameInput = document.getElementById("fullName");
-    const photoInput = document.getElementById("photoInput");
-    const directoryList = document.getElementById("directoryList");
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const userName = document.getElementById("userName");
+const userPhoto = document.getElementById("userPhoto");
+const joinBtn = document.getElementById("joinBtn");
+const modal = document.getElementById("joinModal");
+const saveProfileBtn = document.getElementById("saveProfile");
+const fullNameInput = document.getElementById("fullName");
+const photoInput = document.getElementById("photoInput");
+const directoryList = document.getElementById("directoryList");
 
-    // 🔐 Auth system
-    loginBtn.onclick = () => signInWithPopup(auth, provider).catch(err => alert(err.message));
-    logoutBtn.onclick = () => signOut(auth);
+// 🔐 Auth system
+loginBtn.onclick = () => signInWithPopup(auth, provider).catch(err => alert(err.message));
+logoutBtn.onclick = () => signOut(auth);
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        userName.textContent = user.displayName;
-        userPhoto.src = user.photoURL;
-        userPhoto.style.display = "inline-block";
-        loginBtn.style.display = "none";
-        logoutBtn.style.display = "inline-block";
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userName.textContent = user.displayName;
+    userPhoto.src = user.photoURL;
+    userPhoto.style.display = "inline-block";
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
+  } else {
+    userName.textContent = "";
+    userPhoto.style.display = "none";
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
+  }
+});
+
+// 📋 Load directory realtime
+const dirRef = ref(db, "directory");
+let selectedUid = null;
+let deleteBtn = null;
+
+onValue(dirRef, (snapshot) => {
+  const data = snapshot.val() || {};
+  directoryList.innerHTML = "";
+  selectedUid = null;
+  if (deleteBtn) deleteBtn.remove();
+
+  Object.entries(data).forEach(([uid, member]) => {
+    const div = document.createElement("div");
+    div.className = "member-card";
+    div.innerHTML = `
+      <img src="${member.photoURL || 'Images/default.jpg'}" alt="photo" />
+      <h4>${member.name || "Anonymous"}</h4>
+      <p>${member.email || ""}</p>
+    `;
+
+    // 🔹 Kapag tinap ang card
+    div.onclick = () => {
+      // Toggle selection
+      if (selectedUid === uid) {
+        div.style.outline = "none";
+        selectedUid = null;
+        if (deleteBtn) deleteBtn.remove();
       } else {
-        userName.textContent = "";
-        userPhoto.style.display = "none";
-        loginBtn.style.display = "inline-block";
-        logoutBtn.style.display = "none";
+        // Alisin highlight sa iba
+        document.querySelectorAll(".member-card").forEach(card => card.style.outline = "none");
+        div.style.outline = "3px solid #004c80";
+        selectedUid = uid;
+
+        // Gumawa ng delete button kung wala pa
+        if (!deleteBtn) {
+          deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Delete";
+          deleteBtn.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #c0392b;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.4rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,.2);
+          `;
+          deleteBtn.onclick = async () => {
+            const current = auth.currentUser;
+            if (!current) return alert("Please sign in first.");
+            const member = data[selectedUid];
+            if (member.email !== current.email) return alert("You can only delete your own record.");
+            if (!confirm(`Are you sure you want to delete ${member.name}?`)) return;
+            await remove(ref(db, "directory/" + selectedUid));
+            alert(`${member.name} deleted.`);
+            selectedUid = null;
+            deleteBtn.remove();
+          };
+          document.body.appendChild(deleteBtn);
+        }
       }
-    });
-
-    // 📋 Load directory realtime
-    const dirRef = ref(db, "directory");
-    onValue(dirRef, (snapshot) => {
-      const data = snapshot.val() || {};
-      directoryList.innerHTML = "";
-      Object.values(data).forEach(member => {
-        const div = document.createElement("div");
-        div.className = "member-card";
-        div.innerHTML = `
-          <img src="${member.photoURL || 'Images/default.jpg'}" alt="photo" />
-          <h4>${member.name || "Anonymous"}</h4>
-          <p>${member.email || ""}</p>
-        `;
-        directoryList.appendChild(div);
-      });
-    });
-
-    // 🪟 Join modal control
-    joinBtn.onclick = () => {
-      if (!auth.currentUser) return alert("Please sign in with Google first.");
-      modal.style.display = "flex";
     };
-    modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 
-    // 💾 Save profile
-    saveProfileBtn.onclick = async () => {
-      const user = auth.currentUser;
-      if (!user) return alert("Please sign in first.");
-      const name = fullNameInput.value.trim() || user.displayName;
-      let photoURL = user.photoURL;
+    directoryList.appendChild(div);
+  });
+});
 
-      // Upload custom photo if selected
-      const file = photoInput.files[0];
-      if (file) {
-        const storageRef = sRef(storage, `directory/${user.uid}/${file.name}`);
-        await uploadBytes(storageRef, file);
-        photoURL = await getDownloadURL(storageRef);
-      }
+// 🪟 Join modal control
+joinBtn.onclick = () => {
+  if (!auth.currentUser) return alert("Please sign in with Google first.");
+  modal.style.display = "flex";
+};
+modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 
-      await set(ref(db, "directory/" + user.uid), {
-        name,
-        email: user.email,
-        photoURL
-      });
+// 💾 Save profile
+saveProfileBtn.onclick = async () => {
+  const user = auth.currentUser;
+  if (!user) return alert("Please sign in first.");
+  const name = fullNameInput.value.trim() || user.displayName;
+  let photoURL = user.photoURL;
 
-      modal.style.display = "none";
-      fullNameInput.value = "";
-      photoInput.value = "";
-    };
-  </script>
+  // Upload custom photo if selected
+  const file = photoInput.files[0];
+  if (file) {
+    const { ref: sRef, uploadBytes, getDownloadURL } = await import("https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js");
+    const storageRef = sRef(storage, `directory/${user.uid}/${file.name}`);
+    await uploadBytes(storageRef, file);
+    photoURL = await getDownloadURL(storageRef);
+  }
+
+  await set(ref(db, "directory/" + user.uid), {
+    name,
+    email: user.email,
+    photoURL
+  });
+
+  modal.style.display = "none";
+  fullNameInput.value = "";
+  photoInput.value = "";
+};
+</script>
+
 </body>
 </html>
