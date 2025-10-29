@@ -163,7 +163,7 @@
   </div>
 
 
-
+{
     const auth = firebase.auth();
     const db = firebase.database();
     const storage = firebase.storage();
@@ -184,6 +184,7 @@
         const name = c.querySelector('.name').textContent.toLowerCase();
         c.style.display = name.includes(q) ? '' : 'none';
       }
+  }
     });
 
     // 🧩 Join button → Sign in via Google
