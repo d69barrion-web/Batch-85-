@@ -210,7 +210,8 @@ saveProfileBtn.onclick = async () => {
   const user = auth.currentUser;
   if (!user) return alert("Please sign in first.");
   const name = fullNameInput.value.trim() || user.displayName;
-  
+  const occupation = skillWorkInput.value.trim() || user.displayWork;
+  const location: = locationInput.value.trim() || user.displayLocation;
   let photoURL = user.photoURL;
 
   // Upload custom photo if selected
