@@ -162,8 +162,25 @@
     </div>
   </div>
 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js"></script>
 
-{
+  <script>
+    // ✅ Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBiOFSX-48aBDM_Vi1OkEm_rHlUQCcuVAQ",
+      authDomain: "batch-85.firebaseapp.com",
+      databaseURL: "https://batch-85-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "batch-85",
+      storageBucket: "batch-85.firebasestorage.app",
+      messagingSenderId: "1028686567075",
+      appId: "1:1028686567075:web:32076ce1ab73d6d829d116"
+    };
+    firebase.initializeApp(firebaseConfig);
+
     const auth = firebase.auth();
     const db = firebase.database();
     const storage = firebase.storage();
@@ -184,7 +201,6 @@
         const name = c.querySelector('.name').textContent.toLowerCase();
         c.style.display = name.includes(q) ? '' : 'none';
       }
-  }
     });
 
     // 🧩 Join button → Sign in via Google
@@ -250,25 +266,5 @@
       });
     });
   </script>
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js"></script>
-
-  <script>
-    // ✅ Your Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBiOFSX-48aBDM_Vi1OkEm_rHlUQCcuVAQ",
-      authDomain: "batch-85.firebaseapp.com",
-      databaseURL: "https://batch-85-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "batch-85",
-      storageBucket: "batch-85.appspot.com",
-      messagingSenderId: "1028686567075",
-      appId: "1:1028686567075:web:32076ce1ab73d6d829d116"
-    };
-    firebase.initializeApp(firebaseConfig);
-  
 </body>
 </html>
