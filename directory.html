@@ -103,17 +103,7 @@ const photoInput = document.getElementById("photoInput");
 const directoryList = document.getElementById("directoryList");
 
 // 🔐 Auth system
-import { signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-
-loginBtn.onclick = () => signInWithRedirect(auth, provider);
-
-getRedirectResult(auth)
-  .then(result => {
-    if (result && result.user) {
-      console.log("Signed in:", result.user);
-    }
-  })
-  .catch(err => console.error(err.message));
+loginBtn.onclick = () => signInWithPopup(auth, provider).catch(err => alert(err.message));
 logoutBtn.onclick = () => signOut(auth);
 
 onAuthStateChanged(auth, async (user) => {
