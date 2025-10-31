@@ -197,9 +197,8 @@ async function loadArticles() {
 
       // kapag na-click, papunta sa article.html with folder query
       li.addEventListener("click", () => {
-  window.location.href = `article.html?folder=${encodeURIComponent(folder.name)}`;
+  window.location.href = `${folder.name}/article.html?folder=${encodeURIComponent(folder.name)}`;
 });
-
 
       list.appendChild(li);
     });
