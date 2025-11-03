@@ -1,6 +1,6 @@
 ---
 title: Anak Mag-invest Ka
-pen name: Boy Isip
+pen name: Daniel Abalos
 image: Images/daniel_abalos.jpg
 ---
 
