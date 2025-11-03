@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Open Graph Meta Tags -->
+<meta property="og:title" content="Kung hindi ka kikita habang natutulog ka — magtatrabaho ka hanggang sa mamatay ka." />
+<meta property="og:description" content="Batch 85 Reflections" />
+<meta property="og:image" content="https://raw.githubusercontent.com/d69barrion-web/Batch-85-/refs/heads/main/Images/img_1_1762086068798.jpg" />
+<meta property="og:url" content="https://d69barrion.github.io/article.html" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Batch 85 Reflections" />
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Article - Batch 85</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f4f7fa; color:#333; }
+    header { background:#004c80; color:#fff; padding:1rem; text-align:center; position:relative; }
+    header a.back-btn { position:absolute; left:15px; top:50%; transform:translateY(-50%); background:#fff; color:#004c80; padding:0.4rem 0.8rem; border-radius:6px; text-decoration:none; font-size:0.9rem; font-weight:bold; transition:background .2s; }
+    header a.back-btn:hover { background:#e0e0e0; }
+    main { max-width:800px; margin:2rem auto; background:#fff; padding:2rem; border-radius:12px; box-shadow:0 2px 4px rgba(0,0,0,.1); }
+    .article-meta { color:#777; font-size:.95rem; margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+    .author-img { width:36px; height:36px; border-radius:50%; object-fit:cover; cursor:zoom-in; }
+    .article-body { line-height:1.6; margin-top:1rem; }
+    .navigation { display:flex; justify-content:space-between; margin-top:2rem; }
+    .nav-btn { background:#004c80; color:#fff; border:none; padding:.6rem 1rem; border-radius:8px; cursor:pointer; font-weight:bold; transition:background .2s; }
+    .nav-btn:hover { background:#0060a0; }
+    .nav-btn:disabled { background:#ccc; cursor:not-allowed; }
+    #articleContent img { max-width:100%; border-radius:8px; margin:10px 0; }
+
+    /* 💬 Comment section styles */
+    .comments-section { margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    .comments-section h3 { color: #004c80; }
+    textarea { width:100%; padding:0.6rem; border:1px solid #ccc; border-radius:6px; resize:none; margin-bottom:0.5rem; }
+    button.comment-btn { background:#004c80; color:#fff; border:none; border-radius:6px; padding:0.6rem 1rem; cursor:pointer; }
+    button.comment-btn:hover { background:#0066aa; }
+    .comment { background:#f0f5fa; padding:0.7rem; border-radius:6px; margin-top:0.7rem; }
+    .comment-header { display:flex; align-items:center; gap:8px; font-weight:bold; margin-bottom:4px; }
+    .comment-header img { width:28px; height:28px; border-radius:50%; object-fit:cover; }
+    .comment-actions { margin-top:0.4rem; }
+    .reply-box { margin-top:0.5rem; margin-left:1rem; }
+    .reply { background:#e9f1f9; padding:0.5rem; border-radius:6px; margin:0.4rem 0 0.4rem 1rem; }
+    .vote-btn { background:none; border:none; font-size:1.1rem; cursor:pointer; color:#004c80; }
+    .vote-btn:hover { color:#0066aa; }
+
+    /* 🔐 Auth panel */
+    #userPanel { display:flex; align-items:center; gap:10px; justify-content:flex-end; margin-bottom:10px; }
+    #userPanel img { width:32px; height:32px; border-radius:50%; }
+    #loginBtn, #logoutBtn { background:#004c80; color:white; border:none; border-radius:6px; padding:0.4rem 0.4rem; cursor:pointer; font-weight:bold; }
+    #loginBtn:hover, #logoutBtn:hover { background:#0066aa; }
+  </style>
+</head>
+<body>
+  <header>
+    
+    <h1 id="articleTitle">Loading...</h1>
+  </header>
+
+  <main>
+    <div class="article-meta">
+      <img id="authorImg" class="author-img" src="Images/default.jpg" alt="Author">
+      <span id="articleAuthor">by Elijah</span>
+    </div>
+
+    <article id="articleContent">Loading article...</article>
+
+    <div class="navigation">
+      <button id="prevBtn" class="nav-btn">← Previous</button>
+      <button id="nextBtn" class="nav-btn">Next →</button>
+    </div>
+
+    <!-- 🔐 Google Sign-In Panel -->
+    <div id="userPanel">
+      <img id="userPhoto" src="Images/default.jpg" alt="User" style="display:none;">
+      <span id="userName"></span>
+      <button id="loginBtn">Sign in with Google</button>
+      <button id="logoutBtn" style="display:none;">Logout</button>
+    </div>
+
+    <!-- 💬 Firebase Comment Section -->
+    <div class="comments-section">
+      <h3>Comments</h3>
+      <div id="comments"></div>
+      <textarea id="commentInput" placeholder="Write a comment..."></textarea>
+      <button id="postComment" class="comment-btn">Post</button>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getDatabase, ref, onValue, push, update, remove } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBiOFSX-48aBDM_Vi1OkEm_rHlUQCcuVAQ",
+      authDomain: "batch-85.firebaseapp.com",
+      databaseURL: "https://batch-85-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "batch-85",
+      storageBucket: "batch-85.firebasestorage.app",
+      messagingSenderId: "1028686567075",
+      appId: "1:1028686567075:web:32076ce1ab73d6d829d116"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const repoOwner = "d69barrion-web";
+    const repoName = "Batch-85-";
+    const basePath = "Articles";
+
+    const titleEl = document.getElementById("articleTitle");
+    const contentEl = document.getElementById("articleContent");
+    const authorEl = document.getElementById("articleAuthor");
+    const authorImgEl = document.getElementById("authorImg");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const userPhoto = document.getElementById("userPhoto");
+    const userName = document.getElementById("userName");
+
+    const params = new URLSearchParams(window.location.search);
+    const folderName = params.get("folder");
+    let fileIndex = parseInt(params.get("index")) || 0;
+    let mdFiles = [];
+
+    async function existsHead(url) {
+      try {
+        const r = await fetch(url, { method: "HEAD" });
+        return r.ok;
+      } catch {
+        return false;
+      }
+    }
+
+    function authorFileBase(name) {
+      return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+    }
+
+    async function findAuthorImage(penName) {
+      const exts = [".jpg", ".jpeg", ".png"];
+      const base = authorFileBase(penName);
+      for (const ext of exts) {
+        const candidate = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/Images/Authors/${base}${ext}`;
+        if (await existsHead(candidate)) return candidate;
+      }
+      return `Images/default.jpg`;
+    }
+
+    async function loadArticle() {
+      try {
+        if (!folderName) throw new Error("No folder specified in the URL.");
+
+        const folderApi = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${basePath}/${encodeURIComponent(folderName)}`;
+        const files = await (await fetch(folderApi)).json();
+        mdFiles = files.filter(f => f.name.toLowerCase().endsWith(".md")).sort((a,b)=>a.name.localeCompare(b.name));
+        if (!mdFiles.length) throw new Error("No markdown files found in this folder.");
+
+        if (fileIndex < 0) fileIndex = 0;
+        if (fileIndex >= mdFiles.length) fileIndex = mdFiles.length - 1;
+
+        const currentFile = mdFiles[fileIndex];
+        const fileText = await (await fetch(currentFile.download_url)).text();
+
+        const fmMatch = fileText.match(/^---\s*([\s\S]*?)\s*---/);
+        let metadata = {};
+        let body = fileText;
+        if (fmMatch) {
+          const fm = fmMatch[1].trim();
+          body = fileText.replace(fmMatch[0], "").trim();
+          fm.split(/\r?\n/).forEach(line => {
+            const [k, ...rest] = line.split(":");
+            if (!k) return;
+            const key = k.trim().toLowerCase();
+            const val = rest.join(":").trim();
+            metadata[key] = val;
+          });
+        }
+
+        const displayTitle = metadata["title"] || currentFile.name.replace(/\.md$/i,"").replace(/[-_]/g," ");
+        const penName = metadata["pen name"] || metadata["author"] || metadata["penname"] || "Elijah";
+        authorEl.textContent = `by ${penName}`;
+        titleEl.textContent = displayTitle;
+
+        let chosenImg = null;
+        if (metadata["image"]) {
+          const candidate = `Images/Articles/${metadata["image"]}`;
+          const rawCandidate = `https://raw.githubusercontent.com/${repoOwner}/${repoName}/main/${candidate}`;
+          if (await existsHead(rawCandidate)) chosenImg = rawCandidate;
+        }
+        if (!chosenImg) chosenImg = await findAuthorImage(penName);
+        authorImgEl.src = chosenImg.startsWith("http") ? chosenImg : `/${chosenImg}`;
+        authorImgEl.onerror = () => { authorImgEl.src = '/Images/default.jpg'; };
+
+        contentEl.innerHTML = marked.parse(body);
+
+        prevBtn.style.display = (fileIndex > 0) ? "inline-block" : "none";
+        nextBtn.style.display = (fileIndex < mdFiles.length - 1) ? "inline-block" : "none";
+
+        prevBtn.onclick = () => { window.location.href = `article.html?folder=${folderName}&index=${fileIndex - 1}`; };
+        nextBtn.onclick = () => { window.location.href = `article.html?folder=${folderName}&index=${fileIndex + 1}`; };
+
+        initComments();
+
+      } catch (err) {
+        titleEl.textContent = "Error";
+        contentEl.innerHTML = `<p style="color:red;">${err.message}</p>`;
+        console.error(err);
+      }
+    }
+
+    function initComments() {
+      const commentsContainer = document.getElementById('comments');
+      const postButton = document.getElementById('postComment');
+      const commentInput = document.getElementById('commentInput');
+      const articleId = folderName + "_" + fileIndex;
+      const commentsRef = ref(db, 'comments/' + articleId);
+
+      onValue(commentsRef, (snapshot) => {
+        const data = snapshot.val() || {};
+        const comments = Object.entries(data).map(([id, comment]) => ({ id, ...comment }));
+        renderComments(comments);
+      });
+
+      postButton.onclick = () => {
+        const text = commentInput.value.trim();
+        if (!text) return alert("Please write something before posting.");
+        const user = auth.currentUser;
+        if (!user) return alert("Please sign in with Google to post a comment.");
+
+        push(commentsRef, {
+          text,
+          votes: 0,
+          userName: user.displayName,
+          userPhoto: user.photoURL
+        });
+        commentInput.value = '';
+      };
+
+      function renderComments(comments) {
+        commentsContainer.innerHTML = '';
+        comments.forEach(comment => {
+          const div = document.createElement('div');
+          div.className = 'comment';
+          div.innerHTML = `
+            <div class="comment-header">
+              <img src="${comment.userPhoto || 'Images/default.jpg'}">
+              <span>${comment.userName || 'Anonymous'}</span>
+            </div>
+            <p>${comment.text}</p>
+            <div class="comment-actions">
+              <button class="vote-btn upvote">⬆️</button>
+              <span>${comment.votes || 0}</span>
+              <button class="vote-btn downvote">⬇️</button>
+              <button class="delete-btn">Delete</button>
+            </div>
+          `;
+
+          div.querySelector('.upvote').onclick = () => update(ref(db, 'comments/' + articleId + '/' + comment.id), { votes: (comment.votes || 0) + 1 });
+          div.querySelector('.downvote').onclick = () => update(ref(db, 'comments/' + articleId + '/' + comment.id), { votes: (comment.votes || 0) - 1 });
+
+          // Delete only if user owns comment
+          div.querySelector('.delete-btn').onclick = () => {
+            const user = auth.currentUser;
+            if (!user) return alert("You must be signed in to delete.");
+            if (user.displayName !== comment.userName) return alert("You can only delete your own comments.");
+            remove(ref(db, 'comments/' + articleId + '/' + comment.id));
+          };
+
+          commentsContainer.appendChild(div);
+        });
+      }
+    }
+
+    // 🔐 Auth system
+    loginBtn.onclick = () => signInWithPopup(auth, provider).catch(err => alert(err.message));
+    logoutBtn.onclick = () => signOut(auth);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        userName.textContent = user.displayName;
+        userPhoto.src = user.photoURL;
+        userPhoto.style.display = "inline-block";
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-block";
+      } else {
+        userName.textContent = "";
+        userPhoto.style.display = "none";
+        loginBtn.style.display = "inline-block";
+        logoutBtn.style.display = "none";
+      }
+    });
+
+    loadArticle();
+  </script>
+</body>
+    </html>
