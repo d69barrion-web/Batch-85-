@@ -1,7 +1,7 @@
 ---
 title: Anak Mag-invest Ka
 pen name: Boy Isip
-image: daniel_abalos.jpg
+image: Images/daniel_abalos.jpg
 ---
 
 # Mahal kong Anak,
