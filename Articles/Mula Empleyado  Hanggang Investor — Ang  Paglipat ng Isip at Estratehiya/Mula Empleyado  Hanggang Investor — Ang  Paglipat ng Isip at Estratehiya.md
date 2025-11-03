@@ -24,8 +24,7 @@ napapagod ngunit hindi umaangat. Dahil ang kanilang pinansyal
 na sistema ay nakatali sa kanilang sariling lakas at oras —
 dalawang bagay na hindi kailanman lumalago.
 
-### Ang Investor Mindset: Kalayaan Kapalit ng 
-Kaalaman at Panganib
+### Ang Investor Mindset: Kalayaan Kapalit ng Kaalaman at Panganib
 
 Ang investor naman ay naiiba ang pananaw. Sa halip na hanapin 
 ang seguridad, hinahanap niya ang **oportunidad.** Nauunawaan niyang may kasamang panganib ang bawat kita, ngunit alam din 
@@ -40,14 +39,14 @@ araw-araw.
 
 ### Ang Tatlong Yugto ng Paglipat
 
-- 1. **Pagkamulat** – Unawain na hindi sapat ang suweldo 
+1. **Pagkamulat** – Unawain na hindi sapat ang suweldo 
 at oras lang ang puhunan mo. Magsimulang 
 magbasa, makinig, at magtanong tungkol sa mundo 
 ng investments at negosyo.
-- 2. **Paghahanda** – Simulan ang maliit na hakbang: 
+2. **Paghahanda** – Simulan ang maliit na hakbang: 
 mag-ipon, bawasan ang utang, at maglaan ng 
 pondo para sa pag-aaral at pag-iinvest.
-- 3. **Pagkilos** – Huwag manatili sa pagplano lang. 
+3. **Pagkilos** – Huwag manatili sa pagplano lang. 
 Subukan ang maliit na investments — gaya ng stock 
 trading, mutual funds, o maliit na negosyo. Matuto 
 mula sa resulta, ayusin ang diskarte, at palawakin 
