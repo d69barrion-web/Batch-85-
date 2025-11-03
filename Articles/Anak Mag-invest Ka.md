@@ -21,27 +21,27 @@ Walang milagrosong dagdag-sahod na magliligtas sa buhay mo.
 Dalawa lang ang daan:
 **matutong mag-invest, o mabuhay bilang alipin ng kakapusan.**
 
-1. Walang Darating Para Iligtas Ka
+### 1. Walang Darating Para Iligtas Ka
 
 Wala nang pera ang gobyerno.
 Ang social security ay isang dahan-dahang pandaraya.
 At ang inflation ay isang tahimik na magnanakaw.
 
-Sasabihin nila sa’yo, “magtrabaho ka nang mabuti.”
-Pero hindi nila sasabihin na ang sipag na walang pag-aari ay isa lang marangal na uri ng pagkaalipin.
+Sasabihin nila sa’yo, *“magtrabaho ka nang mabuti.”*
+Pero hindi nila sasabihin na **ang sipag na walang pag-aari ay isa lang marangal na uri ng pagkaalipin.**
 
 Hindi ka yayaman sa pagtatrabaho nang mas matindi.
-Yayaman ka sa pagmamay-ari ng mga bagay na kumikita para sa’yo.
+Yayaman ka sa **pagmamay-ari** ng mga bagay na kumikita para sa’yo.
 
-Mga stocks.
-Mga bonds.
-Mga negosyo.
-Mga lupain at ari-arian.
+Mga **stocks.**
+Mga **bonds.**
+Mga **negosyo.**
+Mga **lupain at ari-arian.**
 
 ‘Yan ang dahilan kung bakit nananatiling mayaman ang mayayaman,
-at bakit namamatay nang pagod ang karaniwang manggagawa.
+at bakit namamatay nang pagod ang karaniwang trabahador.
 
-2. Ang “Compound Interest” ay Halos Tunay na Mahika
+### 2. Ang “Compound Interest” ay Halos Tunay na Mahika
 
 Bawat piso na ini-invest mo nang maaga ay parang binhi ng panahon —
 dumarami habang tumatagal.
@@ -49,77 +49,77 @@ dumarami habang tumatagal.
 Ang unang sampung taon, nakakainip.
 Ang susunod na dalawampu, parang imposible.
 Pero darating ang araw na magigising ka —
-at kikita na ang pera mo nang mas malaki kaysa sa kinikita mo noon.
+at kikita na ang pera mo nang mas malaki pa kaysa sa kinikita mo noon.
 
 Hindi iyon suwerte.
-Iyon ang tahimik na ganti ng disiplina.
+Iyon ang tahimik na **ganti ng disiplina.**
 
 Kung mas maaga kang magsimula,
 mas kaunti ang dugong iluluha mo sa huli.
 
-3. Talagang Masakit sa Umpisa
+### 3. Talagang Masakit sa Umpisa
 
 Habang bata ka pa, pakiramdam mo parang pagnanakaw ang bawat investment.
 
 Iisipin mo:
-“Mas magagamit ko ‘tong pera ngayon.”
+*“Mas magagamit ko ‘tong pera ngayon.”*
 At tama ka.
 
 Pero ‘yung sakit na ‘yan?
-‘Yan ang presyo ng kalayaan.
+**‘Yan ang presyo ng kalayaan.**
 
 Lahat ng lalaki ay may binabayarang halaga —
-ang tanong lang, ngayon mo ba babayaran sa sakripisyo o sa huli sa pagsisisi?
+ang tanong lang, **ngayon mo ba babayaran sa sakripisyo o sa huli sa pagsisisi?**
 
-4. Paligiran Mo ang Iyong Sarili ng mga Taong Marunong sa Pera
+### 4. Paligiran Mo ang Iyong Sarili ng mga Taong Marunong sa Pera
 
 Hindi ka puwedeng mag-isip na parang hari
 kung araw-araw kang nakikipag-usap sa mga taong alipin pa rin ng sistema.
 
 Ang bilog ng iyong mga kasama ang tumutukoy sa taas ng iyong mararating.
 
-Umupo ka sa mga lalaking pinag-uusapan ay mga numero, stocks, negosyo, at dibidendo.
+Umupo ka sa mga lalaking pinag-uusapan ay **mga numero, stocks, negosyo, at dibidendo.**
 Ang mga dukha, tsismis ang usapan.
-Ang mga matalino, paglago ang paksa.
+Ang mga matalino, **paglago** ang paksa.
 
-Hanapin mo ang mga mentor, hindi mga salamin.
+Hanapin mo ang **mga mentor, hindi mga mirror.**
 Mga kaibigang pinalalawak ang pananaw mo,
 hindi ‘yung mga umaaliw sa pagiging karaniwan mo.
 
-Ang iyong network ay siyang tunay mong net worth.
+**Ang iyong network ay siyang tunay mong net worth.**
 
-5. Ang Yaman ay Hindi Lang Para sa Iyo — Ito ay Para sa Iyong Lahi
+### 5. Ang Yaman ay Hindi Lang Para sa Iyo — Ito ay Para sa Iyong Lahi
 
 Hindi ka nag-i-invest para lang sa ginhawa.
-Nag-i-invest ka para sa pagpapatuloy.
+Nag-i-invest ka para sa **pagpapatuloy.**
 
-Para ang mga anak mo ay magsimula sa karunungan, hindi sa wala.
+Para ang mga anak mo ay magsimula sa **karunungan,** hindi sa **wala.**
 
-Para ang apelyido mo ay maging susi, hindi babala.
+Para ang apelyido mo ay maging **susi,** hindi **babala.**
 
 Ang lalaking namatay na dukha ay hindi lang nabigo sa sarili —
-nabigo rin siya sa kanyang lahi.
+**nabigo rin siya sa kanyang lahi.**
 
 Kaya magtayo ka ng pundasyong matatag
 para ang mga anak mo’t apo ay mamana ang kapayapaan, hindi takot.
 
-Huling Salita:
+### Huling Salita:
 
-Huwag kang magtrabaho lang para sa pera — pagtrabahuin mo ang pera para sa’yo.
+**Huwag kang magtrabaho lang para sa pera — pagtrabahuin mo ang pera para sa’yo.**
 
-Tigilan mo ang habol sa mga trabahong sumisipsip sa lakas mo.
+Tigilan mo ang paghabol sa mga trabahong sumisipsip sa lakas mo.
 Simulan mong buuin ang mga sistemang nagpapatuloy kahit wala ka.
 
 Ang pera ay parang sundalo —
-ipadala mo siya sa digmaan para sa’yo.
+**ipadala mo siya sa digmaan para sa’yo.**
 
 Sapagkat kapag bumigay na ang likod mo,
 tanging ang mga investment mo ang lalaban para sa’yo.
 
 Hindi ito kasakiman.
-Ito ay karunungan.
+Ito ay **karunungan.**
 
-Mahal kong Anak,
+### Mahal kong Anak,
 kung hindi mo matutunang kumita habang natutulog ka,
 magtatrabaho ka hanggang sa sumuko ang katawan mo.
 
