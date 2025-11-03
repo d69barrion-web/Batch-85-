@@ -1,7 +1,7 @@
 ---
 title: Anak Mag-invest Ka
 pen name: Daniel Abalos
-image: Images/daniel_abalos.jpg
+image: daniel_abalos2.jpg
 ---
 
 # Mahal kong Anak,
