@@ -6,7 +6,9 @@ image: daniel_abalos2.jpg
 
 # Mahal kong Anak,
 ## Kung hindi ka kikita habang natutulog ka — magtatrabaho ka hanggang sa mamatay ka.
-
+<p align="center">
+  <img src="img_1_1762086068798.jpg" alt="Mindset Shift" width="400">
+</p>
 Pag-usapan natin ang mga bagay na hindi kailanman nasabi nang malinaw ng iyong ama.
 
 Kung hindi mo kayang pagtrabahuin ang iyong pera,
@@ -17,9 +19,7 @@ at mamatay ang iyong mga pangarap.
 Walang gobyernong darating para sagipin ka.
 Walang “pension fairytale.”
 Walang milagrosong dagdag-sahod na magliligtas sa buhay mo.
-<p align="center">
-  <img src="img_1_1762086068798.jpg" alt="Mindset Shift" width="400">
-</p>
+
 Dalawa lang ang daan:
 **matutong mag-invest, o mabuhay bilang alipin ng kakapusan.**
 
