@@ -18,7 +18,7 @@ Walang gobyernong darating para sagipin ka.
 Walang “pension fairytale.”
 Walang milagrosong dagdag-sahod na magliligtas sa buhay mo.
 <p align="center">
-  <img src="../../Images/mindset.jpg" alt="Mindset Shift" width="400">
+  <img src="img_1_1762086068798.jpg" alt="Mindset Shift" width="400">
 </p>
 Dalawa lang ang daan:
 **matutong mag-invest, o mabuhay bilang alipin ng kakapusan.**
