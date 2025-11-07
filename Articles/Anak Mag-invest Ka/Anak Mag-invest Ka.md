@@ -13,7 +13,7 @@ Kung hindi mo kayang pagtrabahuin ang iyong pera,
 ikaw ang pagtatrabahuin ng pera —
 hanggang sa mapagod ang iyong likod, lumabo ang iyong mga mata,
 at mamatay ang iyong mga pangarap.
-
+<img src="img_1_1762086068798.jpg" alt="Anak" style="float:right; margin:0 15px 10px 0; width:250px; border-radius:8px;">
 Walang gobyernong darating para sagipin ka.
 Walang “pension fairytale.”
 Walang milagrosong dagdag-sahod na magliligtas sa buhay mo.
