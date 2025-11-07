@@ -42,7 +42,7 @@ Mga **lupain at ari-arian.**
 at bakit namamatay nang pagod ang karaniwang trabahador.
 
 ### 2. Ang “Compound Interest” ay Halos Tunay na Mahika
-<img src="img_1_1762086068798.jpg" alt="Anak" style="float:left; margin:0 15px 10px 0; width:250px; border-radius:8px;">
+<img src="24-08-compoundinterest-blog (1).webp" alt="Anak" style="float:left; margin:0 15px 10px 0; width:250px; border-radius:8px;">
 Bawat piso na ini-invest mo nang maaga ay parang binhi ng panahon —
 dumarami habang tumatagal.
 
