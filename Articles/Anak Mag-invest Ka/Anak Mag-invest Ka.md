@@ -22,7 +22,7 @@ Dalawa lang ang daan:
 **matutong mag-invest, o mabuhay bilang alipin ng kakapusan.**
 
 ### 1. Walang Darating Para Iligtas Ka
-<img src="img_1_1762086068798.jpg" alt="Anak" style="float:right; margin:0 15px 10px 0; width:250px; border-radius:8px;">
+<img src="Screenshot_2025-11-07-17-20-18-69.jpg" alt="Anak" style="float:right; margin:0 15px 10px 0; width:250px; border-radius:8px;">
 Wala nang pera ang gobyerno.
 Ang social security ay isang dahan-dahang pandaraya.
 At ang inflation ay isang tahimik na magnanakaw.
