@@ -6,7 +6,7 @@ image: daniel_abalos2.jpg
 
 # Mahal kong Anak,
 ## Kung hindi ka kikita habang natutulog ka — magtatrabaho ka hanggang sa mamatay ka.
-<img src="img_1_1762086068798.jpg" alt="Anak" style="float:left; margin:0 15px 10px 0; width:250px; border-radius:50%;">
+<img src="img_1_1762086068798.jpg" alt="Anak" style="float:left; margin:0 15px 10px 0; width:250px; border-radius:8px;">
 Pag-usapan natin ang mga bagay na hindi kailanman nasabi nang malinaw ng iyong ama.
 
 Kung hindi mo kayang pagtrabahuin ang iyong pera,
