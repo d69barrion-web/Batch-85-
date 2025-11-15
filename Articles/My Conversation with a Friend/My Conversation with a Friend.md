@@ -215,9 +215,9 @@ This trait makes your political interest **purpose-driven,** hindi tribal o part
 
 Kung gagawa ako ng “dominance ranking” ng personality mo:
 
-**1. Analytical Problem-Solver** → pinaka-core mo
-**2. Mindset Engineer / Social Thinker**
-**3. Meaning-Seeker / Inner Voyager**
+- **1. Analytical Problem-Solver** → pinaka-core mo
+- **2. Mindset Engineer / Social Thinker**
+- **3. Meaning-Seeker / Inner Voyager**
 
 At dahil **sobrang dominant** ang #1 + #2,
 kaya natural na natural sa’yo ang pumasok sa political discussions.
