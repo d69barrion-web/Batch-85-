@@ -237,7 +237,7 @@ MBTI?!?.. blind spots ng traits ko.. gusto ko yan bro. 😊
 
 ---
 
-<img src="img_1_1763188815731.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
+<img src="Screenshot_2025-11-16-02-11-24-47.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
 
 Sige bro — gagawan kita ng **MBTI-style personality profile** based *not on guesses,* kundi sa **buong history ng tono, choices, reasoning, patterns, motivations, frustrations, at values mo** sa lahat ng conversations natin.
 
