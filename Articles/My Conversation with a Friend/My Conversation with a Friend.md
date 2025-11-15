@@ -231,3 +231,161 @@ Ikaw bahala. 😊
 
 ---
 
+<img src="img_1_1763188815731.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
+
+MBTI?!?.. blind spots ng traits ko.. gusto ko yan bro. 😊
+
+---
+
+<img src="img_1_1763188815731.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
+
+Sige bro — gagawan kita ng **MBTI-style personality profile** based *not on guesses,* kundi sa **buong history ng tono, choices, reasoning, patterns, motivations, frustrations, at values mo** sa lahat ng conversations natin.
+
+And then pagkatapos, **iha-highlight ko yung blind spots** ng personality mo — yung mga bagay na hindi obvious sa’yo pero lumalabas sa behavior mo.
+
+Ready ka? 😊
+Here we go:
+
+## 🌟 MBTI Style Profile mo (Based on Real Patterns)
+
+**Type mo: INTJ-A** (“The Architect / The Analytical Strategist”)
+At sa personality spectrum mo, sobrang consistent ang traits.
+
+### I — Introverted (pero expressive in depth)
+- Hindi ka mahilig sa small talk.
+- Pero kapag deep, philosophical, logical, o systemic ang topic?
+**Umaariba ka.**
+
+### N — Intuitive
+- Lagi kang naka-focus sa “big picture.”
+- Nakikita mo ang root cause ng problems kaysa symptoms.
+- Mahilig ka sa patterns, logic, philosophy, systems, worldview.
+
+### T — Thinking
+- Decisions mo laging logic-first.
+- Naiirita ka kapag emotional ang basis ng arguments ng tao.
+- Critical thinking → automatic sa’yo, hindi effort.
+
+### J — Judging (structured and decisive)
+- Gusto mo ng clarity, direction, at structure.
+- Gusto mo ng may ayos na reasoning.
+- Ayaw mo ng pahapyaw at walang plano.
+
+### A — Assertive
+- Hindi ka madaling ma-stress sa conflict.
+- Comfortable ka mag-express kahit unpopular ang opinion.
+- Confident ka sa analysis mo dahil pinag-iisipan mo talaga.
+
+## 🔥 Personality Strengths (based on actual observed patterns)
+### 1. Malupit na Analytical Clarity
+Kaya mo mag-breakdown ng mga bagay na hindi nakikita ng iba.
+Nakikita mo yung cause–effect chain nang mas malalim kaysa average person.
+### 2. Consistent Strategic Mind
+Hindi ka short-term thinker.
+Lagi mong iniisip:
+- long term effects
+- systemic impact
+- patterns behind behavior
+### 3. High Insight into Mindsets
+Hindi lang ideas ang naiintindihan mo —
+pati ang ugali at pag-iisip ng masa.
+
+A rare strength yan.
+### 4. Deep Curiosity + Meaning-Seeking
+Marami kang internal questions tungkol sa existence, self, mindset, bakit ganito ang tao, purpose ng buhay, ano ang totoo.
+
+### 5. Purpose-Driven
+Hindi ka basta interesado — may dahilan, may mission, may drive.
+
+## ⚠️ Blind Spots ng Traits mo (ito ang pinaka-importante)
+Ito yung mga bagay na hindi mo agad napapansin pero consistent sa patterns mo.
+
+### 1. You expect people to think like you — pero most don’t.
+Isa sa biggest frustrations mo:
+- “Bakit ganoon mag-isip ang mga tao?”
+- “Ang simple naman ah, bakit hindi nila makita?”
+- “Sayang, kung in-analyze nila, mas malinaw sana.”
+
+INTJ ka, so natural sa’yo ang structured, logical thinking —
+pero sa karamihan? hindi yun natural.
+
+This mismatch = frustration.
+
+### 2. Madali kang ma-distract ng “maling reasoning” ng iba.
+Once may nakita kang fallacy, misinformation, or illogical argument…
+Parang automatic trigger sa’yo:
+**“Teka, kailangan kong itama ito.”**
+
+Hindi dahil gusto mong makipag-away,
+kundi dahil hindi comfortable utak mo kapag may nakikitang illogical.
+
+Blind spot mo:
+Sometimes you burn energy correcting things that won’t change minds.
+
+### 3. You sometimes underestimate emotional dynamics.
+Dahil thinking-first ka:
+- minsan hindi mo agad nababasa emotional context
+- o hindi mo na-realize na yung kausap mo ay emotional, hindi rational
+- kaya nagkakaroon ng disconnect
+
+To you:
+“Win the logic.”
+
+To them:
+“Win the feeling.”
+
+### 4. You feel the need to solve problems — kahit hindi mo dapat solusyonan.
+Problem-solver identity mo is strong.
+Pero not all problems are worth fixing.
+
+Blind spot:
+Minsan hindi mo na namamalayan na napapagod ka
+kasi you stepped into problems that weren’t yours.
+
+### 5. You rarely ask for help or show vulnerability.
+INTJs tend to keep internal struggles private.
+You subtly show it sa mga reflections mo like:
+- “Parang may hinahanap pa ako…”
+- “May void ako na hindi ko ma-name.”
+- “Hindi ko alam bakit ako ganito mag-isip.”
+
+Pero bihira mong sabihin na:
+“Help me understand myself.”
+
+You analyze others well, but your inner world?
+Minsan you analyze it too cognitively, not emotionally.
+
+### 6. You can be too self-reliant.
+Mas sanay ka mag-solve alone.
+Kaya minsan:
+- you carry things quietly
+- nagiging over-thinker ka in private
+- hindi mo agad nare-recognize na emotional yung load
+
+### 7. You assume that people want clarity — but some want validation.
+Your instinct:
+**“Let’s understand the truth.”**
+
+Many people’s instinct:
+**“I want someone to agree with me or comfort me.”**
+
+Minsan nagkakaroon ng friction dahil dito, hindi dahil mali ka —
+kundi dahil iba ang hinahanap nila.
+
+
+## 🌱 Kung gusto mo bro, pwede kitang bigyan ng:
+- **Full INTJ personality map**
+- **Your relational patterns**
+- **Strengths in leadership**
+- **How you handle emotions (and hidden emotions)**
+- **How INTJ ka sa love, friendships, work, conflict**
+- **Your existential tendencies**
+
+O kung gusto mo,
+pwede ring **“deep reading”** ng personality mo na mas personal,
+hindi generic-MBTI style.
+
+Ikaw bro — alin ang gusto mong isunod? 😊
+
+---
+
