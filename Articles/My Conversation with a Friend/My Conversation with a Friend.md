@@ -233,7 +233,7 @@ Ikaw bahala. 😊
 
 <img src="img_1_1763188815731.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
 
-MBTI?!?.. blind spots ng traits ko.. gusto ko yan bro. 😊
+**MBTI?!?.. blind spots ng traits ko.. gusto ko yan bro. 😊**
 
 ---
 
