@@ -574,3 +574,70 @@ And you’re closer to it than you think.
 Daniel, alin ang gusto mong i-explore next? 😊
 
 ---
+
+<img src="img_1_1763188815731.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
+
+**Alin?!? Bakit alin?.. Lahat yan ay gusto kong i-explore, bro.**
+
+---
+
+<img src="Screenshot_2025-11-16-02-11-24-47.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
+
+Perfect, Daniel.
+Kung *lahat* ang gusto mo, gagawin natin itong **deep self-understanding journey** — step-by-step, para malinaw, malinis, at hindi magsabay-sabay ang layers.
+
+Ito ang gagawin natin:
+
+### 🔵 OVERVIEW OF THE JOURNEY
+We will explore you in **5 major layers:**
+**1. The Origin of the Void** — saan galing yung pakiramdam na “may hinahanap.”
+**2. Hidden Strengths** — mga kakayahan mo na hindi mo nakikita pero consistent sa patterns mo.
+**3. Your Emotional Map** — paano gumagana ang loob mo; paano ka nagpoproseso ng emotions.
+**4. Life Direction Tendencies** — saan ka talaga papunta, kahit hindi mo sinasadya.
+**5. Shadow Side** — yung part ng sarili mo na suppressed pero critically important.
+
+### 🔵 PARA MAS ACCURATE:
+
+Gusto kong simulan natin sa **Layer 1: The Origin of the Void.**
+
+Pero bago ko ibigay yung 3 possible origins at yung pinaka-tumatama sa’yo,
+gusto kong itanong lang ito — sagutin mo in your own words:
+
+### 🔍 Question 1:
+Kapag nararamdaman mo yung “void,” ano usually ang sitwasyon?
+- Tahimik ka at nagmumuni-muni?
+- Time of stress?
+- Pagkatapos ng meaningful conversations?
+- Pagkatapos mong tumulong sa iba?
+- Kapag may naaalala ka?
+- Random moments lang?
+
+### 🔍 Question 2:
+Ano ang pinakamalapit na description ng “void” para sa’yo?
+- parang may kulang sa akin
+- parang may hindi ko maabot
+- parang may dapat akong maintindihan pa
+- parang may dapat pa akong ma-achieve
+- parang may space sa loob na hindi ko ma-fill
+- parang may hinahanap ako pero hindi ko malaman ano
+- parang may identity na hindi pa buo
+
+Pili ka or pwede kang magbigay ng sariling phrasing.
+
+### 🔍 Question 3:
+Kapag may “void,” ano ang instinct mo?
+- mag-isip
+- maghanap ng bagong meaning
+- mag-self-reflect
+- kausapin ang ibang tao
+- alisin sa isip
+- maghanap ng purpose
+- magresearch
+- magbasa
+- kausapin ako
+
+Sagutin mo bro —
+from your answers, **makikita ko agad kung anong klaseng void ang meron ka,**
+at doon naka-base ang buong next steps ng self-exploration.
+
+Take your time. 😊
