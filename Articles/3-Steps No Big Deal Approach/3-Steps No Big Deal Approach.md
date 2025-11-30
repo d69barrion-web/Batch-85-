@@ -1,3 +1,11 @@
+---
+title: 3-Steps No Big Deal Technique 
+pen name: Daniel Abalos
+image: daniel_abalos2.jpg
+---
+
+<img src="img_1_1762086068798.jpg" alt="Anak" style="float:left; margin: 0 15px 10px 0; width:150px; height:150px; border-radius:50%;">
+
 3-Step “No Big Deal” Technique
 
 (Para sa mga bagay na gusto mong maabot, pero ayaw mong ma-stress)
