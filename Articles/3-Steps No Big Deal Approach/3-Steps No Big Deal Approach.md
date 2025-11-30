@@ -4,7 +4,7 @@ pen name: Daniel Abalos
 image: daniel_abalos2.jpg
 ---
 
-<img src="img_1_1762086068798.jpg" alt="Anak" style="float:left; margin: 0 15px 10px 0; width:150px; height:150px; border-radius:50%;">
+<img src="d8736e9b-9232-4f8b-95d8-e6534d189911.png" alt="Anak" style="float:left; margin: 0 15px 10px 0; width:150px; height:150px; border-radius:50%;">
 
 3-Step “No Big Deal” Technique
 
