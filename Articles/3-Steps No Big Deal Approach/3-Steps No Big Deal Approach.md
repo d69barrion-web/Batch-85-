@@ -20,11 +20,10 @@ Relax ka lang — parang normal na bagay lang na darating sa tamang oras.
 ## 2. Ayusin muna ang loob, hindi ang labas
 
 Bago ka kumilos, ayusin mo muna yung state mo:
-
-– kalmado,
-– kampante,
-– hindi nagmamadali,
-– hindi natatakot ma-miss out.
+- kalmado,
+- kampante,
+- hindi nagmamadali,
+- hindi natatakot ma-miss out.
 
 I-visualize mo yung sarili mong parang andun ka na sa gusto mong resulta.
 Hindi para “mag-manifest,”
