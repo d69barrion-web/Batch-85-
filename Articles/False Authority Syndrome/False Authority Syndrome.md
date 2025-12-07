@@ -25,3 +25,5 @@ Ang response is hindi man tinutukoy kung alin sa sinasabi, pero pinagmumukha nil
 At kapag nilinaw mo para linawin na walang inaatake o hindi naman pang-aatake ang sinasabi, doon na magmimistulang may "labanan" - na inaatake mo sila at dumidepensa lang sila.
 
 May pag-aaral na ba tungkol sa ganun - "False Authority Syndrome"?
+
+<img src="Screenshot_2025-11-16-02-11-24-47.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
