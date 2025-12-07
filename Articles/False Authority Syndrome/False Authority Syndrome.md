@@ -4,7 +4,7 @@ pen name: Daniel Abalos
 image: daniel_abalos2.jpg
 ---
 
-<img src="img_1_1763188815731.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
+<img src="daniel_abalos2.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
 
 Nasaan ang problema, nasa sistema ba o nasa teacher lang?.. 
 
