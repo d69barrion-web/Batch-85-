@@ -300,6 +300,8 @@ Hindi namin ini-excuse ang mga bata dahil nauunawaan naman nga po namin para sa 
 
 Ini-excuse lang po namin ang mga anak namin kadalasan pag may sakit. Hindi namin sila i-e-excuse dahil lang sa may trabaho kami.
 
+<img src="Screenshot_2025-12-08-05-22-55-42.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
+
 **Ma'am:** Lagi pong tatandaan na ang kaligtasan ng bata ang lagi nating uunahin. Kc may case nga po dito sa likod na d inaasahan. Wag po sanang masamain.
 
 **Me:** Hindi naman po yan issue natin ma'am. Ang isyu po natin ay yung oras ng uwian at Oras ng pagsundo.
