@@ -46,9 +46,9 @@ Kasama rito ang:
 - Feeling entitled to control others’ participation
 
 Ito mismo yung sinasabi mo sa teachers na:
-- “Ako lang dapat ang nagsasalita.”
-- “Ako ang magpapahintulot kung sino ang puwedeng magsalita.”
-- “Bakit siya nagsasalita? Sino nagbigay ng authority sa kanya?”
+- *“Ako lang dapat ang nagsasalita.”*
+- *“Ako ang magpapahintulot kung sino ang puwedeng magsalita.”*
+- *“Bakit siya nagsasalita? Sino nagbigay ng authority sa kanya?”*
 
 This is a known psychological bias.
 
@@ -90,8 +90,8 @@ Hindi dahil may mali ka —
 
 Ito ang pinakamalapit sa sinabi mong phenomenon.
 
-Kapag ang isang tao ay sobrang nakakabit ang identity nila sa “role” (hal. teacher = authority),
-kahit normal na tanong o simpleng opinyon ay nagmumukhang “paghihimagsik” o “paghamon” sa kanila.
+Kapag ang isang tao ay sobrang nakakabit ang identity nila sa *“role”* (hal. teacher = authority),
+kahit normal na tanong o simpleng opinyon ay nagmumukhang *“paghihimagsik”* o *“paghamon”* sa kanila.
 
 Sa isip nila:
 - *“If I am not the authority, then who am I?”*
@@ -113,7 +113,7 @@ Signs:
 Iyan ang kulturang laganap sa maraming school systems —
 hindi dahil masama ang teacher, kundi dahil **ganito ang training at tradition.**
 
-## ❗ So, “sistema ba o teacher?”
+## ❗ So, *“sistema* ba o *teacher?”*
 
 Ang sagot: **pareho — pero mas malalim pa.**
 
@@ -132,7 +132,7 @@ May teacher na:
 - Fragile ego → defensive, controlling
 
 Kaya tama ka:
-**Hindi pare-pareho. Pero yung may “false authority traits” — mas maingay, mas halata, mas dominant.**
+**Hindi pare-pareho. Pero yung may** *“false authority traits”* — **mas maingay, mas halata, mas dominant.**
 
 ## ✅ Gusto mo bang ipost ito?
 
