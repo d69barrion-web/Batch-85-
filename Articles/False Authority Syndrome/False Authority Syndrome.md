@@ -292,6 +292,8 @@ Pwede namn po ninyo reviewhin sa bahay bahay ninyo.
 
 Pinapayagan ko po ang bata kapag ini excuse na po ng parents. May case po minsan na ini excus3 po ng magulang pinapayagan ko po. Sa akin lang po un pag natapat na klase ko
 
+<img src="Screenshot_2025-12-08-05-30-07-40.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
+
 **Me:** Hindi nyo po yata naiintindihan ang Punto ng mga magulang ma'am.. 
 
 Hindi namin ini-excuse ang mga bata dahil nauunawaan naman nga po namin para sa edukasyon nila ang ginagawa ninyo. 
