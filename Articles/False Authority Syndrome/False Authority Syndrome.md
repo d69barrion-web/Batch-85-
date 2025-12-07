@@ -270,6 +270,9 @@ Kaya sana po ay maunawaan din ng mga guro kung sakali mang magrequest kami na sa
 
 Salamat po.
 
+<img src="Screenshot_2025-12-08-05-22-55-42.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
+
+
 **Ma'am:** (yung teacher na madalas magpalabas ng 4:30) 
 Basta 3:30 exact uwian. Maiwan gustong mag overtime for review. May time po kc na ako ang last period hanggang november lang nmn po ito 
 
