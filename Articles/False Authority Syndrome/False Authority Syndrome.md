@@ -280,6 +280,8 @@ Pwede namn po ninyo reviewhin sa bahay bahay ninyo.
 
 **Me:** Kaya naman po namin sundin yang 3:30 ma'am. Ipinapaliwanag lang po ni sir Edward kung bakit may mga pagkakataon na Hindi nasusunod yan.. ..ng mga guro. At naiintindihan namin yon.
 
+<img src="Screenshot_2025-12-08-05-30-07-40.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
+
 **Ma'am:** Pag ako po ang may hawak sa grade 4 at lumampas ng 3:40 pwede lang po kau kumatok pag andito na kau para sa sundo.
 
 **Me:** Mukhang Hindi po maganda yang sinasabi ninyong puwede kaming kumatok. Mistula naman po yatang kabastusan sa pagtuturo. Mas maganda po yata kung aantabayanan na lang namin ang message ninyo dito sa gc. Kung puwede na kaming manundo o hindi pa.
