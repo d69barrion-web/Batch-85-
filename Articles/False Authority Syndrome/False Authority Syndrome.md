@@ -244,3 +244,4 @@ Pwede kitang gawaan ng **mas maikli**, pang-*share*, o pang-*comment*, depende s
 
 ---
 
+Nag-umpisa kase ito nung may isang parent na nagtanong sa gc Parent: "Sir, anong oras po ba talaga ang uwian sa hapon?" Sir: 3:30 po Parent: Tinatanong ko lang sir kasi 4:30 na hindi pa lumalabas yung mga bata. Sir: Kung minsan hindi pa tapos magturo ang teacher. Kaya kailangan nilang mag-extend. Para din po naman sa mga bata Yun. (Dito na ako umentra) Me: Naiintindihan naman namin sir -- na para din naman sa edukasyon ng mga anak namin ang ginagawa ng mga guro natin.
