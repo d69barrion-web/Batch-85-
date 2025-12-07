@@ -310,4 +310,6 @@ Ini-excuse lang po namin ang mga anak namin kadalasan pag may sakit. Hindi namin
 
 **Me:** Sige po. Mag-usap na lang po siguro kayo ni sir Edward.
 
+---
 
+<img src="Screenshot_2025-11-16-02-11-24-47.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
