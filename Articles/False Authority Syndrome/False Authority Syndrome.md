@@ -247,7 +247,7 @@ Pwede kitang gawaan ng **mas maikli**, pang-*share*, o pang-*comment*, depende s
 <img src="daniel_abalos2.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
 
 Nag-umpisa kase ito nung may isang parent na nagtanong sa gc 
-
+<img src="Screenshot_2025-11-16-02-11-24-47.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
 **Parent:** "Sir, anong oras po ba talaga ang uwian sa hapon?" 
 
 **Sir:** 3:30 po 
