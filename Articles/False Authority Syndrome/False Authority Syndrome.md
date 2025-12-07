@@ -1,7 +1,7 @@
 ---
 title: False Authority Syndrome
 pen name: Daniel Abalos 
-image: daniel_abalos.jpg
+image: daniel_abalos2.jpg
 ---
 
 Nasaan ang problema, nasa sistema ba o nasa teacher lang?.. 
