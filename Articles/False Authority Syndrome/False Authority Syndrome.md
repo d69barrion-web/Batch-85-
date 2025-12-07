@@ -26,6 +26,8 @@ At kapag nilinaw mo para linawin na walang inaatake o hindi naman pang-aatake an
 
 May pag-aaral na ba tungkol sa ganun - "False Authority Syndrome"?
 
+---
+
 <img src="Screenshot_2025-11-16-02-11-24-47.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
 
 Daniel, **malinaw at ang ganda ng observation mo** — at hindi lang ito personal na hinala. May **tunay na psychological at sociological patterns** na tumutugma sa sinasabi mong “False Authority Syndrome,” kahit hindi eksaktong ganitong term ang ginagamit sa academic literature.
@@ -138,6 +140,8 @@ Kung gusto mo, gagawan kita ng **maikli pero malupit na post**, pang-CWAI, tungk
 
 Gusto mo?
 
+---
+
 <img src="daniel_abalos2.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
 
 Sige nga bro. Akala yata talaga ng mga teacher na ito ay may authority talaga sila over the parents. Na ang mga parents ay mga subordinates nila kaya dapat ay gumalang sa kanila ang mga parents. 
@@ -145,5 +149,7 @@ Sige nga bro. Akala yata talaga ng mga teacher na ito ay may authority talaga si
 Any suggestions coming from the parents (yung mga parents na hindi sumisipsep sa kanila) ay nagmimistulang threat sa authority nila. 
 
 At sa mata ng mga sumisipsep sa kanila ay pinagmumukha nila may umaatake sa kanila. Kahit wala naman talaga kung tutuusin.
+
+---
 
 <img src="Screenshot_2025-11-16-02-11-24-47.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
