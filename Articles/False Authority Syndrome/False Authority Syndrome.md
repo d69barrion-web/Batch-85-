@@ -244,4 +244,55 @@ Pwede kitang gawaan ng **mas maikli**, pang-*share*, o pang-*comment*, depende s
 
 ---
 
-Nag-umpisa kase ito nung may isang parent na nagtanong sa gc Parent: "Sir, anong oras po ba talaga ang uwian sa hapon?" Sir: 3:30 po Parent: Tinatanong ko lang sir kasi 4:30 na hindi pa lumalabas yung mga bata. Sir: Kung minsan hindi pa tapos magturo ang teacher. Kaya kailangan nilang mag-extend. Para din po naman sa mga bata Yun. (Dito na ako umentra) Me: Naiintindihan naman namin sir -- na para din naman sa edukasyon ng mga anak namin ang ginagawa ng mga guro natin.
+<img src="daniel_abalos2.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
+
+Nag-umpisa kase ito nung may isang parent na nagtanong sa gc 
+
+**Parent:** "Sir, anong oras po ba talaga ang uwian sa hapon?" 
+
+**Sir:** 3:30 po 
+
+**Parent:** Tinatanong ko lang sir kasi 4:30 na hindi pa lumalabas yung mga bata. 
+
+**Sir:** Kung minsan hindi pa tapos magturo ang teacher. Kaya kailangan nilang mag-extend. Para din po naman sa mga bata Yun.
+
+(Dito na ako umentra) 
+
+**Me:** Naiintindihan naman namin sir -- na para din naman sa edukasyon ng mga anak namin ang ginagawa ng mga guro natin.
+
+Nga lamang po, may obligasyon din po kasi kaming mga magulang na maghanapbuhay. At iniaagaw lang din po namin sa oras ng paghahanapbuhay namin yung oras na ginugugol namin sa pagsundo sa mga bata. 
+
+Kaya sana po ay maunawaan din ng mga guro kung sakali mang magrequest kami na sana po dito na lang namin sa gc malaman kung puwede na kaming manundo ng mga bata o hindi pa.
+
+Salamat po.
+
+**Ma'am:** (yung teacher na madalas magpalabas ng 4:30) 
+Basta 3:30 exact uwian. Maiwan gustong mag overtime for review. May time po kc na ako ang last period hanggang november lang nmn po ito 
+
+Pwede namn po ninyo reviewhin sa bahay bahay ninyo.
+
+**Me:** Kaya naman po namin sundin yang 3:30 ma'am. Ipinapaliwanag lang po ni sir Edward kung bakit may mga pagkakataon na Hindi nasusunod yan.. ..ng mga guro. At naiintindihan namin yon.
+
+**Ma'am:** Pag ako po ang may hawak sa grade 4 at lumampas ng 3:40 pwede lang po kau kumatok pag andito na kau para sa sundo.
+
+**Me:** Mukhang Hindi po maganda yang sinasabi ninyong puwede kaming kumatok. Mistula naman po yatang kabastusan sa pagtuturo. Mas maganda po yata kung aantabayanan na lang namin ang message ninyo dito sa gc. Kung puwede na kaming manundo o hindi pa.
+
+**Ma'am:** Hindi po sa hndi maganda may mga case po kc na ganyan na nag e excuse ang magulang dahil sa mas mahalagang dahilan. Hndi po kabastusan ang pagsasabi ng tapat. At uunahin po ang kaligtasan ng mag aaral. 
+
+Pinapayagan ko po ang bata kapag ini excuse na po ng parents. May case po minsan na ini excus3 po ng magulang pinapayagan ko po. Sa akin lang po un pag natapat na klase ko
+
+**Me:** Hindi nyo po yata naiintindihan ang Punto ng mga magulang ma'am.. 
+
+Hindi namin ini-excuse ang mga bata dahil nauunawaan naman nga po namin para sa edukasyon nila ang ginagawa ninyo. 
+
+Ini-excuse lang po namin ang mga anak namin kadalasan pag may sakit. Hindi namin sila i-e-excuse dahil lang sa may trabaho kami.
+
+**Ma'am:** Lagi pong tatandaan na ang kaligtasan ng bata ang lagi nating uunahin. Kc may case nga po dito sa likod na d inaasahan. Wag po sanang masamain.
+
+**Me:** Hindi naman po yan issue natin ma'am. Ang isyu po natin ay yung oras ng uwian at Oras ng pagsundo.
+
+**Ma'am:** 3:30 po ang uwian Wala pong issue Magkatuwang po ang school at parents para sa ikauunlad ng ating mga anak 
+
+**Me:** Sige po. Mag-usap na lang po siguro kayo ni sir Edward.
+
+
