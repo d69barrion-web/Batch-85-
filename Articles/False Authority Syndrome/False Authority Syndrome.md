@@ -247,7 +247,9 @@ Pwede kitang gawaan ng **mas maikli**, pang-*share*, o pang-*comment*, depende s
 <img src="daniel_abalos2.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
 
 Nag-umpisa kase ito nung may isang parent na nagtanong sa gc 
+
 <img src="Screenshot_2025-12-08-05-01-41-29.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
+
 **Parent:** "Sir, anong oras po ba talaga ang uwian sa hapon?" 
 
 **Sir:** 3:30 po 
@@ -257,6 +259,8 @@ Nag-umpisa kase ito nung may isang parent na nagtanong sa gc
 **Sir:** May mga araw po na kailangan mag-extend ng mga guro ng oras para makuha ng mga bata ‘yong lesson.
 
 (Dito na ako umentra) 
+
+<img src="Screenshot_2025-12-08-05-01-41-29.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
 
 **Me:** Naiintindihan naman namin sir -- na para din naman sa edukasyon ng mga anak namin ang ginagawa ng mga guro natin.
 
