@@ -94,8 +94,8 @@ Kapag ang isang tao ay sobrang nakakabit ang identity nila sa “role” (hal. t
 kahit normal na tanong o simpleng opinyon ay nagmumukhang “paghihimagsik” o “paghamon” sa kanila.
 
 Sa isip nila:
-- “If I am not the authority, then who am I?”
-- “If others speak freely, anong silbi ng position ko?”
+- *“If I am not the authority, then who am I?”*
+- *“If others speak freely, anong silbi ng position ko?”*
 
 So they overcompensate.
 
