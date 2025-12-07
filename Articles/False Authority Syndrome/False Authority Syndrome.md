@@ -6,7 +6,7 @@ image: daniel_abalos2.jpg
 
 <img src="daniel_abalos2.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:50%;">
 
-Nasaan ang problema, nasa sistema ba o nasa teacher lang?.. 
+**Nasaan ang problema, nasa sistema ba o nasa teacher lang?..** 
 
 Ganito kasi ang observation ko: Hindi din naman talaga pare-pareho ang mga teacher. Pero may mga teacher na may para bang "False Authority Syndrome." Yung tipong akala talaga nila ay authority sila pero kung tutuusin at susuriin ay lalabas na wala naman pala talaga. 
 
