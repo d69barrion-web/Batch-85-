@@ -260,7 +260,7 @@ Nag-umpisa kase ito nung may isang parent na nagtanong sa gc
 
 (Dito na ako umentra) 
 
-<img src="Screenshot_2025-12-08-05-01-41-29.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
+<img src="Screenshot_2025-12-08-05-22-55-42.jpg" alt="AI" style="float: left; margin: 0 15px 10px 0; width:100px; height:220px; border-radius:20%;">
 
 **Me:** Naiintindihan naman namin sir -- na para din naman sa edukasyon ng mga anak namin ang ginagawa ng mga guro natin.
 
