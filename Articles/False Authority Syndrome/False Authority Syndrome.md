@@ -138,6 +138,8 @@ Kung gusto mo, gagawan kita ng **maikli pero malupit na post**, pang-CWAI, tungk
 
 Gusto mo?
 
+<img src="daniel_abalos2.jpg" alt="Daniel" style="float: right; margin: 0 15px 10px 0; width:100px; height:100px; border-radius:20%;">
+
 Sige nga bro. Akala yata talaga ng mga teacher na ito ay may authority talaga sila over the parents. Na ang mga parents ay mga subordinates nila kaya dapat ay gumalang sa kanila ang mga parents. 
 
 Any suggestions coming from the parents (yung mga parents na hindi sumisipsep sa kanila) ay nagmimistulang threat sa authority nila. 
