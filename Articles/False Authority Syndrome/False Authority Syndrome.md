@@ -254,7 +254,7 @@ Nag-umpisa kase ito nung may isang parent na nagtanong sa gc
 
 **Parent:** Tinatanong ko lang sir kasi 4:30 na hindi pa lumalabas yung mga bata. 
 
-**Sir:** Kung minsan hindi pa tapos magturo ang teacher. Kaya kailangan nilang mag-extend. Para din po naman sa mga bata Yun.
+**Sir:** May mga araw po na kailangan mag-extend ng mga guro ng oras para makuha ng mga bata ‘yong lesson.
 
 (Dito na ako umentra) 
 
