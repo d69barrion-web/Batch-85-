@@ -148,7 +148,7 @@ Sige nga bro. Akala yata talaga ng mga teacher na ito ay may authority talaga si
 
 Any suggestions coming from the parents (yung mga parents na hindi sumisipsep sa kanila) ay nagmimistulang threat sa authority nila. 
 
-At sa mata ng mga sumisipsep sa kanila ay pinagmumukha nila may umaatake sa kanila. Kahit wala naman talaga kung tutuusin.
+At sa paningin ng mga magulang na sumisipsep sa kanila ay pinagmumukha nilang may umaatake sa kanila. Kahit wala naman talaga kung tutuusin.
 
 ---
 
