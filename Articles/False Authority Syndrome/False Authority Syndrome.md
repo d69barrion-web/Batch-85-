@@ -230,7 +230,7 @@ Hindi kailangan matakot magsalita.
 
 ### 🔍 Simpleng punto:
 
-**Ang tunay na authority ay hindi nakukuha sa title—nakukuha sa competence, humility, at mutual respect.**
+**Ang tunay na authority ay hindi nakukuha sa title—kundi nakukuha ito sa competence, humility, at mutual respect.**
 
 Kapag ang teacher ay galit sa suggestions,
 natatanggalan ng confidence pag may tanong,
